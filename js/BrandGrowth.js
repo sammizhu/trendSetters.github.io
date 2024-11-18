@@ -9,7 +9,7 @@ class BrandGrowth {
     initVis() {
         const vis = this;
 
-        // Set up color scale
+        // color scale
         vis.colorScale = d3.scaleOrdinal()
             .domain(["LVMH", "TJX", "LULU", "GAP"])
             .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
@@ -61,12 +61,22 @@ class BrandGrowth {
         // Initialize scales
         vis.xScale = d3.scaleLinear().range([0, vis.width - vis.margin.left]);
         vis.yScale = d3.scaleLinear().range([vis.height, 0]);
+        vis.sizeScale = d3.scaleLinear().range([2,5]);
 
         // Add axis groups
         vis.xAxisGroup = vis.chartGroup.append("g")
             .attr("transform", `translate(0,${vis.height})`);
 
         vis.yAxisGroup = vis.chartGroup.append("g");
+
+        // add title
+        vis.svg.append("text")
+            .attr("x", (vis.width + vis.margin.left + vis.margin.right) / 2)
+            .attr("y", vis.margin.top / 4)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .text("What Brands Are Growing the Fastest?");
 
         // Add axis labels
         vis.chartGroup.append("text")
@@ -183,6 +193,7 @@ class BrandGrowth {
 
         vis.xScale.domain([vis.minX, vis.maxX])
         vis.yScale.domain([vis.minY, vis.maxY])
+        vis.sizeScale.domain([vis.minY, vis.maxY])
 
 
         // create custom tickValues which are just the years
@@ -212,8 +223,8 @@ class BrandGrowth {
             .attr("class", "dot")
             .attr("cx", d => vis.xScale(d.date))
             .attr("cy", d => vis.yScale(d.rate))
-            .attr("r", 5)
-            .attr("fill", d => vis.colorScale(d.company));
+            .attr("r", d => vis.sizeScale(d.rate))
+            .attr("fill", d => vis.colorScale(d.company))
 
     }
 }
