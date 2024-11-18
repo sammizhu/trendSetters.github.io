@@ -14,7 +14,7 @@ class RevenueVis {
 
         // set up the margins
         vis.margin = { top: 30, right: 120, bottom: 40, left: 120 };
-        vis.width = 800 - vis.margin.left - vis.margin.right;
+        vis.width = 600 - vis.margin.left - vis.margin.right;
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3
