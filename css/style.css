@@ -1,3 +1,7 @@
+h1 {
+    text-align: center;
+}
+
 .vl {
     border-left: 3px solid lightgrey;
     height: 100vh;
@@ -5,4 +9,26 @@
     left: 50%;
     margin-left: -3px;
     top: 0;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between; /* Distribute links to left and right */
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
