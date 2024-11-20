@@ -13,8 +13,8 @@ class RevenueVis {
             .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
 
         // set up the margins
-        vis.margin = { top: 50, right: 120, bottom: 40, left: 120 };
-        vis.width = 500 - vis.margin.left - vis.margin.right;
+        vis.margin = { top: 100, right: 120, bottom: 40, left: 120 };
+        vis.width = 800 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3
@@ -46,21 +46,21 @@ class RevenueVis {
             .y(d => vis.yScale(d.value));
 
 
-        vis.loadData();
+        // parse date from the data
+        vis.parseDate = d3.timeParse("%Y Q%q");
+        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q4"));
     }
 
-    loadData() {
+    loadData(xMin, xMax) {
         const vis = this;
 
         // parse date from the data
-        const parseDate = d3.timeParse("%Y Q%q");
         const parseRevenue = value => +value.replace(/,/g, "");
-
 
         d3.csv(vis.dataPath).then(data => {
             vis.data = [];
             data.forEach(row => {
-                const date = parseDate(row.Date);
+                const date = vis.parseDate(row.Date);
                 vis.data.push(
                     { date, company: "MC", value: parseRevenue(row["MC-Total Revenue (FQ)($)"]) },
                     { date, company: "TJX", value: parseRevenue(row["TJX-Total Revenue (FQ)($)"]) },
@@ -69,6 +69,13 @@ class RevenueVis {
                 );
             });
 
+            vis.minX = xMin
+            vis.maxX = xMax
+
+            vis.filteredData = vis.data.filter(d => d.date >= vis.minX && d.date <= vis.maxX)
+            console.log(vis.filteredData)
+
+
             vis.updateVis();
         });
     }
@@ -76,20 +83,27 @@ class RevenueVis {
     updateVis() {
         const vis = this;
 
-        const nestedData = d3.group(vis.data, d => d.company);
+        const nestedData = d3.group(vis.filteredData, d => d.company);
 
-        vis.xScale.domain(d3.extent(vis.data, d => d.date));
-        vis.yScale.domain([0, d3.max(vis.data, d => d.value)]);
+        vis.xScale.domain([vis.minX, vis.maxX]);
+        vis.yScale.domain([0, d3.max(vis.filteredData, d => d.value)]);
 
-        vis.xAxisGroup.call(d3.axisBottom(vis.xScale).tickFormat(d3.timeFormat("%Y-Q%q")));
+        vis.xAxisGroup
+            .transition()
+            .duration(500)
+            .call(d3.axisBottom(vis.xScale).tickFormat(d3.timeFormat("%Y-Q%q")));
 
         vis.xAxisGroup.selectAll("text")
-            .attr("transform", "rotate(-45)") // rotate the x axis so it looks better
+            .attr("transform", "rotate(-45)")
             .style("text-anchor", "end");
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
+
+        vis.yAxisGroup
+            .transition()
+            .duration(500)
+            .call(d3.axisLeft(vis.yScale));
 
         const companies = vis.svg.selectAll(".line-group")
-            .data(nestedData, d => d[0]); // company name
+            .data(nestedData, d => d[0]);
 
         companies.enter()
             .append("path")
@@ -98,43 +112,19 @@ class RevenueVis {
             .attr("fill", "none")
             .attr("stroke", d => vis.colorScale(d[0]))
             .attr("stroke-width", 2)
+            .transition()
+            .duration(500)
             .attr("d", ([company, values]) => vis.lineGenerator(values));
 
         companies.exit().remove();
 
-        // // add the cute legend
-        // const legend = vis.svg.selectAll(".legend")
-        //     .data(Array.from(nestedData.keys()));
-
-        // const legendGroup = legend.enter()
-        //     .append("g")
-        //     .attr("class", "legend")
-        //     .attr("transform", (d, i) => `translate(${vis.width + 20}, ${i * 25})`);
-
-        // legendGroup.append("rect")
-        //     .attr("x", 0)
-        //     .attr("y", -10)
-        //     .attr("width", 15)
-        //     .attr("height", 15)
-        //     .attr("fill", d => vis.colorScale(d));
-
-        // legendGroup.append("text")
-        //     .attr("x", 20)
-        //     .attr("y", 0)
-        //     .attr("dy", "0.35em")
-        //     .style("font-size", "14px")
-        //     .style("font-weight", "bold")
-        //     .text(d => d);
-
-        // legend.exit().remove();
-
 
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const brandRevenue = new RevenueVis({
-        parentElement: "#VisContainer2Top",
-        dataPath: "data/revenue_data.csv"
-    });
-});
+//
+// document.addEventListener("DOMContentLoaded", () => {
+//     const brandRevenue = new RevenueVis({
+//         parentElement: "#VisContainer2Top",
+//         dataPath: "data/revenue_data.csv"
+//     });
+// });

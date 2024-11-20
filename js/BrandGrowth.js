@@ -4,6 +4,7 @@ class BrandGrowth {
         this.parentElement = parentElement;
         this.dataPath = data;
         this.initVis();
+        this.minX;
     }
 
     initVis() {
@@ -92,21 +93,23 @@ class BrandGrowth {
             .attr("transform", "rotate(-90)")
             .text("Annual Growth Rate");
 
+        // parse date from the data
+        vis.parseDate = d3.timeParse("%Y Q%q");
+
         // Load data from the specified paths
-        vis.loadData();
+        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q4"));
+
     }
 
-    loadData() {
+    loadData(xMin, xMax) {
         const vis = this;
 
-        // parse date from the data
-        const parseDate = d3.timeParse("%Y Q%q");
         const parseRevenue = value => +value.replace(/,/g, "");
 
         d3.csv(vis.dataPath).then(data => {
             vis.data = [];
             data.forEach(row => {
-                const date = parseDate(row.Date);
+                const date = vis.parseDate(row.Date);
                 vis.data.push(
                     { date, company: "MC", value: parseRevenue(row["MC-Total Revenue (FQ)($)"]) },
                     { date, company: "TJX", value: parseRevenue(row["TJX-Total Revenue (FQ)($)"]) },
@@ -173,6 +176,19 @@ class BrandGrowth {
         // combine all companies' data to one list
         vis.allRates = vis.lvmhRates.concat(vis.tjxRates, vis.luluRates, vis.gapRates)
 
+        // set domains of scales
+        vis.minY = d3.min(vis.allRates, d => d.rate)
+        vis.maxY = d3.max(vis.allRates, d => d.rate)
+
+        vis.minX = xMin;
+        vis.maxX = xMax;
+
+        vis.xScale.domain([vis.minX, vis.maxX])
+
+        // filter data
+        vis.filteredData = vis.allRates.filter(d => d.date >= vis.minX && d.date <= vis.maxX)
+        console.log(vis.filteredData)
+
         vis.updateVis();
         }).catch(error => {
             console.error("Error loading data:", error);
@@ -180,34 +196,39 @@ class BrandGrowth {
 
     }
 
-
     updateVis() {
         const vis = this;
 
-        // set domains of scales
-        vis.minY = d3.min(vis.allRates, d => d.rate)
-        vis.maxY = d3.max(vis.allRates, d => d.rate)
-
-        vis.minX = (d3.min(vis.allRates, d => d.date));
-        vis.maxX = (d3.max(vis.allRates, d => d.date));
-
-        vis.xScale.domain([vis.minX, vis.maxX])
         vis.yScale.domain([vis.minY, vis.maxY])
         vis.sizeScale.domain([vis.minY, vis.maxY])
-
 
         // create custom tickValues which are just the years
         vis.customTickValues = []
 
         vis.lvmhRates.forEach( row => {
-            vis.customTickValues.push(row.date)
+            if (row.date >= vis.minX && row.date <= vis.maxX) {
+                vis.customTickValues.push(row.date)
+            }
         })
 
+        console.log(vis.minX)
+
         // Render the axes
-        vis.xAxisGroup.call(d3.axisBottom(vis.xScale)
+        vis.xAxis = d3.axisBottom(vis.xScale)
             .tickValues(vis.customTickValues)
-            .tickFormat(d3.timeFormat("%Y")))
-            .selectAll("text")
+            .tickFormat(d3.timeFormat("%Y"));
+        vis.xAxisGroup
+            .transition()
+            .duration(500)
+            .call(vis.xAxis);
+        vis.xAxisGroup.selectAll(".tick")
+            .data(vis.customTickValues, d => d) // Use data-binding to match ticks
+            .exit()
+            .transition()
+            .duration(500)
+            .style("opacity", 0)
+            .remove();
+        vis.xAxisGroup.selectAll(".tick text")
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end");
 
@@ -217,22 +238,29 @@ class BrandGrowth {
         // show chart and render the data points
         vis.chartGroup.selectAll(".dot").remove(); // Clear old points if present
         vis.chartGroup.selectAll(".dot")
-            .data(vis.allRates)
+            .data(vis.filteredData)
             .enter()
             .append("circle")
             .attr("class", "dot")
             .attr("cx", d => vis.xScale(d.date))
             .attr("cy", d => vis.yScale(d.rate))
+            .transition()
+            .duration(500)
             .attr("r", d => vis.sizeScale(d.rate))
             .attr("fill", d => vis.colorScale(d.company))
 
+        vis.chartGroup.selectAll(".dot")
+            .data(vis.filteredData)  // Re-bind the data
+            .exit()
+            .remove();  // Remove dots no longer associated with data
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    const brandGrowth = new BrandGrowth({
-        parentElement: "#VisContainer2Bottom",
-        data: "data/revenue_data.csv"
-    });
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//
+//     const brandGrowth = new BrandGrowth({
+//         parentElement: "#VisContainer2Bottom",
+//         data: "data/revenue_data.csv"
+//     });
+// });
