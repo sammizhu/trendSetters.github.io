@@ -12,10 +12,13 @@ class RevenueVis {
             .domain(["MC", "TJX", "LULU", "GAP"])
             .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
 
+        vis.size = document.getElementById(vis.parentElement).getBoundingClientRect();
+        console.log(vis.size)
+
         // set up the margins
         vis.margin = { top: 100, right: 120, bottom: 40, left: 120 };
-        vis.width = 800 - vis.margin.left - vis.margin.right;
-        vis.height = 300 - vis.margin.top - vis.margin.bottom;
+        vis.width = vis.size.height - vis.margin.left - vis.margin.right;
+        vis.height = vis.size.width - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3
             .select(vis.parentElement)
