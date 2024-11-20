@@ -16,8 +16,8 @@ class BrandGrowth {
 
         // Set up margins and dimensions
         vis.margin = { top: 10, right: 50, bottom: 100, left: 50 };
-        vis.width = 600 - vis.margin.left - vis.margin.right;
-        vis.height = 350 - vis.margin.top - vis.margin.bottom;
+        vis.width = 500 - vis.margin.left - vis.margin.right;
+        vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
         // Append the SVG element
         vis.svg = d3
@@ -228,3 +228,11 @@ class BrandGrowth {
 
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const brandGrowth = new BrandGrowth({
+        parentElement: "#VisContainer2Bottom",
+        data: "data/revenue_data.csv"
+    });
+});

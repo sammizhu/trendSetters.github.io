@@ -13,9 +13,9 @@ class RevenueVis {
             .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
 
         // set up the margins
-        vis.margin = { top: 30, right: 120, bottom: 40, left: 120 };
-        vis.width = 600 - vis.margin.left - vis.margin.right;
-        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+        vis.margin = { top: 50, right: 120, bottom: 40, left: 120 };
+        vis.width = 500 - vis.margin.left - vis.margin.right;
+        vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3
             .select(vis.parentElement)
@@ -39,11 +39,12 @@ class RevenueVis {
             .attr("text-anchor", "middle")
             .style("font-size", "18px")
             .style("font-weight", "bold")
-            .text("Revenue by Quarter for MC, TJX, LULU, and GAP");
+            .text("Revenue by Quarter for Brands");
 
         vis.lineGenerator = d3.line()
             .x(d => vis.xScale(d.date))
             .y(d => vis.yScale(d.value));
+
 
         vis.loadData();
     }
@@ -54,6 +55,7 @@ class RevenueVis {
         // parse date from the data
         const parseDate = d3.timeParse("%Y Q%q");
         const parseRevenue = value => +value.replace(/,/g, "");
+
 
         d3.csv(vis.dataPath).then(data => {
             vis.data = [];
@@ -100,30 +102,39 @@ class RevenueVis {
 
         companies.exit().remove();
 
-        // add the cute legend
-        const legend = vis.svg.selectAll(".legend")
-            .data(Array.from(nestedData.keys()));
+        // // add the cute legend
+        // const legend = vis.svg.selectAll(".legend")
+        //     .data(Array.from(nestedData.keys()));
 
-        const legendGroup = legend.enter()
-            .append("g")
-            .attr("class", "legend")
-            .attr("transform", (d, i) => `translate(${vis.width + 20}, ${i * 25})`);
+        // const legendGroup = legend.enter()
+        //     .append("g")
+        //     .attr("class", "legend")
+        //     .attr("transform", (d, i) => `translate(${vis.width + 20}, ${i * 25})`);
 
-        legendGroup.append("rect")
-            .attr("x", 0)
-            .attr("y", -10)
-            .attr("width", 15)
-            .attr("height", 15)
-            .attr("fill", d => vis.colorScale(d));
+        // legendGroup.append("rect")
+        //     .attr("x", 0)
+        //     .attr("y", -10)
+        //     .attr("width", 15)
+        //     .attr("height", 15)
+        //     .attr("fill", d => vis.colorScale(d));
 
-        legendGroup.append("text")
-            .attr("x", 20)
-            .attr("y", 0)
-            .attr("dy", "0.35em")
-            .style("font-size", "14px")
-            .style("font-weight", "bold")
-            .text(d => d);
+        // legendGroup.append("text")
+        //     .attr("x", 20)
+        //     .attr("y", 0)
+        //     .attr("dy", "0.35em")
+        //     .style("font-size", "14px")
+        //     .style("font-weight", "bold")
+        //     .text(d => d);
 
-        legend.exit().remove();
+        // legend.exit().remove();
+
+
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const brandRevenue = new RevenueVis({
+        parentElement: "#VisContainer2Top",
+        dataPath: "data/revenue_data.csv"
+    });
+});
