@@ -12,13 +12,13 @@ class RevenueVis {
             .domain(["MC", "TJX", "LULU", "GAP"])
             .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
 
-        vis.size = document.getElementById(vis.parentElement).getBoundingClientRect();
+        // vis.size = document.getElementById(vis.parentElement).getBoundingClientRect();
         console.log(vis.size)
 
         // set up the margins
         vis.margin = { top: 100, right: 120, bottom: 40, left: 120 };
-        vis.width = vis.size.height - vis.margin.left - vis.margin.right;
-        vis.height = vis.size.width - vis.margin.top - vis.margin.bottom;
+        vis.width = 800 - vis.margin.left - vis.margin.right;
+        vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3
             .select(vis.parentElement)
@@ -48,6 +48,20 @@ class RevenueVis {
             .x(d => vis.xScale(d.date))
             .y(d => vis.yScale(d.value));
 
+        // vertical tool tip group
+        vis.toolGroup = vis.svg.append("g")
+            .style("display","inline")
+            .attr("class", "mytooltip")
+
+        // create the line of the tooltip
+        vis.tooltip = vis.toolGroup.append("line")
+            .attr("x1", 0)
+            .attr("x2", 0)
+            .attr("y1", 0)
+            .attr("y2", vis.height)
+            .attr("stroke", "red")
+            .attr("stroke-width", 3)
+            .style("opacity", 1)
 
         // parse date from the data
         vis.parseDate = d3.timeParse("%Y Q%q");
@@ -122,6 +136,65 @@ class RevenueVis {
         companies.exit().remove();
 
 
+        // add text to the tooltip group including population and date
+        vis.tooltipPop = vis.toolGroup.append("text").data(vis.filteredData)
+            .attr("x", 10)
+            .attr("y", 40)
+            .attr("id", "tooltiptext")
+
+        vis.tooltipDate = vis.toolGroup.append("text").data(vis.filteredData)
+            .attr("x", 10)
+            .attr("y", 60)
+            .attr("id", "tooltipdate")
+
+        // functions to help with tool tip generation
+        vis.bisectDate = d3.bisector(d => d.date).left;
+        vis.formatToolTipDate = d3.timeFormat("%B %d %Y");
+        vis.formatToolTipPop = d3.format(",");
+
+        // function to display the tooltip when mouse moves
+        function mousemove(event){
+            // show tooltip group
+            vis.toolGroup.style("display", "inline")
+            // get element by tracking mouse position
+            let xPos = d3.pointer(event)[0]
+            let dateVal = timeScale.invert(xPos)
+            let index = bisectDate(data, dateVal)
+            let dataElement = vis.filteredData[index]
+            console.log(dataElement)
+            // change population text
+            // vis.tooltipPop.text(formatToolTipPop(dataElement.population))
+            // change date text
+            // vis.tooltipDate.text(formatToolTipDate(dataElement.date))
+            // have the tooltip group follow the cursor
+            vis.toolGroup.attr("transform", "translate(" + xPos + ",0)")
+            // change positioning of text to avoid being cut off by chart border
+            if (xPos > 275) {
+                vis.tooltipPop.attr("transform", "translate(" + -170 + ",0)")
+                vis.tooltipDate.attr("transform", "translate(" + -170 + ",0)")
+            }
+            else {
+                vis.tooltipPop.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltipDate.attr("transform", "translate(" + 0 + ",0)")
+            }
+        }
+
+        // create a rectangle to track mouse movements
+        vis.rectEvent = vis.svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", vis.width)
+            .attr("height", vis.height)
+            .attr("fill", "transparent")
+            .style("pointer-events", "all")
+            .on("mouseout", () => {
+                console.log("Mouse out!");
+                vis.toolGroup.style("display", "none");
+            })
+            .on("mousemove", (event) => {
+                console.log("Mouse is moving!");
+                mousemove(event);
+            });
     }
 }
 //

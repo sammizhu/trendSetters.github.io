@@ -17,14 +17,16 @@ class BrandGrowth {
 
         // Set up margins and dimensions
         vis.margin = { top: 10, right: 50, bottom: 100, left: 50 };
-        vis.width = 500 - vis.margin.left - vis.margin.right;
+        vis.width = 700 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
+
+        vis.visualWidth = 400
 
         // Append the SVG element
         vis.svg = d3
             .select(vis.parentElement)
             .append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            .attr("width", vis.visualWidth + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", `translate(${vis.margin.left}, ${vis.margin.top})`);
@@ -60,7 +62,7 @@ class BrandGrowth {
             .style("font-size", "10px")
 
         // Initialize scales
-        vis.xScale = d3.scaleLinear().range([0, vis.width - vis.margin.left]);
+        vis.xScale = d3.scaleLinear().range([0, vis.visualWidth - vis.margin.left]);
         vis.yScale = d3.scaleLinear().range([vis.height, 0]);
         vis.sizeScale = d3.scaleLinear().range([2,5]);
 
@@ -72,7 +74,7 @@ class BrandGrowth {
 
         // add title
         vis.svg.append("text")
-            .attr("x", (vis.width + vis.margin.left + vis.margin.right) / 2)
+            .attr("x", (vis.visualWidth + vis.margin.left + vis.margin.right) / 2)
             .attr("y", vis.margin.top / 4)
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
@@ -81,7 +83,7 @@ class BrandGrowth {
 
         // Add axis labels
         vis.chartGroup.append("text")
-            .attr("x", (vis.width - vis.margin.left) / 2)
+            .attr("x", (vis.visualWidth - vis.margin.left) / 2)
             .attr("y", vis.height + vis.margin.top + 45)
             .attr("text-anchor", "middle")
             .text("Year");
@@ -95,6 +97,16 @@ class BrandGrowth {
 
         // parse date from the data
         vis.parseDate = d3.timeParse("%Y Q%q");
+
+        // text box
+        vis.textBrandGroup = vis.svg.append("g")
+            .attr("transform", `translate(${vis.visualWidth + vis.margin.left},${vis.margin.top})`);
+
+        vis.textBrand = vis.textBrandGroup.append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("text-anchor", "middle")
+
 
         // Load data from the specified paths
         vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q4"));
@@ -244,15 +256,21 @@ class BrandGrowth {
             .attr("class", "dot")
             .attr("cx", d => vis.xScale(d.date))
             .attr("cy", d => vis.yScale(d.rate))
+            .style("pointer-events", "all")
+            .on("click", function (event, d) {
+                let formatDate = d3.timeFormat("%Y");
+                let formatRate = d3.format(".0%")
+                vis.textBrand.text(`In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)} from the prior year`);
+            })
             .transition()
             .duration(500)
             .attr("r", d => vis.sizeScale(d.rate))
             .attr("fill", d => vis.colorScale(d.company))
 
         vis.chartGroup.selectAll(".dot")
-            .data(vis.filteredData)  // Re-bind the data
+            .data(vis.filteredData)
             .exit()
-            .remove();  // Remove dots no longer associated with data
+            .remove();
     }
 }
 
