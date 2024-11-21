@@ -1,0 +1,202 @@
+html, body {
+
+    margin-bottom: 100px;
+    margin-left: 80px;
+    background-color: beige;
+}
+
+/* editing the icons */
+img {
+    position: absolute;
+    display:inline-block;
+    height:100%;
+}
+
+input[type="image"] {
+    width: 100px;
+    height: 100px;
+}
+
+.cropped-shoes {
+    display: block;
+    width: 300px; /* Zoom in by increasing the images dimensions */
+    height: auto; /* Maintain the aspect ratio */
+    transform: scale(3.5);
+    max-width: none; /* Ensure no scaling from the container */
+    position: absolute; /* Allows positioning within the container */
+    object-fit: cover; /* Ensures the images fills the visible box */
+    object-position: 50% 180%; /* Focus on the desired area */
+}
+
+.cropped-pants {
+    display: block;
+    width: 300px; /* Zoom in by increasing the images dimensions */
+    height: auto; /* Maintain the aspect ratio */
+    transform: scale(3);
+    max-width: none; /* Ensure no scaling from the container */
+    position: absolute; /* Allows positioning within the container */
+    object-fit: cover; /* Ensures the images fills the visible box */
+    object-position: 50% 50%; /* Focus on the desired area */
+}
+
+.cropped-tops {
+    display: block;
+    width: 300px; /* Zoom in by increasing the images dimensions */
+    height: auto; /* Maintain the aspect ratio */
+    transform: scale(3);
+    max-width: none; /* Ensure no scaling from the container */
+    position: absolute; /* Allows positioning within the container */
+    object-fit: cover; /* Ensures the images fills the visible box */
+    object-position: 50% 10%; /* Focus on the desired area */
+}
+.cropping-container {
+    width: 100px; /* Fixed width of the visible area */
+    height: 100px; /* Fixed height of the visible area */
+    overflow: hidden; /* Crops the extra part of the images */
+    position: relative; /* Positions the images within the box */
+}
+
+/* editing the clothing menu */
+
+#clothing-btns{
+    display: inline-block;
+    float: center;
+    border: 1px solid black;
+    margin-top: 300px;
+    margin-bottom: 100px;
+    margin-left: 380px;
+    background-color: lightblue;
+    height: 200px;
+    width: 500px;
+    overflow: auto;
+
+}
+
+/* editing the menu */
+
+
+.menu {
+    display: none; /* Hide menus by default */
+    flex-direction: row; /* Layout items horizontally */
+    gap: 10px; /* Add spacing between items */
+    margin-top: 10px; /* Add space from buttons */
+    justify-content: center;
+    align-items: center;
+}
+
+#words-buttons {
+    display: flex; /* Enables flexbox for horizontal layout */
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically */
+    gap: 20px; /* Adds space between buttons */
+    margin-top: 20px; /* Optional: Space above the buttons */
+}
+
+
+#clothing-menu {
+    position: relative;
+    z-index: 10; /* Bring menu to the front */
+    margin-top: 20px;
+}
+
+
+button {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 5px;
+    z-index: 15; /* Ensure buttons appear above other elements */
+}
+
+
+button:hover {
+    background-color: lightgreen; /* Optional: Add hover effect */
+}
+
+.toggle-image{
+    display: none;
+}
+
+/* Editing the shirt, bottom, and shoes overlay */
+
+#top img {
+    z-index: 3; /* Layer above */
+}
+
+#bottom img {
+    z-index: 2;
+}
+
+#shoes img {
+    z-index: 1;
+}
+
+/* submit
+ */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Center the modal vertically */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Width of the modal */
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Close Button */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#submit-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Adds spacing above the button */
+}
+
+#submit-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 5px;
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+#submit-button:hover {
+    background-color: lightgreen; /* Hover effect */
+}
+
+
+
