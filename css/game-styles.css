@@ -202,7 +202,7 @@ button:hover {
  */
 
 footer {
-    z-index: 100; /
+    z-index: 100;
     position: relative;
 }
 
@@ -211,7 +211,7 @@ footer a {
     font-size: 18px;
     font-weight: bold;
     color: #000;
-    cursor: pointer; /
+    cursor: pointer;
     display: inline-block;
     padding: 10px 20px;
 }
@@ -219,8 +219,4 @@ footer a {
 footer a {
     border: 1px solid red;
     background-color: rgba(255, 0, 0, 0.1); /* Light red background */
-}
-
-footer a {
-    font-family: Arial, sans-serif;
 }
