@@ -89,7 +89,7 @@ function submitStyle() {
 
     // Display the result in the modal
     const styleMessage = document.getElementById('style-message');
-    styleMessage.textContent = `Based on your selection, your style is Style ${maxStyle}!`;
+    styleMessage.textContent = `TO DO: ADD MORE INFO Based on your selection, your style is Style ${maxStyle}!`;
     openModal();
 }
 
