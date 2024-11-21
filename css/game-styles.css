@@ -198,5 +198,25 @@ button:hover {
     background-color: lightgreen; /* Hover effect */
 }
 
+/* footer
+ */
 
+footer {
+    z-index: 100; /* Ensure the footer is above other elements */
+    position: relative; /* Maintain proper positioning */
+}
 
+footer a {
+    text-decoration: none;
+    font-size: 18px; /* Adjust text size */
+    font-weight: bold;
+    color: #000; /* Black text */
+    cursor: pointer; /* Show pointer cursor */
+    display: inline-block; /* Ensure it's treated as a block for padding */
+    padding: 10px 20px; /* Add clickable area */
+}
+
+footer a {
+    border: 1px solid red; /* Debug border */
+    background-color: rgba(255, 0, 0, 0.1); /* Light red background */
+}

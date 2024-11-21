@@ -30,23 +30,23 @@ let selectedShoes = null;
 // Update toggle function to track selections
 function toggle(clothingId, type) {
     if (type === 'top') {
-        const tops = document.querySelectorAll('.toggle-images-top-images');
-        tops.forEach(top => top.classList.add('toggle-images')); // Hide all tops
+        const tops = document.querySelectorAll('.toggle-image-top-image');
+        tops.forEach(top => top.classList.add('toggle-image')); // Hide all tops
         selectedShirt = clothingId; // Track selected shirt
     } else if (type === 'bottom') {
-        const bottoms = document.querySelectorAll('.toggle-images-bottom-images');
-        bottoms.forEach(bottom => bottom.classList.add('toggle-images')); // Hide all bottoms
+        const bottoms = document.querySelectorAll('.toggle-image-bottom-image');
+        bottoms.forEach(bottom => bottom.classList.add('toggle-image')); // Hide all bottoms
         selectedPants = clothingId; // Track selected pants
     } else if (type === 'shoes') {
-        const shoes = document.querySelectorAll('.toggle-images-shoes-images');
-        shoes.forEach(shoe => shoe.classList.add('toggle-images')); // Hide all shoes
+        const shoes = document.querySelectorAll('.toggle-image-shoes-image');
+        shoes.forEach(shoe => shoe.classList.add('toggle-image')); // Hide all shoes
         selectedShoes = clothingId; // Track selected shoes
     }
 
     // Show the selected clothing item
     const clothingElement = document.getElementById(clothingId);
     if (clothingElement) {
-        clothingElement.classList.remove('toggle-images');
+        clothingElement.classList.remove('toggle-image');
     } else {
         console.error(`Element with ID ${clothingId} not found.`);
     }
