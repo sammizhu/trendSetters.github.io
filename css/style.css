@@ -106,15 +106,21 @@ footer a:hover {
     border-radius: 10px; /* Optional */
 }
 
+/* Wrapper for the button icon */
 .page2-button-icon {
     position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 40px;
-    height: 40px;
-    background-color: #4e97d8;
-    border-radius: 50%;
-    z-index: 5;
+    top: 10%; /* Position the button over the left image */
+    left: 10%; /* Adjust the button’s position horizontally */
+    width: auto; /* Allow the button to size based on the image */
+    height: auto; /* Allow height to adjust automatically */
+}
+
+/* Button image styles */
+.button-image {
+    width: 40px; /* Set the size of the button */
+    height: 40px; /* Adjust to match proportions */
+    object-fit: contain; /* Ensure the image scales properly */
+    cursor: pointer; /* Optional: make it look clickable */
 }
 
 /* Right Column */
