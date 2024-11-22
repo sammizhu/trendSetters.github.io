@@ -32,3 +32,108 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Page 2 */
+/* Main container styles - content constrained to the left of the vertical line */
+#VisContainer1-Page2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%; /* Ensure content stays within the left half */
+    height: 100%;
+    padding: 20px 20px 0 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent any overflow */
+}
+
+/* Red Dress Centered */
+.page2-centered-red-dress {
+    position: absolute;
+    bottom: 5%; /* Adjust to center it visually */
+    left: 25%; /* Center within the left half */
+    transform: translateX(-10%);
+    z-index: 10; /* Ensure it is above the columns */
+}
+
+.red-dress-centered {
+    max-width: 80%; /* Adjust size to fit nicely within constraints */
+    height: auto;
+    object-fit: contain;
+}
+
+/* Columns container */
+.page2-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px; /* Space between columns */
+}
+
+/* Left Column */
+.page2-left-content {
+    width: 45%; /* Constrained within the left half */
+    text-align: left;
+}
+
+.page2-title {
+    font-size: 4vw;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-top: 0;
+    text-align: left;
+}
+
+.page2-description {
+    font-size: 1.2vw;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Left Image with Button */
+.page2-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+.page2-left-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional */
+}
+
+.page2-button-icon {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    background-color: #4e97d8;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+/* Right Column */
+.page2-right-content {
+    width: 45%; /* Constrained within the left half */
+    text-align: left;
+}
+
+.page2-question {
+    font-size: 1.5vw;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.page2-right-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional */
+}
+
+
