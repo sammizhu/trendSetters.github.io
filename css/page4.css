@@ -1,0 +1,75 @@
+body {
+    padding: 1vh;
+}
+
+.question {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.brand-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.left-link {
+    float: left;
+}
+
+.right-link {
+    float: right;
+}
+
+.vl {
+    border-left: 1px solid #ddd;
+    height: 100%;
+}
+
+.highlight {
+    background-color: yellow;
+    padding: 5px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column; /* Ensures vertical stacking of row-container elements */
+    justify-content: center; /* Centers the row-container elements vertically */
+    align-items: center;     /* Centers the row-container elements horizontally */
+}
+
+.row-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%; /* Ensure row-container spans the full width of the form-container */
+}
+
+.form-label {
+    width: 30%; /* Adjust to control label width */
+    text-align: right;
+    margin-right: 10px;
+}
+
+.form-select {
+    width: 60%; /* Adjust to control dropdown width */
+}
+
+.inline-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px; /* Space between label, dropdown, and button */
+    margin-top: 20px;
+}
