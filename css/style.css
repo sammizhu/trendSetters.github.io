@@ -32,3 +32,18 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+#slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-top:50px
+}

@@ -105,7 +105,19 @@ class BrandGrowth {
         vis.textBrand = vis.textBrandGroup.append("text")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "left")
+
+        vis.tspan1 = vis.textBrand.append("tspan")
+            .attr("x", 0)
+            .attr("dy",0)
+
+        vis.tspan2 = vis.textBrand.append("tspan")
+            .attr("x", 0)
+            .attr("dy",20)
+
+        vis.tspan3 = vis.textBrand.append("tspan")
+            .attr("x", 0)
+            .attr("dy",20)
 
 
         // Load data from the specified paths
@@ -165,22 +177,30 @@ class BrandGrowth {
             vis.lvmhRates.push({
                 company: "LVMH",
                 date: vis.lvmhData[i].date,
-                rate: vis.lvmhData[i].value / vis.lvmhData[i-4].value - 1
+                rate: vis.lvmhData[i].value / vis.lvmhData[i-4].value - 1,
+                prevRev: vis.lvmhData[i-4].value,
+                nowRev: vis.lvmhData[i].value,
             })
             vis.tjxRates.push({
                 company: "TJX",
                 date: vis.tjxData[i].date,
-                rate: vis.tjxData[i].value / vis.tjxData[i-4].value - 1
+                rate: vis.tjxData[i].value / vis.tjxData[i-4].value - 1,
+                prevRev: vis.tjxData[i-4].value,
+                nowRev: vis.tjxData[i].value,
             })
             vis.luluRates.push({
                 company: "LULU",
                 date: vis.luluData[i].date,
-                rate: vis.luluData[i].value / vis.luluData[i-4].value - 1
+                rate: vis.luluData[i].value / vis.luluData[i-4].value - 1,
+                prevRev: vis.luluData[i-4].value,
+                nowRev: vis.luluData[i].value,
             })
             vis.gapRates.push({
                 company: "GAP",
                 date: vis.gapData[i].date,
-                rate: vis.gapData[i].value / vis.gapData[i-4].value - 1
+                rate: vis.gapData[i].value / vis.gapData[i-4].value - 1,
+                prevRev: vis.gapData[i-4].value,
+                nowRev: vis.gapData[i].value,
             })
 
         }
@@ -234,7 +254,7 @@ class BrandGrowth {
             .duration(500)
             .call(vis.xAxis);
         vis.xAxisGroup.selectAll(".tick")
-            .data(vis.customTickValues, d => d) // Use data-binding to match ticks
+            .data(vis.customTickValues, d => d)
             .exit()
             .transition()
             .duration(500)
@@ -248,7 +268,7 @@ class BrandGrowth {
             .tickFormat(d3.format(".0%")));
 
         // show chart and render the data points
-        vis.chartGroup.selectAll(".dot").remove(); // Clear old points if present
+        vis.chartGroup.selectAll(".dot").remove();
         vis.chartGroup.selectAll(".dot")
             .data(vis.filteredData)
             .enter()
@@ -260,7 +280,22 @@ class BrandGrowth {
             .on("click", function (event, d) {
                 let formatDate = d3.timeFormat("%Y");
                 let formatRate = d3.format(".0%")
-                vis.textBrand.text(`In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)} from the prior year`);
+                function formatBills(number) {
+                    const billions = number / 1e9;
+                    return d3.format(".1f")(billions) + "B";
+                }
+                vis.tspan1.text(`In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}`);
+                vis.tspan2.text(`Before, ${d.company}'s revenue was $${formatBills(d.prevRev)}`)
+                vis.tspan3.text(`This year, ${d.company}'s revenue was $${formatBills(d.nowRev)}`)
+            })
+            .on("mouseover", function (event, d) {
+                d3.select(this)
+                    .style("stroke", "blue")
+                    .style("stroke-width", 2);
+            })
+            .on("mouseout", function (event, d) {
+                d3.select(this)
+                    .style("stroke-width", 0);
             })
             .transition()
             .duration(500)

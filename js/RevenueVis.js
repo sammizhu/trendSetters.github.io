@@ -50,7 +50,7 @@ class RevenueVis {
 
         // vertical tool tip group
         vis.toolGroup = vis.svg.append("g")
-            .style("display","inline")
+            .style("display","none")
             .attr("class", "mytooltip")
 
         // create the line of the tooltip
@@ -59,7 +59,7 @@ class RevenueVis {
             .attr("x2", 0)
             .attr("y1", 0)
             .attr("y2", vis.height)
-            .attr("stroke", "red")
+            .attr("stroke", "blue")
             .attr("stroke-width", 3)
             .style("opacity", 1)
 
@@ -136,21 +136,72 @@ class RevenueVis {
         companies.exit().remove();
 
 
+        vis.toolGroup.selectAll(".toolcompany").remove();
+
         // add text to the tooltip group including population and date
-        vis.tooltipPop = vis.toolGroup.append("text").data(vis.filteredData)
+        vis.tooltipLVMH = vis.toolGroup.append("text").data(vis.filteredData)
             .attr("x", 10)
             .attr("y", 40)
-            .attr("id", "tooltiptext")
+            .attr("class", "toolcompany")
 
-        vis.tooltipDate = vis.toolGroup.append("text").data(vis.filteredData)
+        vis.tooltipTJX = vis.toolGroup.append("text").data(vis.filteredData)
             .attr("x", 10)
             .attr("y", 60)
-            .attr("id", "tooltipdate")
+            .attr("class", "toolcompany")
+
+        vis.tooltipGAP = vis.toolGroup.append("text").data(vis.filteredData)
+            .attr("x", 10)
+            .attr("y", 80)
+            .attr("class", "toolcompany")
+
+        vis.tooltipLULU = vis.toolGroup.append("text").data(vis.filteredData)
+            .attr("x", 10)
+            .attr("y", 100)
+            .attr("class", "toolcompany")
 
         // functions to help with tool tip generation
         vis.bisectDate = d3.bisector(d => d.date).left;
         vis.formatToolTipDate = d3.timeFormat("%B %d %Y");
         vis.formatToolTipPop = d3.format(",");
+
+        // helper function to format revenue
+        function formatBills(number) {
+            const billions = number / 1e9;
+            return d3.format(".1f")(billions) + "B";
+        }
+
+        function roundDateToQuarter(dateVal) {
+            const year = dateVal.getFullYear();
+            const month = dateVal.getMonth() + 1;
+
+            const quarterDates = [
+                new Date(year, 0, 1),  // January 1
+                new Date(year, 3, 1),  // April 1
+                new Date(year, 6, 1),  // July 1
+                new Date(year, 9, 1)   // October 1
+            ];
+
+            // Determine the closest quarter date by checking the month
+            if (month < 4) {
+                return quarterDates[0];  // Before April, return January 1
+            } else if (month < 7) {
+                return quarterDates[1];  // Before July, return April 1
+            } else if (month < 10) {
+                return quarterDates[2];  // Before October, return July 1
+            } else {
+                return quarterDates[3];  // After October, return October 1
+            }
+        }
+
+        function findIndex(dateVal) {
+            for (let i = 0; i < vis.filteredData.length; i++) {
+                if (vis.filteredData[i].date.getTime() === dateVal.getTime()) {
+                    return i; // Return the index when the date matches
+                }
+            }
+            return -1; // Return -1 if no matching date is found
+        }
+
 
         // function to display the tooltip when mouse moves
         function mousemove(event){
@@ -158,26 +209,38 @@ class RevenueVis {
             vis.toolGroup.style("display", "inline")
             // get element by tracking mouse position
             let xPos = d3.pointer(event)[0]
-            let dateVal = timeScale.invert(xPos)
-            let index = bisectDate(data, dateVal)
-            let dataElement = vis.filteredData[index]
-            console.log(dataElement)
-            // change population text
-            // vis.tooltipPop.text(formatToolTipPop(dataElement.population))
-            // change date text
-            // vis.tooltipDate.text(formatToolTipDate(dataElement.date))
+            let dateVal = vis.xScale.invert(xPos)
+            let index = vis.bisectDate(vis.filteredData, dateVal)
+            console.log(roundDateToQuarter(dateVal))
+            console.log(vis.filteredData);
+            let secondIndex = findIndex(roundDateToQuarter(dateVal))
+            console.log(secondIndex)
+            let lvmhElement = vis.filteredData[secondIndex]
+            let tjxElement = vis.filteredData[secondIndex + 1]
+            let luluElement = vis.filteredData[secondIndex + 2]
+            let gapElement = vis.filteredData[secondIndex + 3]
+            // change revenue texts
+            vis.tooltipLVMH.text(`LVMH: $${formatBills(lvmhElement.value)}`)
+            vis.tooltipTJX.text(`TJX: $${formatBills(tjxElement.value)}`)
+            vis.tooltipGAP.text(`GAP: $${formatBills(gapElement.value)}`)
+            vis.tooltipLULU.text(`LULU: $${formatBills(luluElement.value)}`)
             // have the tooltip group follow the cursor
             vis.toolGroup.attr("transform", "translate(" + xPos + ",0)")
             // change positioning of text to avoid being cut off by chart border
             if (xPos > 275) {
-                vis.tooltipPop.attr("transform", "translate(" + -170 + ",0)")
-                vis.tooltipDate.attr("transform", "translate(" + -170 + ",0)")
+                vis.tooltipLVMH.attr("transform", "translate(" + -120 + ",0)")
+                vis.tooltipTJX.attr("transform", "translate(" + -120 + ",0)")
+                vis.tooltipGAP.attr("transform", "translate(" + -120 + ",0)")
+                vis.tooltipLULU.attr("transform", "translate(" + -120 + ",0)")
             }
             else {
-                vis.tooltipPop.attr("transform", "translate(" + 0 + ",0)")
-                vis.tooltipDate.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltipLVMH.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltipTJX.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltipGAP.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltipLULU.attr("transform", "translate(" + 0 + ",0)")
             }
         }
+
 
         // create a rectangle to track mouse movements
         vis.rectEvent = vis.svg.append("rect")
@@ -192,7 +255,6 @@ class RevenueVis {
                 vis.toolGroup.style("display", "none");
             })
             .on("mousemove", (event) => {
-                console.log("Mouse is moving!");
                 mousemove(event);
             });
     }

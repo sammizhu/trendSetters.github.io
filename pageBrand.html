@@ -22,10 +22,98 @@
 
 <div class="container-fluid" style="height: auto">
     <div class="row" style="height: 98vh">
-        <div class="col-6 text-center d-flex justify-content-center align-items-center" id="VisContainer1"></div>
-        <div class="vl"></div>
+        <div class="col-6 text-center justify-content-center align-items-center">
+            <p>To further analyze consumer sentiment, we focused on four brands that represent different demographics</p>
+            <br>
+            <h5>Test Your Knowledge On Fashion!</h5>
+            <hr>
+            <h6>Match each brand to the type of fashion it falls under:</h6>
+            <table>
+                <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Choose Retailer Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Louis Vuitton</td>
+                    <td>
+                        <select id="LVMHSelect">
+                            <option value="GAPSelect">Full price</option>
+                            <option value="TJXSelect">Discount</option>
+                            <option value="LULUSelect">Athleisure</option>
+                            <option value="LVMHSelect">Luxury</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TJ Maxx</td>
+                    <td>
+                        <select id="TJXSelect">
+                            <option value="GAPSelect">Full price</option>
+                            <option value="TJXSelect">Discount</option>
+                            <option value="LULUSelect">Athleisure</option>
+                            <option value="LVMHSelect">Luxury</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lululemon</td>
+                    <td>
+                        <select id="LULUSelect">
+                            <option value="GAPSelect">Full price</option>
+                            <option value="TJXSelect">Discount</option>
+                            <option value="LULUSelect">Athleisure</option>
+                            <option value="LVMHSelect">Luxury</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gap</td>
+                    <td>
+                        <select id="GAPSelect">
+                            <option value="GAPSelect">Full price</option>
+                            <option value="TJXSelect">Discount</option>
+                            <option value="LULUSelect">Athleisure</option>
+                            <option value="LVMHSelect">Luxury</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" id="submitMatch" onclick="submitMatch()">
+                Submit
+            </button>
+            <div id="matchResult"></div>
+
+            <br>
+            <hr>
+
+            <h6>What brand do you think has been growing the fastest?</h6>
+            <select id="brandGrowth">
+                <option value="LVMH">Louis Vuitton</option>
+                <option value="TJX">TJ Maxx</option>
+                <option value="GAP">GAP</option>
+                <option value="LULU">Lululemon</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit" id="submitGrowth" onclick="submitGrowth()">
+                Submit
+            </button>
+            <div id="growthResult"></div>
+
+            <hr>
+            <p id="brandDescription"></p>
+
+
+        </div>
+<!--        <div class="vl-container">-->
+<!--            <div class="vl"></div>-->
+<!--        </div>-->
         <div class="col-6">
-            <div id="slider"></div>
+            <div class="parent-container"> <div id="slider"></div></div>
             <div class="row" style="height: 50%" id="VisContainer2Top"></div> <!-- Top part -->
             <div class="row" style="height: 50%" id="VisContainer2Bottom"></div> <!-- Bottom part -->
         </div>
@@ -38,6 +126,9 @@
 <script src="js/BrandGrowth.js"></script>
 <script src="js/RevenueVis.js"></script>
 <script src="js/Slider.js"></script>
+<script src="js/mainBrand.js"></script>
+<script src="js/BrandQuiz.js"></script>
+
 
 
 </body>
