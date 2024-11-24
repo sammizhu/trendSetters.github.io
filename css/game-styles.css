@@ -1,0 +1,222 @@
+html, body {
+    margin-bottom: 100px;
+    margin-left: 80px;
+    background-color: beige;
+}
+
+/* editing the icons */
+img {
+    position: absolute;
+    display:inline-block;
+    height:100%;
+}
+
+input[type="image"] {
+    width: 100px;
+    height: 100px;
+}
+
+.cropped-shoes {
+    display: block;
+    width: 300px;
+    height: auto;
+    transform: scale(3.5);
+    max-width: none;
+    position: absolute;
+    object-fit: cover;
+    object-position: 50% 180%;
+}
+
+.cropped-pants {
+    display: block;
+    width: 300px;
+    height: auto;
+    transform: scale(3);
+    max-width: none;
+    position: absolute;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.cropped-tops {
+    display: block;
+    width: 300px;
+    height: auto;
+    transform: scale(3);
+    max-width: none;
+    position: absolute;
+    object-fit: cover;
+    object-position: 50% 10%;
+}
+
+.cropping-container {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* editing the clothing menu */
+
+#clothing-btns{
+    display: inline-block;
+    float: center;
+    border: 1px solid black;
+    margin-top: 300px;
+    margin-bottom: 100px;
+    margin-left: 380px;
+    background-color: lightblue;
+    height: 200px;
+    width: 500px;
+    overflow: auto;
+
+}
+
+/* editing the menu */
+
+
+.menu {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#words-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+#clothing-menu {
+    position: relative;
+    z-index: 10; /* Bring menu to the front */
+    margin-top: 20px;
+}
+
+
+button {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 5px;
+    z-index: 15; /* Ensure buttons appear above other elements */
+}
+
+
+button:hover {
+    background-color: lightgreen; /* Optional: Add hover effect */
+}
+
+.toggle-image{
+    display: none;
+}
+
+/* Editing the shirt, bottom, and shoes overlay */
+
+#top img {
+    z-index: 3; /* Layer above */
+}
+
+#bottom img {
+    z-index: 2;
+}
+
+#shoes img {
+    z-index: 1;
+}
+
+/* submit
+ */
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Close Button */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#submit-button {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+#submit-button:hover {
+    background-color: lightgreen;
+}
+
+/* footer
+ */
+
+footer {
+    z-index: 100;
+    position: relative;
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+footer a {
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.1); /* Light red background */
+}

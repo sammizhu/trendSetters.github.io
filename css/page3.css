@@ -1,0 +1,90 @@
+.vl {
+    border-left: 3px solid lightgrey;
+    height: 100vh;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between; /* Distribute links to left and right */
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.stat div {
+    text-align: center;
+}
+.chart-container2 {
+    width: 90%;
+    height: 200px;
+    margin: 20px 0;
+    position: relative; /* Add this to manage positioning if needed */
+}
+
+.chart-area {
+    padding-top: 20px;
+    display: flex; /* Align charts side by side */
+    flex-direction: row; /* Horizontal layout for charts */
+    align-items: center; /* Vertically align charts */
+    gap: 20px; /* Space between the charts */
+    max-width: 90%; /* Restrict the total width of the chart area */
+    margin-left: 0; /* Align the entire chart area to the left */
+    transform: scale(0.8) translateX(8px); /* Scale down the charts and move the area left */
+    transform-origin: left; /* Ensure scaling happens from the left edge */
+}
+
+.line-chart-container {
+    width: 100%; /* Allow scaling */
+    transform: scale(0.8) translateX(-30px); /* Scale to prevent overflow and adjust starting position */
+    transform-origin: left; /* Ensure scaling happens from the left side */
+}
+
+.bubble-chart-container {
+    transform: scale(0.8); /* Scale to match the line chart */
+    margin-left: 20px; /* Add spacing between the two charts */
+    transform-origin: center; /* Scale from the center */
+}
+
+.chart-container {
+    width: 300px; /* Adjust dimensions */
+    height: 250px; /* Maintain consistent height */
+    position: relative;
+}
+
+.chart-text-container {
+    width: 100%;
+    margin-top: 20px;
+}
+.chart-text {
+    font-size: 16px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.slider-container {
+    margin: 20px 0;
+}

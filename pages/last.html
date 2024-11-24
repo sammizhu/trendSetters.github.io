@@ -1,25 +1,121 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS171 Visualizations</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-</head>
-<body style="margin: 0; overflow-x: hidden;">
+    <title>Dress Up Game</title>
 
-<h1>Design of character from previous page</h1>
+    <link rel= "stylesheet" href="../css/game-styles.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+
+<div id="header">TO DO: Match Page layout</div>
+
+<div id="character-creation-container">
+    <div id="character-container">
+        <img id="character" src="../images/body.PNG"/>
+    </div>
+
+    <div id="top">
+        <img id="top1" class='toggle-image toggle-image-top-image' src="../images/shirt1.PNG"/>
+        <img id="top2" class='toggle-image toggle-image-top-image' src="../images/shirt2.1.PNG"/>
+        <img id="top3" class='toggle-image toggle-image-top-image' src="../images/shirt3.PNG"/>
+        <img id="top4" class='toggle-image toggle-image-top-image' src="../images/shirt4.PNG"/>
+    </div>
+
+    <div id="bottom">
+        <img id="bottom1" class="toggle-image toggle-image-bottom-image" src="../images/pants1.PNG"/>
+        <img id="bottom2" class="toggle-image toggle-image-bottom-image" src="../images/pants2.PNG"/>
+        <img id="bottom3" class="toggle-image toggle-image-bottom-image" src="../images/pants3.PNG"/>
+        <img id="bottom4" class="toggle-image toggle-image-bottom-image" src="../images/pants4.PNG"/>
+    </div>
+
+    <div id="shoes">
+        <img id="shoes1" class="toggle-image toggle-image-shoes-image" src="../images/shoes1.PNG"/>
+        <img id="shoes2" class="toggle-image toggle-image-shoes-image" src="../images/shoes2.PNG"/>
+        <img id="shoes3" class="toggle-image toggle-image-shoes-image" src="../images/shoes3.PNG"/>
+        <img id="shoes4" class="toggle-image toggle-image-shoes-image" src="../images/shoes4.PNG"/>
+    </div>
+</div>
+
+<div id="clothing-btns">
+    <div id="clothing-menu">
+        <div id="words-buttons">
+            <button id="top-button" onclick="showMenu('top')">Tops</button>
+            <button id="bottom-button" onclick="showMenu('bottom')">Bottoms</button>
+            <button id="shoes-button" onclick="showMenu('shoes')">Shoes</button>
+        </div>
+
+        <div id="top-menu" class="menu">
+            <div class="cropping-container">
+                <input type="image" class="cropped-tops" id="top2-selectable" src="../images/shirt2.PNG" alt="shirt2" onclick="toggle('top2', 'top')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-tops" id="top3-selectable" src="../images/shirt3.PNG" alt="shirt3" onclick="toggle('top3', 'top')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-tops" id="top1-selectable" src="../images/shirt1.PNG" alt="shirt1" onclick="toggle('top1', 'top')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-tops" id="top4-selectable" src="../images/shirt4.PNG" alt="shirt4" onclick="toggle('top4', 'top')">
+            </div>
+        </div>
+
+        <div id="bottom-menu" class="menu">
+            <div class="cropping-container">
+                <input type="image" class="cropped-pants" id="bottom1-selectable" src="../images/pants1.PNG" alt="pants1" onclick="toggle('bottom1', 'bottom')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-pants" id="bottom2-selectable" src="../images/pants2.PNG" alt="pants2" onclick="toggle('bottom2', 'bottom')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-pants" id="bottom4-selectable" src="../images/pants4.PNG" alt="pants4" onclick="toggle('bottom4', 'bottom')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-pants" id="bottom3-selectable" src="../images/pants3.PNG" alt="pants3" onclick="toggle('bottom3', 'bottom')">
+            </div>
+        </div>
+
+        <div id="shoes-menu" class="menu">
+            <div class="cropping-container">
+                <input type="image" class="cropped-shoes" id="shoes1-selectable" src="../images/shoes1.PNG" alt="shoes1" onclick="toggle('shoes1', 'shoes')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-shoes" id="shoes4-selectable" src="../images/shoes4.PNG" alt="shoes4" onclick="toggle('shoes4', 'shoes')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-shoes" id="shoes2-selectable" src="../images/shoes2.PNG" alt="shoes2" onclick="toggle('shoes2', 'shoes')">
+            </div>
+            <div class="cropping-container">
+                <input type="image" class="cropped-shoes" id="shoes3-selectable" src="../images/shoes3.PNG" alt="shoes3" onclick="toggle('shoes3', 'shoes')">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="submit-container">
+    <button id="submit-button" onclick="submitStyle()">Submit</button>
+</div>
+
+<div id="style-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <p id="style-message"></p>
+    </div>
+</div>
+
+<script src="../js/game.js"></script>
 
 <!-- Footer -->
 <footer>
-    <a href="page5.html" class="left-link"></a>
-    <a href="../index.html" class="right-link"> </a>
+    <a href="../pages/page5.html" class="left-link">Back </a>
 </footer>
 
-<!-- Scripts -->
-<script src="js/main.js"></script>
-
 </body>
+
 </html>
+
+
