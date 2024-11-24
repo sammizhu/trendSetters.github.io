@@ -37,39 +37,52 @@ footer a:hover {
 .stat div {
     text-align: center;
 }
-.chart-container {
-    width: 90%; /* Ensures both charts fit neatly within the container */
-    height: 200px; /* Fixed height for both charts */
-    margin: 20px 0; /* Adds spacing between the charts */
-    display: flex;
-    justify-content: center; /* Centers the chart content */
-    align-items: center;
-}
 .chart-container2 {
     width: 90%;
     height: 200px;
     margin: 20px 0;
     position: relative; /* Add this to manage positioning if needed */
 }
+
 .chart-area {
     padding-top: 20px;
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* Ensures vertical spacing between the charts */
+    display: flex; /* Align charts side by side */
+    flex-direction: row; /* Horizontal layout for charts */
+    align-items: center; /* Vertically align charts */
+    gap: 20px; /* Space between the charts */
+    max-width: 90%; /* Restrict the total width of the chart area */
+    margin-left: 0; /* Align the entire chart area to the left */
+    transform: scale(0.8) translateX(8px); /* Scale down the charts and move the area left */
+    transform-origin: left; /* Ensure scaling happens from the left edge */
 }
+
+.line-chart-container {
+    width: 100%; /* Allow scaling */
+    transform: scale(0.8) translateX(-30px); /* Scale to prevent overflow and adjust starting position */
+    transform-origin: left; /* Ensure scaling happens from the left side */
+}
+
+.bubble-chart-container {
+    transform: scale(0.8); /* Scale to match the line chart */
+    margin-left: 20px; /* Add spacing between the two charts */
+    transform-origin: center; /* Scale from the center */
+}
+
+.chart-container {
+    width: 300px; /* Adjust dimensions */
+    height: 250px; /* Maintain consistent height */
+    position: relative;
+}
+
 .chart-text-container {
-    display: flex;
     width: 100%;
     margin-top: 20px;
 }
 .chart-text {
-    flex: 1;
     font-size: 16px;
     text-align: left;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .slider-container {
