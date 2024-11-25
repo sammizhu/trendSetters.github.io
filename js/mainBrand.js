@@ -1,11 +1,11 @@
 const brandRevenue = new RevenueVis({
     parentElement: "#VisContainer2Top",
-    dataPath: "data/revenue_data.csv"
+    dataPath: "../data/revenue_data.csv"
 });
 
 const brandGrowth = new BrandGrowth({
     parentElement: "#VisContainer2Bottom",
-    data: "data/revenue_data.csv"
+    data: "../data/revenue_data.csv"
 });
 
 

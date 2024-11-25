@@ -126,11 +126,11 @@ class RevenueVis {
             .append("path")
             .attr("class", "line-group")
             .merge(companies)
+            .transition()
+            .duration(500)
             .attr("fill", "none")
             .attr("stroke", d => vis.colorScale(d[0]))
             .attr("stroke-width", 2)
-            .transition()
-            .duration(500)
             .attr("d", ([company, values]) => vis.lineGenerator(values));
 
         companies.exit().remove();
@@ -196,12 +196,13 @@ class RevenueVis {
         function findIndex(dateVal) {
             for (let i = 0; i < vis.filteredData.length; i++) {
                 if (vis.filteredData[i].date.getTime() === dateVal.getTime()) {
-                    return i; // Return the index when the date matches
+                    return i;
                 }
             }
-            return -1; // Return -1 if no matching date is found
+            return -1;
         }
 
+        vis.toolGroup.raise();
 
         // function to display the tooltip when mouse moves
         function mousemove(event){
@@ -258,6 +259,7 @@ class RevenueVis {
                 mousemove(event);
             });
     }
+
 }
 //
 // document.addEventListener("DOMContentLoaded", () => {

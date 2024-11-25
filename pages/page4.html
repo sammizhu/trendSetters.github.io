@@ -13,6 +13,9 @@
     <!-- Include Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/page4.css">
+    <!--    for slider-->
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" rel="stylesheet">
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic" rel="stylesheet">
@@ -84,11 +87,15 @@
         </div>
 
         <!-- Vertical Divider -->
-        <div class="vl"></div>
+<!--        <div class="vl"></div>-->
 
         <!-- Right Side -->
-        <div class="col text-center d-flex justify-content-center align-items-center" id="VisContainer2">
-            <h1>Isabel's Visual</h1>
+        <div class="col-6">
+            <br>
+            <br>
+            <div class="parent-container-slider"> <div id="slider"></div></div>
+            <div class="row" style="height: 50%" id="VisContainer2Top"></div> <!-- Top part -->
+            <div class="row" style="height: 50%" id="VisContainer2Bottom"></div> <!-- Bottom part -->
         </div>
     </div>
 </div>
@@ -99,9 +106,15 @@
     <a href="page5.html" class="right-link">→</a>
 </footer>
 
+
 <!-- Include JavaScript -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
 <script src="../js/page4.js"></script>
+<script src="../js/BrandGrowth.js"></script>
+<script src="../js/RevenueVis.js"></script>
+<script src="../js/Slider.js"></script>
+<script src="../js/mainBrand.js"></script>
 
 </body>
 </html>

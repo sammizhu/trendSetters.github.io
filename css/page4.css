@@ -73,3 +73,17 @@ footer a {
     gap: 15px; /* Space between label, dropdown, and button */
     margin-top: 20px;
 }
+
+h3 {
+    padding: 50px
+}
+
+.parent-container-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slider {
+    width: 75%;
+}

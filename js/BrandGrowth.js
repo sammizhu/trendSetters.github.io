@@ -285,8 +285,8 @@ class BrandGrowth {
                     return d3.format(".1f")(billions) + "B";
                 }
                 vis.tspan1.text(`In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}`);
-                vis.tspan2.text(`Before, ${d.company}'s revenue was $${formatBills(d.prevRev)}`)
-                vis.tspan3.text(`This year, ${d.company}'s revenue was $${formatBills(d.nowRev)}`)
+                vis.tspan2.text(`Before, revenue was $${formatBills(d.prevRev)}`)
+                vis.tspan3.text(`This year, revenue was $${formatBills(d.nowRev)}`)
             })
             .on("mouseover", function (event, d) {
                 d3.select(this)
