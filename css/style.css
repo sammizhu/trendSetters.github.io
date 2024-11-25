@@ -3,7 +3,7 @@ h1 {
 }
 
 .vl {
-    border-left: 3px solid lightgrey;
+    border-left: 1px solid lightgrey;
     height: 100vh;
     position: absolute;
     left: 50%;
@@ -20,7 +20,7 @@ footer {
     width: 100%;
     padding: 10px 20px;
     background-color: #f8f9fa;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0);
 }
 
 footer a {
@@ -32,6 +32,9 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+
+
 
 /* Page 2 */
 /* Main container styles - content constrained to the left of the vertical line */

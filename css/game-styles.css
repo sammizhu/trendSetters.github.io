@@ -201,22 +201,26 @@ button:hover {
 /* footer
  */
 
+
 footer {
-    z-index: 100;
-    position: relative;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    bottom: 0;
+    width: 150%;
+    padding: 20px 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0);
 }
 
 footer a {
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 20px;
+    color: #007bff;
+    font-size: 1.2em;
 }
 
-footer a {
-    border: 1px solid red;
-    background-color: rgba(255, 0, 0, 0.1); /* Light red background */
+footer a:hover {
+    text-decoration: underline;
 }
+
+
