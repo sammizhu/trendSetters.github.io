@@ -11,6 +11,7 @@
 
     <!-- Completed: custom css included -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page2.css">
 
     <!-- GOOGLE FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
@@ -40,8 +41,8 @@
                 <div class="page2-right-content">
                     <p class="page2-question">
                         How much money do you spend on clothes every year? The average American spends.nfhgjrhgrghr
-                    gjrghrjhgjirjgirjgirjg
-                    rjghrijgirjgirjgirgrughrihgirhgir
+                        gjrghrjhgjirjgirjgirjg
+                        rjghrijgirjgirjgirgrughrihgirhgir
                     </p>
                     <img src="../images/right-columnp2.jpg" alt="Right column image" class="page2-right-image">
                 </div>
@@ -58,8 +59,14 @@
         <!-- Vertical line divider -->
         <div class="vl" style="border-left: 1px solid #000; height: 100%;"></div>
         <!-- Right container -->
-        <div class="col text-center d-flex justify-content-center align-items-center" id="VisContainer2">
-            <h1>Megan's Visual</h1>
+        <div class="col text-center d-flex flex-column justify-content-center align-items-center" id="VisContainer2">
+            <!-- Visualization Container -->
+            <div id="fashion-trends-vis"></div>
+            <!-- Information Box Below the Cards -->
+            <div id="fashion-info-box">
+                <h2>Learn More</h2>
+                <p id="fashion-info-text">Click on a fashion trend card to learn more about it.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -74,6 +81,7 @@
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="../js/RevenueVis.js"></script>
 <script src="../js/banner.js"></script>
+<script src="../js/FashionTrendsVis.js"></script>
 
 </body>
 </html>

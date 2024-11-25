@@ -1,0 +1,70 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 2vh;
+}
+
+#fashion-trends-10-years .page2-title {
+    font-family: 'Satisfy', cursive;
+    font-size: 1.8em;
+    color: #ff6f61;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+#fashion-trends-10-years-vis {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.fashion-trend-card rect {
+    fill: #ffe6e6;
+    rx: 10;
+    ry: 10;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.fashion-trend-card rect:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fashion-trend-card.selected {
+    border: 2px solid #ff6f61;
+}
+
+.fashion-trend-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#fashion-info-box {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#fashion-info-box h2 {
+    font-size: 1.5em;
+    color: #ff6f61;
+    margin-bottom: 10px;
+}
+
+#fashion-info-text {
+    font-size: 1em;
+    color: #333;
+}
