@@ -1,3 +1,46 @@
+.page-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Left is 1/4, Right is 3/4 */
+    height: 100vh;
+    gap: 20px;
+}
+
+.left-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-right: 2px solid lightgrey;
+}
+
+.left-section h2 {
+    font-family: 'Satisfy';
+    font-size: 2rem;
+    color: #555;
+}
+
+.left-section p,
+.left-section ul {
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Preserve existing game styles */
+#character-creation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
 html, body {
     margin-bottom: 100px;
     margin-left: 80px;
@@ -69,6 +112,7 @@ input[type="image"] {
     height: 200px;
     width: 500px;
     overflow: auto;
+    border-radius: 5px;
 
 }
 
@@ -181,7 +225,13 @@ button:hover {
 #submit-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin-left: 380px;
+    margin-top: -20px;
+    height: 50px;
+    width: 100px;
+    background-color: transparent;
+    overflow: visible;
 }
 
 #submit-button {
@@ -191,7 +241,8 @@ button:hover {
     border: none;
     background-color: lightblue;
     border-radius: 5px;
-    transition: background-color 0.2s ease;
+    z-index: 15;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 #submit-button:hover {
@@ -203,14 +254,12 @@ button:hover {
 
 
 footer {
-    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 10px 20px;
+    bottom: 10px; /* Adjust distance from the bottom */
+    left: 10px; /* Adjust distance from the left */
     z-index: 100;
 }
 
