@@ -3,13 +3,15 @@ h1 {
 }
 
 .vl {
-    border-left: 1px solid lightgrey;
+    border-left: 2px solid lightgrey;
     height: 100vh;
     position: absolute;
     left: 50%;
     margin-left: -3px;
     top: 0;
+    z-index: 0;
 }
+
 
 footer {
     display: flex;
@@ -42,24 +44,25 @@ footer a:hover {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 50%; /* Ensure content stays within the left half */
+    width: 50%;
     height: 100%;
     padding: 20px 20px 0 20px;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent any overflow */
+    background: linear-gradient(135deg, #E8647C 0%, #FFB6C1 50%);
+    overflow: hidden;
 }
 
 /* Red Dress Centered */
 .page2-centered-red-dress {
     position: absolute;
-    bottom: 5%; /* Adjust to center it visually */
-    left: 25%; /* Center within the left half */
+    bottom: 5%;
+    left: 25%; /
     transform: translateX(-10%);
-    z-index: 10; /* Ensure it is above the columns */
+    z-index: 10;
 }
 
 .red-dress-centered {
-    max-width: 80%; /* Adjust size to fit nicely within constraints */
+    max-width: 80%; /
     height: auto;
     object-fit: contain;
 }
@@ -70,28 +73,38 @@ footer a:hover {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    gap: 20px; /* Space between columns */
+    gap: 20px;
 }
 
 /* Left Column */
 .page2-left-content {
-    width: 45%; /* Constrained within the left half */
+    width: 45%;
     text-align: left;
 }
 
-.page2-title {
-    font-size: 4vw;
-    font-weight: bold;
-    line-height: 1.2;
-    margin-top: 0;
-    text-align: left;
-}
 
+/* Description Paragraphs */
 .page2-description {
-    font-size: 1.2vw;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    background-color: #FFE8F5;
+    padding: 10px 20px;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    color: #222831;
+    width: 100%; /* Full width background */
+    text-align: left; /* Ensure text is aligned properly */
 }
+
+.page2-description-button {
+    background-color: #FFF1E9;
+    padding: 10px 20px;
+    line-height: 1.6;
+    font-size: 0.8rem;
+    color: #222831;
+    width: 100%; /* Full width background */
+    text-align: left; /* Ensure text is aligned properly */
+}
+
+
 
 /* Left Image with Button */
 .page2-image-wrapper {
@@ -104,29 +117,33 @@ footer a:hover {
     width: 100%;
     max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Optional */
 }
 
 /* Wrapper for the button icon */
 .page2-button-icon {
     position: absolute;
-    top: 10%; /* Position the button over the left image */
-    left: 10%; /* Adjust the button’s position horizontally */
-    width: auto; /* Allow the button to size based on the image */
-    height: auto; /* Allow height to adjust automatically */
+    top: 10%;
+    left: 10%;
+    width: auto;
+    height: auto;
 }
 
 /* Button image styles */
 .button-image {
-    width: 40px; /* Set the size of the button */
-    height: 40px; /* Adjust to match proportions */
-    object-fit: contain; /* Ensure the image scales properly */
-    cursor: pointer; /* Optional: make it look clickable */
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.button-image:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Right Column */
 .page2-right-content {
-    width: 45%; /* Constrained within the left half */
+    width: 45%;
     text-align: left;
 }
 
@@ -136,12 +153,7 @@ footer a:hover {
     line-height: 1.5;
 }
 
-.page2-right-image {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px; /* Optional */
-}
+
 
 /* Banner container */
 #banner-container {
@@ -150,7 +162,7 @@ footer a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Ensure only the button is clickable */
+    pointer-events: none;
 }
 
 /* Banner styles */
