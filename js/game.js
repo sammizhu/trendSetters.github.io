@@ -51,7 +51,6 @@ function toggle(clothingId, type) {
         console.error(`Element with ID ${clothingId} not found.`);
     }
 }
-
 function submitStyle() {
     if (!selectedShirt || !selectedPants || !selectedShoes) {
         alert('Please select a shirt, pants, and shoes before submitting.');
@@ -87,9 +86,41 @@ function submitStyle() {
         }
     }
 
+    // Define style names and descriptions
+    const styleDetails = {
+        1: {
+            name: '<b>Sporty</b>',
+            description: 'Active, practical, and performance-focused',
+            brands: 'Nike, Adidas, Under Armour',
+        },
+        2: {
+            name: '<b>Chic-Casual</b>',
+            description: 'Effortless, polished, and modern',
+            brands: 'Zara, GAP, Mango, Everlane',
+        },
+        3: {
+            name: '<b>Athleisure</b>',
+            description: 'Comfortable, stylish, and street-ready',
+            brands: 'Lululemon, Gymshark, Alo Yoga',
+        },
+        4: {
+            name: '<b>High-end Elegance</b>',
+            description: 'Sophisticated, luxurious, and timeless',
+            brands: 'Chanel, Gucci, Prada',
+        },
+    };
+
+    // Get the selected style details
+    const selectedStyle = styleDetails[maxStyle];
+
     // Display the result in the modal
     const styleMessage = document.getElementById('style-message');
-    styleMessage.textContent = `TO DO: ADD MORE INFO Based on your selection, your style is Style ${maxStyle}!`;
+    styleMessage.innerHTML = `
+        Based on your selection, your style is: ${selectedStyle.name}!<br>
+        <br>
+        <b>Your style is characterized by:</b> ${selectedStyle.description}.<br>
+        <b>Brands you would enjoy:</b> ${selectedStyle.brands}.
+    `;
     openModal();
 }
 
