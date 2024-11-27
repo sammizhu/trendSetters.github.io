@@ -6,22 +6,6 @@ body {
     margin: 0;
 }
 
-h1.page2-title {
-    font-family: 'Satisfy';
-    font-size: 3.5em;
-    color: #FFF2F9;
-    margin-top: 10px;
-    text-align: left;
-}
-h1.page2-title-title {
-    font-family: 'Roboto';
-    font-size: 3.5em;
-    color: #FFF2F9;
-    margin-top:-20px;
-    transform: translateX(20px);
-    margin-bottom: 25px;
-    text-align: left;
-}
 
 #fashion-trends-vis {
     width: 100%;

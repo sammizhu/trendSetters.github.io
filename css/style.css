@@ -43,8 +43,9 @@ footer a:hover {
 
 /* Page 2 */
 /* Main container styles - content constrained to the left of the vertical line */
+/* Main container styles */
 #VisContainer1-Page2 {
-    position: relative;
+    position: relative; /* Required for z-index to work */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -53,17 +54,51 @@ footer a:hover {
     height: 100%;
     padding: 20px 20px 0 20px;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #E8647C 0%, #FFB6C1 50%);
+    background: linear-gradient(135deg, #E8647C 0%, #FFB6C1 70%);
     overflow: hidden;
+}
+
+#VisContainer1-Page2::before {
+    content: '';
+    position: absolute;
+    top: 30px; /* Space between border and content */
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    border: 3px solid #FFD700;
+    pointer-events: none; /* Prevents interaction issues */
+    box-sizing: border-box;
+    z-index: 0; /* Ensure it's below all content */
+}
+
+h1.page2-title {
+    font-family: 'Satisfy', cursive;
+    font-size: 3.5em;
+    color: #FFF2F9;
+    margin-top: 10px;
+    text-align: left;
+    z-index: 10;
+    position: relative;
+}
+
+h1.page2-title-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.5em;
+    color: #FFF2F9;
+    margin-top: -20px;
+    transform: translateX(20px);
+    margin-bottom: 25px;
+    text-align: left;
+    z-index: 10;
+    position: relative;
 }
 
 /* Red Dress Centered */
 .page2-centered-red-dress {
     position: absolute;
     bottom: 5%;
-    left: 25%; /
-    transform: translateX(-10%);
-    transform: translateY(20%);
+    left: 25%;
+    transform: translate(-10%, 20%);
     z-index: 10;
 }
 
@@ -94,8 +129,10 @@ footer a:hover {
     line-height: 1.6;
     font-size: 1.2rem;
     color: #222831;
-    width: 100%; /* Full width background */
-    text-align: left; /* Ensure text is aligned properly */
+    width: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 1;
 }
 
 .page2-description-button {
@@ -104,8 +141,10 @@ footer a:hover {
     line-height: 1.6;
     font-size: 0.8rem;
     color: #222831;
-    width: 100%; /* Full width background */
-    text-align: left; /* Ensure text is aligned properly */
+    width: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -157,8 +196,11 @@ footer a:hover {
         line-height: 1.6;
         font-size: 0.9rem;
         color: #222831;
-        width: 100%; /* Full width background */
-        text-align: left; /* Ensure text is aligned properly */
+        width: 100%;
+        text-align: left;
+    position: relative;
+    z-index: 1;
+
     }
 
 .page2-right-image {
