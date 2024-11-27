@@ -7,25 +7,30 @@
     top: 0;
 }
 
+
 footer {
+    font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: space-between; /* Distribute links to left and right */
-    align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 10px 20px;
+    z-index: 100;
 }
 
 footer a {
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: #007bff;
     font-size: 1.2em;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    transform: scale(1.2);
 }
+
 
 .stat {
     display: flex;

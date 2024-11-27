@@ -107,6 +107,7 @@ body {
 
 
 footer {
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -118,12 +119,13 @@ footer {
 }
 
 footer a {
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: #007bff;
     font-size: 1.2em;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    transform: scale(1.2);
 }
 

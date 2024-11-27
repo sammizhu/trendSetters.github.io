@@ -203,24 +203,24 @@ button:hover {
 
 
 footer {
+    font-family: 'Roboto', sans-serif;
     display: flex;
-    align-items: center; /* Center items vertically */
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     bottom: 0;
-    width: 150%;
-    padding: 20px 10px;
-    background-color: #f8f9fa;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0);
+    width: 100%;
+    padding: 10px 20px;
+    z-index: 100;
 }
 
 footer a {
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: #007bff;
     font-size: 1.2em;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    transform: scale(1.2);
 }
-
-
