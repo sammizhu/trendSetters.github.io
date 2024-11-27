@@ -1,127 +1,94 @@
-#container {
-    display: flex; /* Enable two-column layout */
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove margins */
-    overflow: hidden; /* Prevent overflow */
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.left-side {
-    flex: 1; /* Take half the width */
-    background-color: black; /* Black background */
-    height: 100%; /* Full height */
-}
-
-.right-side {
-    flex: 1; /* Take half the width */
-    height: 100%; /* Full height */
-    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); /* Same gradient as before */
-    display: flex; /* Enable content alignment */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-#layout {
-    width: 80%; /* Restore original container width */
-    height: 90%; /* Restore original container height */
+body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
     display: flex;
-    flex-direction: column; /* Stack episodes vertically */
-    margin: 0 auto; /* Center content within the right side */
+    justify-content: center; /* Center the magazine page horizontally */
+    align-items: center; /* Center the magazine page vertically */
+    background-color: #EEEEEE; /* Light gray background for contrast */
 }
 
-
-.episode1{
-    flex: 3;
-    height: 100%;
-    position: relative;
-    .script{
-        border-right: 1px solid #9E9E9E;
-        height:90%;
-        top: 10%;
-        position: relative;
-        width:100%;
-        .blerb {
-            text-align: right;
-            width: 97%;
-            font-size:.6vh;
-            position: absolute;
-        }
-    }
-}
-.episode2{
-    flex: 1;
-    height: 100%;
-    position: relative;
-    .script {
-        border-right: 1px solid #9E9E9E;
-        height:65%;
-        top: 20%;
-        position: relative;
-        width:100%;
-    }
-    .blerb {
-        text-align: left;
-        width: 80%;
-        top:35%;
-        margin: 0 auto;
-        font-size:.8vh;
-        position: relative;
-    }
-    .credit {
-        text-align: left;
-        width: 80%;
-        top:53%;
-        color: #9E9E9E;
-        margin: 0 auto;
-        font-size:.8vh;
-        position: relative;
-    }
-}
-.episode3{
-    flex: 2;
-    height: 100%;
-    .script {
-        height:65%;
-        top: 20%;
-        position: relative;
-        width:50%;
-    }
-}
-
-.eye {
-    width: 80%;
-    height:30%;
-    top:30%;
-    margin: 0 auto;
-    position: relative;
-    background: #ffe13f;
-}
-
-.v {
-    position: relative;
-    color: #ffe13f;
-    top: 33%;
-    text-align: right;
-    width: 65%;
-    float: right;
-    height: 21.6%;
-    span {
-        margin:5px;
-        font-size: 10em;
-        font-weight: 900;
-    }
-}
-.lucky {
-    position: absolute;
-    color: #ffe13f;
-    top: 27%;
-    text-align: right;
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    font-size: 1.3vh;
-    span {
-        margin:5px;
-        font-weight: 900;
-    }
+    height: 100%;
+}
+
+.magazine-page {
+    background-color: #FFD0EC; /* White background for the magazine page */
+    color: #D63484; /* Dark gray text for better readability */
+    width: 70%; /* Adjust the width of the page */
+    height: 90%; /* Adjust the height of the page */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Drop shadow to simulate a magazine */
+    padding: 40px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Space out the top, center, and bottom sections */
+    position: relative;
+}
+
+/* Top-right text */
+.right-aligned-text {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+}
+
+/* Centered Title */
+.centered-title {
+    text-align: center;
+    margin: auto 0;
+}
+
+.centered-title h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.centered-title h1 br {
+    display: block;
+}
+
+.centered-title p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Bottom-left text */
+.left-aligned-bottom {
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.overlay-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    height: 600px; /* Adjust based on height */
+    width: auto; /* Keeps aspect ratio intact */
+    z-index: 10;
+    pointer-events: none;
 }
 
 
