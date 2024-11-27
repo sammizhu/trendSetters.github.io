@@ -6,15 +6,22 @@
 }
 
 .left-section {
-    background-color: #f9f9f9;
+    background-color: #D77FA1;
     padding: 20px;
     border-right: 2px solid lightgrey;
 }
 
 .left-section h2 {
+    font-family: 'Roboto';
+    font-size: 3rem;
+    color: #FFF5FD;
+}
+
+.left-section h3 {
     font-family: 'Satisfy';
-    font-size: 2rem;
-    color: #555;
+    font-size: 3rem;
+    color: #FFF5FD;
+    margin-top: -30px;
 }
 
 .left-section p,
@@ -43,8 +50,8 @@
 
 html, body {
     margin-bottom: 100px;
-    margin-left: 80px;
-    background-color: beige;
+    margin-left: 20px;
+    background-color: #EEEEEE;
 }
 
 /* editing the icons */
@@ -104,11 +111,11 @@ input[type="image"] {
 #clothing-btns{
     display: inline-block;
     float: center;
-    border: 1px solid black;
+    border: 5px solid #F2D1D1;
     margin-top: 300px;
     margin-bottom: 100px;
-    margin-left: 380px;
-    background-color: lightblue;
+    margin-left: 500px;
+    background-color: #C0DBEA;
     height: 200px;
     width: 500px;
     overflow: auto;
@@ -117,8 +124,6 @@ input[type="image"] {
 }
 
 /* editing the menu */
-
-
 .menu {
     display: none;
     flex-direction: row;
@@ -151,15 +156,14 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     margin: 5px;
-    border: none;
-    background-color: lightblue;
+    background-color: #F2D1D1;
     border-radius: 5px;
-    z-index: 15; /* Ensure buttons appear above other elements */
+    z-index: 15;
 }
 
 
 button:hover {
-    background-color: lightgreen; /* Optional: Add hover effect */
+    background-color: lightgreen;
 }
 
 .toggle-image{
@@ -167,7 +171,6 @@ button:hover {
 }
 
 /* Editing the shirt, bottom, and shoes overlay */
-
 #top img {
     z-index: 3; /* Layer above */
 }
@@ -222,11 +225,12 @@ button:hover {
     text-decoration: none;
 }
 
+/* submit container */
 #submit-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 380px;
+    margin-left: 500px;
     margin-top: -20px;
     height: 50px;
     width: 100px;
@@ -239,7 +243,7 @@ button:hover {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    background-color: lightblue;
+    background-color: #C0DBEA;
     border-radius: 5px;
     z-index: 15;
     transition: background-color 0.2s ease, transform 0.2s ease;
@@ -251,15 +255,13 @@ button:hover {
 
 /* footer
  */
-
-
 footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    bottom: 10px; /* Adjust distance from the bottom */
-    left: 10px; /* Adjust distance from the left */
+    bottom: 10px;
+    left: 10px;
     z-index: 100;
 }
 
