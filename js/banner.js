@@ -4,6 +4,9 @@ const bannerContainer = document.getElementById("banner-container");
 
 // List of questions to cycle through
 const questions = [
+    "What brands are growing the fastest?",
+    "Which brand should I invest in?",
+    "Which brands have dominated the fashion industry?",
     "How much do you spend on clothes every year?",
     "What influences your fashion purchases the most?",
     "Which brands do you shop from the most?",
