@@ -96,7 +96,7 @@ function submitStyle() {
         2: {
             name: '<b>Chic-Casual</b>',
             description: 'Effortless, polished, and modern',
-            brands: 'Zara, GAP, Mango, Everlane',
+            brands: 'Zara, GAP, Aritzia, Reformation',
         },
         3: {
             name: '<b>Athleisure</b>',
@@ -106,7 +106,7 @@ function submitStyle() {
         4: {
             name: '<b>High-end Elegance</b>',
             description: 'Sophisticated, luxurious, and timeless',
-            brands: 'Chanel, Gucci, Prada',
+            brands: 'Louis Vuitton, Chanel, Gucci, Prada',
         },
     };
 
