@@ -1,0 +1,142 @@
+body {
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    height:100vh;
+    user-select: none;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+#container {
+    background: #000000;
+    width:69.54vh;
+    height:90vh;
+    top:5vh;
+    position:relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#layout {
+    width:80%;
+    height: 100%;
+    margin:0 auto;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+.episode1{
+    flex: 3;
+    height: 100%;
+    position: relative;
+    .script{
+        border-right: 1px solid #9E9E9E;
+        height:90%;
+        top: 10%;
+        position: relative;
+        width:100%;
+        .blerb {
+            text-align: right;
+            width: 97%;
+            font-size:.6vh;
+            position: absolute;
+        }
+    }
+}
+.episode2{
+    flex: 1;
+    height: 100%;
+    position: relative;
+    .script {
+        border-right: 1px solid #9E9E9E;
+        height:65%;
+        top: 20%;
+        position: relative;
+        width:100%;
+    }
+    .blerb {
+        text-align: left;
+        width: 80%;
+        top:35%;
+        margin: 0 auto;
+        font-size:.8vh;
+        position: relative;
+    }
+    .credit {
+        text-align: left;
+        width: 80%;
+        top:53%;
+        color: #9E9E9E;
+        margin: 0 auto;
+        font-size:.8vh;
+        position: relative;
+    }
+}
+.episode3{
+    flex: 2;
+    height: 100%;
+    .script {
+        height:65%;
+        top: 20%;
+        position: relative;
+        width:50%;
+    }
+}
+
+.eye {
+    width: 80%;
+    height:30%;
+    top:30%;
+    margin: 0 auto;
+    position: relative;
+    background: #ffe13f;
+}
+
+.v {
+    position: relative;
+    color: #ffe13f;
+    top: 33%;
+    text-align: right;
+    width: 65%;
+    float: right;
+    height: 21.6%;
+    span {
+        margin:5px;
+        font-size: 10em;
+        font-weight: 900;
+    }
+}
+.lucky {
+    position: absolute;
+    color: #ffe13f;
+    top: 27%;
+    text-align: right;
+    width: 100%;
+    font-size: 1.3vh;
+    span {
+        margin:5px;
+        font-weight: 900;
+    }
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-between; /* Distribute links to left and right */
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0);
+}
+
+footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
