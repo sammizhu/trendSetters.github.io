@@ -68,3 +68,52 @@ body {
     font-size: 1em;
     color: #333;
 }
+
+/* Main Container for Slide 9 */
+.main-container-slide9 {
+    position: relative;
+    height: auto; /* Auto height for flexible content */
+    display: flex;
+    margin: auto;
+}
+
+/* Large Text */
+.main-text-slide9 {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 6.5rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: -80px; /* Spacing below main text */
+    color: #333;
+}
+
+/* Subtext Near Large Text */
+.subtext-slide9 {
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #777;
+    margin-bottom: 450px;
+    max-width: 150px;
+    align-self: flex-end;
+}
+
+/* Detailed Bottom Text */
+.subtext-bottom {
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 200px;
+    margin-top: 200px;
+}
+
+
+.trend-line-image {
+    max-width: 30%;
+    height: auto;
+}
