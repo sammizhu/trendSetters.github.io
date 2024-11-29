@@ -69,51 +69,86 @@ body {
     color: #333;
 }
 
-/* Main Container for Slide 9 */
-.main-container-slide9 {
-    position: relative;
-    height: auto; /* Auto height for flexible content */
-    display: flex;
-    margin: auto;
+/* Container for the entire layout */
+.container {
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* Two rows with equal height */
+    gap: 20px; /* Space between rows */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box;
 }
 
-/* Large Text */
-.main-text-slide9 {
+/* Top Row */
+.top-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Left 1/4 and Right 3/4 */
+    align-items: center; /* Vertically align content */
+}
+
+/* Bottom Row */
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Left 1/4 and Right 3/4 */
+    align-items: start; /* Top-align content */
+}
+
+/* Left Section */
+.left-quarter-top {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: right;
+    color: #555;
+    margin-right: 10px;
+}
+
+
+/* Right Section */
+.right-three-quarters-top {
     font-family: 'Roboto', sans-serif;
     font-style: italic;
-    font-size: 6.5rem;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1.5;
-    margin-bottom: -80px; /* Spacing below main text */
+    font-size: 2.0rem;
+    line-height: 1.8;
+    text-align: right;
     color: #333;
 }
 
-/* Subtext Near Large Text */
-.subtext-slide9 {
-    text-align: right;
+/* Header Styling */
+h1 {
+    font-size: 8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    margin: 0;
+    color: #000;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        grid-template-rows: auto; /* Let rows adjust height automatically */
+    }
+    .top-row, .bottom-row {
+        grid-template-columns: 1fr; /* Stack items vertically */
+    }
+    .right-three-quarters {
+        text-align: center; /* Center-align large text */
+    }
+}
+
+/* Trend Line Image */
+.trend-line-image {
+    width: 200px; /* Fixed width */
+    height: auto;
+    margin: 0 auto; /* Center under text */
+}
+
+.right-three-quarters-bottom {
     font-family: 'Roboto', sans-serif;
     font-size: 0.8rem;
     line-height: 1.5;
-    color: #777;
-    margin-bottom: 450px;
-    max-width: 150px;
-    align-self: flex-end;
-}
-
-/* Detailed Bottom Text */
-.subtext-bottom {
+    margin-left: 20px;
     text-align: left;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.7rem;
-    line-height: 1.6;
-    color: #555;
-    max-width: 200px;
-    margin-top: 200px;
-}
-
-
-.trend-line-image {
-    max-width: 30%;
-    height: auto;
+    color: #333;
 }
