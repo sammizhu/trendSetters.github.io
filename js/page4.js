@@ -5,32 +5,30 @@ function checkAnswers() {
         TJX: "Discount",
         GAP: "Full-price",
         LULU: "Athletic",
-        fastestBrand: "LULU"
+        Fastest_Brand: "LULU"
     };
 
-        let correct = true;
+    let incorrectAnswers = []; // Array to store incorrect answers
 
-        // Validate the dropdown selections
-        for (const [brand, answer] of Object.entries(correctAnswers)) {
+    // Validate the dropdown selections
+    for (const [brand, answer] of Object.entries(correctAnswers)) {
         const userAnswer = document.getElementById(brand)?.value;
         if (userAnswer !== answer) {
-        correct = false;
-    }
+            incorrectAnswers.push(`${brand} is ${answer}`); // Add only incorrect answers
+        }
     }
 
-        const result = document.getElementById("result");
-        if (correct) {
+    const result = document.getElementById("result");
+    if (incorrectAnswers.length === 0) {
+        // All answers are correct
         result.textContent = "Correct!";
         result.style.color = "green";
     } else {
-        // Show the correct answers when incorrect
+        // Show only the incorrect answers with styled "Incorrect!"
         result.innerHTML = `
-                    Incorrect!<br><br>
-                    LVMH is ${correctAnswers.LVMH}<br>
-                    TJX is ${correctAnswers.TJX}<br>
-                    GAP is ${correctAnswers.GAP}<br>
-                    LULU is ${correctAnswers.LULU}
-                `;
-        result.style.color = "red";
+            <span style="color: red; font-weight: bold;">Incorrect!</span><br><br>
+            ${incorrectAnswers.join("<br>")}
+        `;
+        result.style.color = "black"; // Reset color for the rest of the text
     }
 }

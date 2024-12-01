@@ -1,23 +1,51 @@
 body {
-    padding: 1vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 2vh;
+    margin: 0;
+    overflow-x: hidden;
 }
 
+#VisContainer1 {
+    position: relative;
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#VisContainer1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/quiz_page.png");
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+}
 .question {
     font-weight: bold;
     margin-top: 10px;
+    color: #e65245;
+    font-size: 1.2em;
 }
 
 .brand-options {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
 }
 
 #result {
     margin-top: 15px;
     font-weight: bold;
 }
-
 
 footer {
     font-family: 'Roboto', sans-serif;
@@ -28,20 +56,20 @@ footer {
     bottom: 0;
     width: 100%;
     padding: 10px 20px;
-    z-index: 100;
 }
 
 footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    color: #007bff;
+    color: #ff6f61;
     font-size: 1.2em;
+    transition: transform 0.2s, color 0.2s;
 }
 
 footer a:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    color: #e65245;
 }
-
 
 .left-link {
     float: left;
@@ -57,15 +85,24 @@ footer a:hover {
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: #ffe6e6;
     padding: 5px;
+    border-radius: 5px;
+    color: #e65245;
+    font-weight: bold;
 }
 
 .form-container {
     display: flex;
-    flex-direction: column; /* Ensures vertical stacking of row-container elements */
-    justify-content: center; /* Centers the row-container elements vertically */
-    align-items: center;     /* Centers the row-container elements horizontally */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .row-container {
@@ -73,37 +110,71 @@ footer a:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    width: 100%; /* Ensure row-container spans the full width of the form-container */
+    width: 100%;
 }
 
 .form-label {
-    width: 30%; /* Adjust to control label width */
+    width: 30%;
     text-align: right;
     margin-right: 10px;
+    font-weight: bold;
+    color: #ffb3b3;
 }
 
 .form-select {
-    width: 60%; /* Adjust to control dropdown width */
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1em;
+    color: #333;
+    background-color: #fff;
 }
 
 .inline-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px; /* Space between label, dropdown, and button */
+    gap: 15px;
     margin-top: 20px;
 }
 
 h3 {
-    padding: 50px
+    padding: 20px;
+    font-size: 1.5em;
+    color: #333;
+    margin: 0;
+}
+
+h4 {
+    color: black;
+    font-size: 1.2em;
 }
 
 .parent-container-slider {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 0;
 }
 
 #slider {
     width: 75%;
+    background-color: #ffe6e6;
+    border-radius: 5px;
+}
+
+button.btn-primary {
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button.btn-primary:hover {
+    background-color: #e65245;
+    transform: scale(1.05);
 }
