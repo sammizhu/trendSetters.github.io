@@ -22,11 +22,31 @@ function updateStats(index) {
         .append("div")
         .attr("class", "stat d-flex justify-content-center align-items-center");
 
-    enter.append("div").attr("class", "mx-4").append("h1").attr("class", "cagr");
-    enter.append("p").text("Industry CAGR");
+    enter.append("div")
+        .attr("class", "mx-4")
+        .append("h1")
+        .attr("class", "cagr")
+        .style("font-size", "48px")
+        .style("color", "#ff6f61") // Deep pink for emphasis
+        .style("margin-bottom", "5px");
 
-    enter.append("div").attr("class", "mx-4").append("h1").attr("class", "worth");
-    enter.append("p").text("Industry Worth");
+    enter.append("p")
+        .style("font-size", "20px")
+        .style("color", "#333") // Dark grey text
+        .text("Industry CAGR");
+
+    enter.append("div")
+        .attr("class", "mx-4")
+        .append("h1")
+        .attr("class", "worth")
+        .style("font-size", "48px")
+        .style("color", "#ffb3b3") // Medium pink for balance
+        .style("margin-bottom", "5px");
+
+    enter.append("p")
+        .style("font-size", "20px")
+        .style("color", "#333") // Dark grey text
+        .text("Industry Worth");
 
     // UPDATE: Update existing elements
     statData.select(".cagr").text(currentStat.cagr);
@@ -36,11 +56,19 @@ function updateStats(index) {
     statData.exit().remove();
 
     // Update description
-    d3.select("#slider-desc").text(currentStat.desc);
+    d3.select("#slider-desc")
+        .text(currentStat.desc)
+        .style("font-size", "30px")
+        .style("color", "#333") // Dark grey for readability
+        .style("text-align", "center")
+        .style("margin-top", "10px");
 }
 
-// Slider functionality
+// Style the slider
 const slider = document.getElementById("slider");
+slider.style.accentColor = "#ff6f61"; // Pink accent color for the slider
+
+// Slider functionality
 slider.addEventListener("input", (e) => {
     const value = e.target.value;
     updateStats(value);

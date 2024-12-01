@@ -8,9 +8,10 @@ class LineChart {
     initVis() {
         const vis = this;
 
+        // Updated color scale to use pink-themed colors
         vis.colorScale = d3.scaleOrdinal()
             .domain(["MC", "TJX", "LULU", "GAP"])
-            .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
+            .range(["#ffe6e6", "#ffb3b3", "#ff6f61", "#ff8c94"]);
 
         vis.margin = { top: 50, right: 20, bottom: 60, left: 50 };
         vis.width = 500 - vis.margin.left - vis.margin.right;
@@ -27,6 +28,7 @@ class LineChart {
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
             .style("font-weight", "bold")
+            .style("fill", "#ff6f61") // Title in pink
             .text("Number of Fashion Queries Over Time");
 
         vis.chartGroup = vis.svg.append("g")
@@ -44,6 +46,7 @@ class LineChart {
             .attr("x", vis.width / 2)
             .attr("y", vis.height + vis.margin.bottom - 10)
             .attr("text-anchor", "middle")
+            .style("fill", "#333") // Dark grey for axis label
             .text("Year");
 
         vis.chartGroup.append("text")
@@ -51,6 +54,7 @@ class LineChart {
             .attr("y", -vis.margin.left + 20)
             .attr("text-anchor", "middle")
             .attr("transform", "rotate(-90)")
+            .style("fill", "#333") // Dark grey for axis label
             .text("Count of Queries");
 
         vis.lineGenerator = d3.line()
@@ -69,16 +73,19 @@ class LineChart {
         vis.xAxisGroup.call(d3.axisBottom(vis.xScale).tickFormat(d3.format("d")))
             .selectAll("text")
             .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end");
+            .style("text-anchor", "end")
+            .style("fill", "#333"); // Dark grey for axis text
 
-        vis.yAxisGroup.call(d3.axisLeft(vis.yScale));
+        vis.yAxisGroup.call(d3.axisLeft(vis.yScale))
+            .selectAll("text")
+            .style("fill", "#333"); // Dark grey for axis text
 
         vis.chartGroup.selectAll(".line-path").remove();
         vis.chartGroup.append("path")
             .datum(vis.data)
             .attr("class", "line-path")
             .attr("fill", "none")
-            .attr("stroke", vis.colorScale("MC"))
+            .attr("stroke", "#ff6f61") // Pink for the line
             .attr("stroke-width", 2)
             .attr("d", vis.lineGenerator);
 
@@ -91,7 +98,9 @@ class LineChart {
             .attr("cx", d => vis.xScale(d.year))
             .attr("cy", d => vis.yScale(d.count))
             .attr("r", 5)
-            .attr("fill", vis.colorScale("MC"));
+            .attr("fill", "#ffb3b3") // Light pink for dots
+            .attr("stroke", "#ff6f61") // Add a darker pink stroke for contrast
+            .attr("stroke-width", 1.5);
     }
 }
 

@@ -29,6 +29,7 @@ function createBubbleChart() {
         .attr("text-anchor", "middle")
         .style("font-size", "24px")
         .style("font-weight", "bold")
+        .style("fill", "#ff6f61") // Pink title
         .text("Popular Fashion Queries Over Time");
 
     // Create a bubble layout
@@ -52,8 +53,13 @@ function createBubbleChart() {
     // Draw circles
     nodes.append("circle")
         .attr("r", d => d.r)
-        .attr("fill", "steelblue")
-        .attr("opacity", 0.8);
+        .attr("fill", d => {
+            // Gradient of pink shades based on value
+            if (d.data.value <= 20) return "#ffe6e6";
+            if (d.data.value <= 50) return "#ffb3b3";
+            return "#ff6f61";
+        })
+        .attr("opacity", 0.9);
 
     // Add text labels
     nodes.append("text")
@@ -61,7 +67,7 @@ function createBubbleChart() {
         .attr("text-anchor", "middle")
         .attr("dy", ".3em")
         .style("font-size", d => `${Math.min(12, d.r / 3)}px`) // Scale text size based on radius
-        .style("fill", "white");
+        .style("fill", "#333"); // Dark grey text for readability
 
     // Add a legend
     const legend = svg.append("g")
@@ -73,6 +79,7 @@ function createBubbleChart() {
         .attr("y", -10)
         .style("font-size", "14px")
         .style("font-weight", "bold")
+        .style("fill", "#333") // Dark grey text
         .text("Count of Query");
 
     // Legend gradient
@@ -86,11 +93,15 @@ function createBubbleChart() {
 
     gradient.append("stop")
         .attr("offset", "0%")
-        .attr("stop-color", "lightblue");
+        .attr("stop-color", "#ffe6e6");
+
+    gradient.append("stop")
+        .attr("offset", "50%")
+        .attr("stop-color", "#ffb3b3");
 
     gradient.append("stop")
         .attr("offset", "100%")
-        .attr("stop-color", "steelblue");
+        .attr("stop-color", "#ff6f61");
 
     legend.append("rect")
         .attr("x", 0)
@@ -104,12 +115,14 @@ function createBubbleChart() {
         .attr("x", 0)
         .attr("y", 25)
         .style("font-size", "12px")
+        .style("fill", "#333")
         .text("1");
 
     legend.append("text")
         .attr("x", 100)
         .attr("y", 25)
         .style("font-size", "12px")
+        .style("fill", "#333")
         .attr("text-anchor", "end")
         .text("100");
 }

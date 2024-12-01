@@ -29,8 +29,9 @@ footer {
 footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    color: #007bff;
+    color: #ff6f61; /* Match the primary accent color */
     font-size: 1.2em;
+    transition: transform 0.2s; /* Smooth scaling effect */
 }
 
 footer a:hover {
@@ -204,7 +205,7 @@ h1.page2-title-title {
     }
 
 .page2-right-image {
-    width: 100px
+    width: 100px;
     max-width: 100%;
     height: 600px;
 }
