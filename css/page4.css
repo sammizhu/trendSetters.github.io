@@ -159,8 +159,9 @@ h4 {
 
 #slider {
     width: 75%;
-    background-color: #ffe6e6;
+    background-color: #ffb3b3;
     border-radius: 5px;
+    /*color: #CE93D8;*/
 }
 
 button.btn-primary {
@@ -177,3 +178,20 @@ button.btn-primary:hover {
     background-color: #e65245;
     transform: scale(1.05);
 }
+
+.chart-title {
+    font-size: 20px;
+    font-family: "Gill Sans", sans-serif;
+    font-style: italic;
+    fill: #a73378;
+    font-weight: 600;
+    text-align: center;
+}
+
+/*.noUi-connect {*/
+/*    background: #ff6347; !* Replace with your desired color *!*/
+/*}*/
+
+/*.noUi-target {*/
+/*    background: #ff6347;*/
+/*}*/

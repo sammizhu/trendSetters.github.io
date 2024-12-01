@@ -13,10 +13,10 @@ class BrandGrowth {
         // color scale
         vis.colorScale = d3.scaleOrdinal()
             .domain(["LVMH", "TJX", "LULU", "GAP"])
-            .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
+            .range(["#ffb3b3", "#CE93D8", "#B39EB5", "#FF6961"]);
 
         // Set up margins and dimensions
-        vis.margin = { top: 10, right: 50, bottom: 100, left: 50 };
+        vis.margin = { top: 30, right: 50, bottom: 100, left: 50 };
         vis.width = 700 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
@@ -48,7 +48,7 @@ class BrandGrowth {
             .append("circle")
             .attr("class", "dot")
             .attr("cx", (d,i) => -vis.margin.left + 10 + i * 50)
-            .attr("cy", vis.height + vis.margin.top + 45)
+            .attr("cy", vis.height + vis.margin.top + 15)
             .attr("r", 5)
             .attr("fill", d => vis.colorScale(d));
         vis.legendGroup.selectAll("text")
@@ -56,7 +56,7 @@ class BrandGrowth {
             .enter()
             .append("text")
             .attr("x", (d,i) => -vis.margin.left + 20 + i * 50)
-            .attr("y", vis.height + vis.margin.top + 50)
+            .attr("y", vis.height + vis.margin.top + 20)
             .attr("r", 5)
             .text(d => d)
             .style("font-size", "10px")
@@ -77,14 +77,13 @@ class BrandGrowth {
             .attr("x", (vis.visualWidth + vis.margin.left + vis.margin.right) / 2)
             .attr("y", vis.margin.top / 4)
             .attr("text-anchor", "middle")
-            .style("font-size", "16px")
-            .style("font-weight", "bold")
+            .attr("class", "chart-title")
             .text("What Brands Are Growing the Fastest?");
 
         // Add axis labels
         vis.chartGroup.append("text")
             .attr("x", (vis.visualWidth - vis.margin.left) / 2)
-            .attr("y", vis.height + vis.margin.top + 45)
+            .attr("y", vis.height + vis.margin.top + 20)
             .attr("text-anchor", "middle")
             .text("Year");
 
@@ -290,7 +289,7 @@ class BrandGrowth {
             })
             .on("mouseover", function (event, d) {
                 d3.select(this)
-                    .style("stroke", "blue")
+                    .style("stroke", "#63BA6E")
                     .style("stroke-width", 2);
             })
             .on("mouseout", function (event, d) {

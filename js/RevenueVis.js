@@ -10,13 +10,13 @@ class RevenueVis {
 
         vis.colorScale = d3.scaleOrdinal()
             .domain(["MC", "TJX", "LULU", "GAP"])
-            .range(["#AEC6CF", "#FFB347", "#B39EB5", "#FF6961"]);
+            .range(["#ffb3b3", "#CE93D8", "#B39EB5", "#FF6961"]);
 
         // vis.size = document.getElementById(vis.parentElement).getBoundingClientRect();
         console.log(vis.size)
 
         // set up the margins
-        vis.margin = { top: 100, right: 120, bottom: 40, left: 120 };
+        vis.margin = { top: 50, right: 120, bottom: 40, left: 70 };
         vis.width = 800 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
@@ -40,8 +40,6 @@ class RevenueVis {
             .attr("x", vis.width / 2)
             .attr("y", -10)
             .attr("text-anchor", "middle")
-            .style("font-size", "18px")
-            .style("font-weight", "bold")
             .text("Revenue by Quarter for Brands");
 
         vis.lineGenerator = d3.line()
@@ -59,7 +57,7 @@ class RevenueVis {
             .attr("x2", 0)
             .attr("y1", 0)
             .attr("y2", vis.height)
-            .attr("stroke", "blue")
+            .attr("stroke", "#63B6AE")
             .attr("stroke-width", 3)
             .style("opacity", 1)
 
@@ -114,10 +112,22 @@ class RevenueVis {
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end");
 
+        vis.yaxis = d3.axisLeft(vis.yScale)
+            .ticks(8)
+            .tickFormat(d => {
+                if (d >= 1e9) {
+                    return `${(d / 1e9).toFixed(0)}B`;
+                } else if (d >= 1e6) {
+                    return `${(d / 1e6).toFixed(0)}M`;
+                } else {
+                    return d;
+                }
+            });
+
         vis.yAxisGroup
             .transition()
             .duration(500)
-            .call(d3.axisLeft(vis.yScale));
+            .call(vis.yaxis);
 
         const companies = vis.svg.selectAll(".line-group")
             .data(nestedData, d => d[0]);
