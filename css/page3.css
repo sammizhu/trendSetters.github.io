@@ -1,5 +1,5 @@
 .vl {
-    border-left: 3px solid lightgrey;
+    border-left: 1px solid #ddd;
     height: 100vh;
     position: absolute;
     left: 50%;
@@ -11,6 +11,38 @@ body {
     overflow-x: hidden;
 }
 
+#VisContainer2 {
+    position: relative;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#VisContainer2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/right_p3.jpeg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+#info-box {
+    width: 75%;
+    height: 80px;
+    padding-top: 5px;
+    position: relative;
+    background-color: #ffe6e6; /* Clean white background for the box */
+    border-radius: 15px; /* Rounded corners for better aesthetics */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 footer {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -19,78 +51,99 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 10px 20px;
-    z-index: 100;
 }
 
 footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    color: #007bff;
+    color: #ff6f61; /* Match the primary accent color */
     font-size: 1.2em;
+    transition: transform 0.2s; /* Smooth scaling effect */
 }
 
 footer a:hover {
     transform: scale(1.2);
 }
 
-
 .stat {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #333; /* Use dark grey for text for better contrast */
 }
+
 .stat div {
     text-align: center;
 }
+
 .chart-container2 {
-    width: 90%;
+    width: 75%;
     height: 200px;
     margin: 20px 0;
-    position: relative; /* Add this to manage positioning if needed */
+    position: relative;
+    background-color: #ffe6e6; /* Clean white background for the box */
+    border-radius: 15px; /* Rounded corners for better aesthetics */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .chart-area {
     padding-top: 20px;
-    display: flex; /* Align charts side by side */
-    flex-direction: row; /* Horizontal layout for charts */
-    align-items: center; /* Vertically align charts */
-    gap: 20px; /* Space between the charts */
-    max-width: 90%; /* Restrict the total width of the chart area */
-    margin-left: 0; /* Align the entire chart area to the left */
-    transform: scale(0.8) translateX(8px); /* Scale down the charts and move the area left */
-    transform-origin: left; /* Ensure scaling happens from the left edge */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    max-width: 90%;
+    margin-left: 0;
+    transform: scale(0.8) translateX(8px);
+    transform-origin: left;
 }
 
 .line-chart-container {
-    width: 100%; /* Allow scaling */
-    transform: scale(0.8) translateX(-30px); /* Scale to prevent overflow and adjust starting position */
-    transform-origin: left; /* Ensure scaling happens from the left side */
+    width: 100%;
+    transform: scale(0.8) translateX(-30px);
+    transform-origin: left;
 }
 
 .bubble-chart-container {
-    transform: scale(0.8); /* Scale to match the line chart */
-    margin-left: 20px; /* Add spacing between the two charts */
-    transform-origin: center; /* Scale from the center */
+    transform: scale(0.8);
+    margin-left: 20px;
+    transform-origin: center;
 }
 
 .chart-container {
-    width: 300px; /* Adjust dimensions */
-    height: 250px; /* Maintain consistent height */
+    width: 300px;
+    height: 250px;
     position: relative;
+    background-color: #ffffff; /* Ensure a clean white background */
 }
 
 .chart-text-container {
     width: 100%;
     margin-top: 20px;
 }
+
 .chart-text {
-    font-size: 16px;
+    font-size: 14px; /* Slightly smaller, more readable size */
+    font-family: 'Roboto', sans-serif;
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
+    color: #333; /* Dark grey for better readability */
 }
 
 .slider-container {
     margin: 20px 0;
+    font-family: 'Roboto', sans-serif; /* Consistent font usage */
+    color: #333;
+}
+
+#text-box {
+    width: 75%;
+    height: 150px;
+    position: relative;
+    background-color: #ffe6e6; /* Clean white background for the box */
+    border-radius: 15px; /* Rounded corners for better aesthetics */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }

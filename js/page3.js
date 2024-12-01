@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     // Set dimensions
-    const margin = { top: 40, right: 30, bottom: 50, left: 50 }; // Increased top margin for title
+    const margin = { top: 40, right: 30, bottom: 50, left: 50 };
     const width = 400 - margin.left - margin.right;
     const height = 200 - margin.top - margin.bottom;
 
@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add chart title
     d3.select("#yearlyChart svg")
         .append("text")
-        .attr("x", (width + margin.left + margin.right) / 2) // Center horizontally
-        .attr("y", margin.top / 2) // Position near the top
+        .attr("x", (width + margin.left + margin.right) / 2)
+        .attr("y", margin.top / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .style("font-weight", "bold")
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add X-axis label
     svg.append("text")
         .attr("x", width / 2)
-        .attr("y", height + margin.bottom - 10) // Slightly below the X-axis
+        .attr("y", height + margin.bottom - 10)
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
         .text("Year");
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add Y-axis label
     svg.append("text")
         .attr("text-anchor", "middle")
-        .attr("transform", `translate(${-margin.left + 15},${height / 2})rotate(-90)`) // Rotate for Y-axis
+        .attr("transform", `translate(${-margin.left + 15},${height / 2})rotate(-90)`)
         .style("font-size", "12px")
         .text("Market Size (in B)");
 
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     svg.append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#ff6f61") // Light pink shade for the line
         .attr("stroke-width", 1.5)
         .attr("d", line);
 
@@ -84,16 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
         .attr("cx", d => x(d.year))
         .attr("cy", d => y(d.marketSize))
         .attr("r", 5)
-        .attr("fill", "steelblue")
+        .attr("fill", "#ff6f61") // Default dot color
         .style("cursor", "pointer")
-        .on("click", (event, d) => {
-            console.log("Dot clicked:", d); // Debugging log
-            updateInfo(d); // Call update function
+        .on("click", function (event, d) {
+            // Reset all dots to default style
+            svg.selectAll("circle")
+                .attr("stroke", "none")
+                .attr("fill", "#ff6f61");
+
+            // Highlight clicked dot
+            d3.select(this)
+                .attr("stroke", "#b33a3a")
+                .attr("stroke-width", 2)
+                .attr("fill", "#e85550");
+
+            // Update info boxes
+            updateInfo(d);
         });
 
     // Update Info Boxes on Click
     function updateInfo(dataPoint) {
-        console.log("Updating info boxes with:", dataPoint); // Debugging log
+        console.log("Updating info boxes with:", dataPoint);
         const yearElement = document.getElementById("year");
         const marketSizeElement = document.getElementById("market-size");
         const fastestSectorElement = document.getElementById("fastest-sector");
@@ -113,4 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize with the first data point
     updateInfo(data[0]);
+
+    // Highlight the first dot by default
+    svg.selectAll("circle").filter((d, i) => i === 0)
+        .attr("stroke", "#b33a3a")
+        .attr("stroke-width", 2)
+        .attr("fill", "#e85550");
 });
