@@ -1,5 +1,5 @@
 class FashionTrends10YearsVis {
-    constructor(_parentElement, _data) {
+    constructor(_parentElement,_data) {
         this.parentElement = _parentElement;
         this.data = _data;
 
@@ -8,26 +8,17 @@ class FashionTrends10YearsVis {
 
     initVis() {
         const vis = this;
-        // SVG set up
-        vis.margin = { top: 40, right: 20, bottom: 20, left: 20 };
+        vis.margin = { top: 40, right: 20,bottom: 20, left: 20 };
         vis.width = 600 - vis.margin.left - vis.margin.right;
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
+
         vis.svg = d3.select(vis.parentElement)
             .append("svg")
             .attr("class", "fashion-trends-10-years-svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
-            .attr("transform", `translate(${vis.margin.left}, ${vis.margin.top})`);
-
-        vis.svg.append("text")
-            .attr("class", "fashion-title")
-            .attr("x", vis.width / 2)
-            .attr("y", -10)
-            .attr("text-anchor", "middle")
-            .style("font-size", "18px")
-            .style("font-weight", "bold")
-
+            .attr("transform", `translate(${vis.margin.left},${vis.margin.top})`);
         vis.tooltip = d3.select(vis.parentElement)
             .append("div")
             .attr("class", "fashion-tooltip");
@@ -37,8 +28,7 @@ class FashionTrends10YearsVis {
 
     updateVis() {
         const vis = this;
-
-        const cards = vis.svg.selectAll(".fashion-trend-card")
+        const cards=vis.svg.selectAll(".fashion-trend-card")
             .data(vis.data, d => d.name);
 
         const cardEnter = cards.enter()
@@ -50,7 +40,6 @@ class FashionTrends10YearsVis {
                 const y = Math.floor(i / cols) * 120;
                 return `translate(${x}, ${y})`;
             });
-
         cardEnter.append("rect")
             .attr("width", 160)
             .attr("height", 80)
@@ -59,14 +48,11 @@ class FashionTrends10YearsVis {
             .attr("ry", 10)
             .style("cursor", "pointer")
             .on("click", (event, d) => {
-                console.log(`Clicked on: ${d.name}`);
-                console.log(`Detailed Info: ${d.detailedInfo}`);
                 vis.svg.selectAll(".fashion-trend-card rect")
                     .classed("selected", false);
-
                 d3.select(event.currentTarget)
                     .classed("selected", true);
-
+                d3.select("#fashion-info-box h2").text(d.name); // Use the trend name as-is (in title case).
                 d3.select("#fashion-info-text").text(d.detailedInfo || "More information coming soon!");
             });
 
@@ -79,43 +65,43 @@ class FashionTrends10YearsVis {
             .style("font-weight", "bold")
             .text(d => d.name)
             .style("pointer-events", "none");
-
         cards.exit().remove();
     }
 }
-
-const fashionData10Years = [
+        const fashionData10Years = [
     {
         name: "Pandemic Impact",
         description: "Reshaped sales and online dominance.",
-        detailedInfo: "The pandemic drastically shifted consumer behavior, increasing reliance on online platforms and affecting traditional brick-and-mortar sales. Many brands innovated with digital-first strategies."
+        detailedInfo: "The pandemic led to a sharp decline in physical retail sales due to widespread store closures. However, e-commerce saw an unprecedented surge as consumers shifted to online shopping. Categories like athleisure and loungewear experienced strong growth, while demand for formalwear plummeted."
     },
     {
         name: "Luxury Revival",
         description: "Surge in premium purchases post-pandemic.",
-        detailedInfo: "Luxury goods saw a revival post-pandemic, with consumers splurging on high-end items as a form of indulgence and status symbol."
+        detailedInfo: "Post-pandemic, pent-up demand led to a strong rebound in luxury sales. Affluent consumers spent on high-end goods as a form of indulgence and to celebrate the return to normalcy. The trend was driven by increased spending on handbags, jewelry, and premium clothing as in-person events resumed. This revival boosted revenue for the luxury sector significantly."
     },
     {
         name: "Eco-Conscious Buying",
         description: "Eco-awareness shaping buying decisions.",
-        detailedInfo: "Environmental concerns have led to a significant increase in demand for sustainable fashion, with brands focusing on eco-friendly materials."
+        detailedInfo: "The growing awareness of environmental issues has pushed consumers to prioritize sustainability in their purchases. This has led to increased demand for eco-friendly materials, second-hand clothing, and brands that demonstrate transparency in their supply chains. Sales of sustainable fashion have grown, though often at a premium price point, appealing to younger, environmentally-conscious shoppers."
     },
     {
         name: "Rise of AI Trends",
         description: "AI influencing design and personalization.",
-        detailedInfo: "Artificial intelligence is playing a pivotal role in trend forecasting, personalizing shopping experiences, and enabling efficient supply chains."
+        detailedInfo: "AI has transformed the shopping experience by enabling personalized recommendations, optimizing inventory management, and predicting consumer trends. Brands that have integrated AI into their operations have seen improved sales efficiency and customer satisfaction. AI also facilitates dynamic pricing and trend forecasting, helping brands respond quickly to market demands and improve profitability."
     },
     {
         name: "Inclusive Fashion",
         description: "Embracing diversity in fashion.",
-        detailedInfo: "The fashion industry has made strides in inclusivity, with a focus on diverse body types, cultural representation, and gender-neutral collections."
+        detailedInfo: "The emphasis on inclusivity has broadened the appeal of many fashion brands, leading to increased sales among underrepresented groups. Expanded size ranges, gender-neutral clothing, and diverse marketing campaigns have driven higher engagement and conversions. This shift has particularly resonated with younger consumers who value representation and inclusivity."
     },
     {
         name: "Fast Fashion Critique",
         description: "Growing awareness of fast fashion's impact.",
-        detailedInfo: "Fast fashion faces increasing criticism for environmental and ethical concerns. Consumers are demanding transparency and accountability from brands, encouraging a shift toward sustainable practices and slow fashion."
+        detailedInfo: "Criticism of fast fashion has led to a relative decline in sales for some low-cost, high-volume retailers. At the same time, it has driven growth for sustainable alternatives and brands emphasizing quality and longevity. Consumers are increasingly willing to spend more on durable items and support brands that align with their ethical values, reshaping demand within the industry."
     }
 ];
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const parentElement = "#fashion-trends-10-years-vis";
