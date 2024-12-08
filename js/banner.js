@@ -16,9 +16,25 @@ const questions = [
 
 // Index to keep track of the current question
 let currentIndex = 0;
+// Counter to track button clicks
+let clickCount = 0;
 
 // Add event listener to the button
 button.addEventListener("click", () => {
+    // If the button has been clicked 8 times, reset the banners and the counter
+    if (clickCount >= 8) {
+        // Remove all banners
+        while (bannerContainer.firstChild) {
+            bannerContainer.removeChild(bannerContainer.firstChild);
+        }
+
+        // Reset the counter and index
+        clickCount = 0;
+        currentIndex = 0;
+
+        return;
+    }
+
     // Create a new banner
     const banner = document.createElement("div");
     banner.className = "banner";
@@ -29,6 +45,9 @@ button.addEventListener("click", () => {
 
     // Increment the index and reset if at the end of the list
     currentIndex = (currentIndex + 1) % questions.length;
+
+    // Increment the click counter
+    clickCount++;
 
     // Add the banner to the container
     bannerContainer.appendChild(banner);

@@ -1,3 +1,5 @@
+/* General Styling */
+
 h1 {
     text-align: center;
 }
@@ -39,12 +41,7 @@ footer a:hover {
 }
 
 
-
-
-
-/* Page 2 */
-/* Main container styles - content constrained to the left of the vertical line */
-/* Main container styles */
+/* Page 2  Styling */
 #VisContainer1-Page2 {
     position: relative; /* Required for z-index to work */
     display: flex;
@@ -59,6 +56,7 @@ footer a:hover {
     overflow: hidden;
 }
 
+
 #VisContainer1-Page2::before {
     content: '';
     position: absolute;
@@ -71,6 +69,8 @@ footer a:hover {
     box-sizing: border-box;
     z-index: 0; /* Ensure it's below all content */
 }
+
+/* Title */
 
 h1.page2-title {
     font-family: 'Satisfy', cursive;
@@ -94,19 +94,6 @@ h1.page2-title-title {
     position: relative;
 }
 
-/* Red Dress Centered */
-.page2-centered-red-dress {
-    position: absolute;
-    bottom: 5%;
-    left: 25%;
-    transform: translate(-10%, 20%);
-    z-index: 10;
-}
-
-.red-dress-centered {
-    max-width: 300%;
-}
-
 /* Columns container */
 .page2-columns {
     display: flex;
@@ -117,13 +104,13 @@ h1.page2-title-title {
 }
 
 /* Left Column */
+
 .page2-left-content {
     width: 45%;
     text-align: left;
 }
 
-
-/* Description Paragraphs */
+/* left description */
 .page2-description {
     background-color: #FFE8F5;
     padding: 10px 20px;
@@ -148,9 +135,7 @@ h1.page2-title-title {
     z-index: 1;
 }
 
-
-
-/* Left Image with Button */
+/* left image w button */
 .page2-image-wrapper {
     position: relative;
     width: 100%;
@@ -163,7 +148,7 @@ h1.page2-title-title {
     height: auto;
 }
 
-/* Wrapper for the button icon */
+/* button icon */
 .page2-button-icon {
     position: absolute;
     top: 10%;
@@ -172,7 +157,7 @@ h1.page2-title-title {
     height: auto;
 }
 
-/* Button image styles */
+/* Button icon styles */
 .button-image {
     width: 60px;
     height: 60px;
@@ -186,11 +171,13 @@ h1.page2-title-title {
 }
 
 /* Right Column */
+
 .page2-right-content {
     width: 50%;
     text-align: left;
 }
 
+/* right textbox */
 .page2-question {
         background-color: #FFE8F5;
         padding: 5px 10px;
@@ -204,14 +191,38 @@ h1.page2-title-title {
 
     }
 
+/* right image */
 .page2-right-image {
     width: 100px;
     max-width: 100%;
     height: 600px;
 }
 
+/* right description */
+.styled-textbox {
+    background-color: #e7f5fe;
+    color: #333;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 300px;
+}
 
-/* Banner container */
+/* dress */
+.page2-centered-red-dress {
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+    transform: translate(-10%, 20%);
+    z-index: 10;
+}
+
+.red-dress-centered {
+    max-width: 300%;
+}
+
+/* pop up Banner container */
 #banner-container {
     position: absolute;
     top: 0;
