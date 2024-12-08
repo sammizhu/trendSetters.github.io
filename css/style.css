@@ -106,7 +106,7 @@ h1.page2-title-title {
 /* Left Column */
 
 .page2-left-content {
-    width: 45%;
+    width: 50%;
     text-align: left;
 }
 
@@ -172,17 +172,57 @@ h1.page2-title-title {
 
 /* Right Column */
 
+/* Right Content Container */
 .page2-right-content {
-    width: 50%;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
 }
 
-/* right textbox */
+/* Right Content Container */
+.page2-right-split {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+/* Right Description (Styled Text Box) */
+.styled-textbox {
+    flex: 1;
+    background-color: #e7f5fe;
+    color: #333;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* Right Image */
+.page2-right-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* right description */
 .page2-question {
         background-color: #FFE8F5;
         padding: 5px 10px;
         line-height: 1.6;
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: #222831;
         width: 100%;
         text-align: left;
@@ -190,24 +230,6 @@ h1.page2-title-title {
     z-index: 1;
 
     }
-
-/* right image */
-.page2-right-image {
-    width: 100px;
-    max-width: 100%;
-    height: 600px;
-}
-
-/* right description */
-.styled-textbox {
-    background-color: #e7f5fe;
-    color: #333;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    max-width: 300px;
-}
 
 /* dress */
 .page2-centered-red-dress {
