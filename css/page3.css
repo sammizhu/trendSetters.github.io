@@ -11,6 +11,16 @@ body {
     overflow-x: hidden;
 }
 
+h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: #D63484;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
 #VisContainer1 {
     background-color: #fffaf8;
     padding-top: 15px;
@@ -49,7 +59,7 @@ body {
 }
 
 footer {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,7 +69,7 @@ footer {
 }
 
 footer a {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     text-decoration: none;
     color: #ff6f61; /* Match the primary accent color */
     font-size: 1.2em;
@@ -74,7 +84,7 @@ footer a:hover {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     color: #333; /* Use dark grey for text for better contrast */
 }
 
@@ -130,7 +140,7 @@ footer a:hover {
 
 .chart-text {
     font-size: 14px; /* Slightly smaller, more readable size */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
@@ -147,7 +157,7 @@ footer a:hover {
 
 .slider-container {
     margin: 20px 0;
-    font-family: 'Roboto', sans-serif; /* Consistent font usage */
+    font-family: 'Playfair Display', serif; /* Consistent font usage */
     color: #333;
 }
 

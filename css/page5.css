@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     text-align: center;
     background-color: #f9f9f9;
     margin: 0;
@@ -7,15 +7,14 @@ body {
 }
 
 #fashion-trends-10-years .page2-title {
-    font-family: 'Satisfy', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: 1.8em;
-    color: #ff6f61;
+    color: #e94b6e;
     margin-top: 5px;
     margin-bottom: 15px;
     font-weight: normal;
     text-align: center;
 }
-
 
 #fashion-trends-10-years-vis {
     width: 100%;
@@ -38,7 +37,7 @@ body {
 }
 
 .fashion-trend-card.selected {
-    border: 2px solid #ff6f61;
+    color: #e94b6e;
 }
 
 .fashion-trend-card h3 {
@@ -50,7 +49,7 @@ body {
 #fashion-info-box {
     margin-top: 10px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffe3eb;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -59,9 +58,12 @@ body {
 }
 
 #fashion-info-box h2 {
-    font-size: 1.5em;
-    color: #ff6f61;
-    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: #e94b6e;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
 #fashion-info-text {
@@ -69,33 +71,29 @@ body {
     color: #333;
 }
 
-/* Container for the entire layout */
 .container {
     display: grid;
-    grid-template-rows: 1fr 1fr; /* Two rows with equal height */
-    gap: 20px; /* Space between rows */
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
     width: 100%;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     box-sizing: border-box;
 }
 
-/* Top Row */
 .top-row {
     display: grid;
-    grid-template-columns: 1fr 3fr; /* Left 1/4 and Right 3/4 */
-    align-items: center; /* Vertically align content */
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
 }
 
-/* Bottom Row */
 .bottom-row {
     display: grid;
-    grid-template-columns: 1fr 3fr; /* Left 1/4 and Right 3/4 */
-    align-items: start; /* Top-align content */
+    grid-template-columns: 1fr 3fr;
+    align-items: start;
 }
 
-/* Left Section */
 .left-quarter-top {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
     line-height: 1.5;
     text-align: right;
@@ -103,10 +101,8 @@ body {
     margin-right: 10px;
 }
 
-
-/* Right Section */
 .right-three-quarters-top {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 2.0rem;
     line-height: 1.8;
@@ -114,45 +110,43 @@ body {
     color: #333;
 }
 
-/* Header Styling */
 h1 {
+    font-family: 'Playfair Display', serif;
     font-size: 8rem;
     font-weight: bold;
     text-transform: uppercase;
     text-align: left;
     margin: 0;
-    color: #000;
+    color: #e94b6e;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
-        grid-template-rows: auto; /* Let rows adjust height automatically */
+        grid-template-rows: auto;
     }
     .top-row, .bottom-row {
-        grid-template-columns: 1fr; /* Stack items vertically */
+        grid-template-columns: 1fr;
     }
     .right-three-quarters {
-        text-align: center; /* Center-align large text */
+        text-align: center;
     }
 }
 
-/* Trend Line Image */
 .trend-line-image {
-    width: 200px; /* Fixed width */
+    width: 200px;
     height: auto;
-    margin: 0 auto; /* Center under text */
+    margin: 0 auto;
 }
 
 .right-three-quarters-bottom {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 0.8rem;
     line-height: 1.5;
     margin-left: 20px;
     text-align: left;
     color: #333;
 }
-/* Book Container */
+
 .book-container {
     display: flex;
     width: 600px;
@@ -161,26 +155,18 @@ h1 {
     border-radius: 3px;
     overflow: hidden;
     position: relative;
-    perspective: 1000px; /* Perspective for 3D effect */
+    perspective: 1000px;
 }
 
-.book-container {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    color: #333;
-    padding: 10px;
-}
-
-/* Pages */
 .page-content {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    backface-visibility: hidden; /* Hide back during flip */
+    backface-visibility: hidden;
     transform-origin: center;
     transition: transform 0.4s ease-in-out;
-    }
+}
 
 .left-page {
     background-color: #e7f5fe;
@@ -192,7 +178,6 @@ h1 {
     transform-origin: right;
 }
 
-/* Flipping Animation */
 .book-container.flipping .left-page {
     transform: rotateY(-180deg);
 }
@@ -201,7 +186,6 @@ h1 {
     transform: rotateY(180deg);
 }
 
-/* Content Styling */
 .page-content img {
     max-width: 100%;
     height: auto;
@@ -209,7 +193,7 @@ h1 {
 }
 
 .page-content p {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1rem;
     color: #333;
     text-align: center;
@@ -222,7 +206,7 @@ h1 {
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     font-size: 0.8rem;
     display: inline-block;
     text-align: center;

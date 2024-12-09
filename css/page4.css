@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Playfair Display', serif;
     text-align: center;
     background-color: #f9f9f9;
     padding: 2vh;
@@ -139,11 +139,14 @@ footer a:hover {
 }
 
 h3 {
-    padding: 20px;
-    font-size: 1.5em;
-    color: #333;
-    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
 }
+
 
 h4 {
     color: black;

@@ -24,11 +24,12 @@ class FashionTrendsVis {
         vis.svg.append("text")
             .attr("class", "fashion-title")
             .attr("x", vis.width / 2)
-            .attr("y", -10)
+            .attr("y", -40)
             .attr("text-anchor", "middle")
-            .style("font-size", "2.5em")
-            .style("font-family", "Satisfy, cursive")
+            .style("fill", "#D63484")
             .text("Influential Trends in Fashion");
+
+
 
         vis.tooltip = d3.select(vis.parentElement)
             .append("div")
