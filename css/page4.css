@@ -81,6 +81,7 @@ footer a:hover {
 .vl {
     border-left: 1px solid #ddd;
     height: 100%;
+    width: 1px
 }
 
 .highlight {

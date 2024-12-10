@@ -171,11 +171,13 @@ class BrandGrowth {
         vis.luluRates = []
         vis.gapRates = []
 
-        // calculate and push annual growth rates measured on jan 1
+        // calculate and push annual growth rates
+        let date = 2010
         for (let i = 4; i < vis.lvmhData.length; i = i+4) {
             let thisYearLV = vis.lvmhData[i].value + vis.lvmhData[i+1].value + vis.lvmhData[i+2].value + vis.lvmhData[i+3].value
             let prevYearLV = vis.lvmhData[i].value + vis.lvmhData[i-1].value + vis.lvmhData[i-2].value + vis.lvmhData[i-3].value
-            let setDate = vis.lvmhData[i].date.setFullYear(vis.lvmhData[i].date.getFullYear() - 1)
+            let setDate = new Date(`${date}-12-31`)
+            date += 1
             console.log("setDate", setDate)
             vis.lvmhRates.push({
                 company: "LVMH",
