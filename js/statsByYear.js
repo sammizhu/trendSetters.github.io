@@ -1,10 +1,10 @@
 // Data for slider
 const stats = [
-    { cagr: "5%", worth: "$1.2T", desc: "Fashion industry growing slowly" },
-    { cagr: "6%", worth: "$1.5T", desc: "Fashion growing moderately" },
-    { cagr: "7%", worth: "$1.7T", desc: "Strong growth in fashion" },
-    { cagr: "8%", worth: "$2.0T", desc: "Rapid expansion of fashion industry" },
-    { cagr: "9%", worth: "$2.5T", desc: "Exceptional fashion growth rate" }
+    { year: "2000", worth: "$1.2T" },
+    { year: "2006", worth: "$1.5T" },
+    { year: "2012", worth: "$1.7T" },
+    { year: "2018", worth: "$2.0T" },
+    { year: "2024", worth: "$2.5T" }
 ];
 
 // Create a function to render data dynamically using D3
@@ -22,19 +22,21 @@ function updateStats(index) {
         .append("div")
         .attr("class", "stat d-flex justify-content-center align-items-center");
 
+    // Year
     enter.append("div")
         .attr("class", "mx-4")
         .append("h1")
-        .attr("class", "cagr")
+        .attr("class", "year")
         .style("font-size", "48px")
-        .style("color", "#ff6f61") // Deep pink for emphasis
+        .style("color", "#ff6f61") // Pink color for emphasis
         .style("margin-bottom", "5px");
 
     enter.append("p")
         .style("font-size", "20px")
         .style("color", "#333") // Dark grey text
-        .text("Industry CAGR");
+        .text("Year");
 
+    // Industry Worth
     enter.append("div")
         .attr("class", "mx-4")
         .append("h1")
@@ -49,19 +51,11 @@ function updateStats(index) {
         .text("Industry Worth");
 
     // UPDATE: Update existing elements
-    statData.select(".cagr").text(currentStat.cagr);
+    statData.select(".year").text(currentStat.year);
     statData.select(".worth").text(currentStat.worth);
 
     // Remove unused elements
     statData.exit().remove();
-
-    // Update description
-    d3.select("#slider-desc")
-        .text(currentStat.desc)
-        .style("font-size", "30px")
-        .style("color", "#333") // Dark grey for readability
-        .style("text-align", "center")
-        .style("margin-top", "10px");
 }
 
 // Style the slider

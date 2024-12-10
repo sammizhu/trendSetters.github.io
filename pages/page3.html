@@ -25,9 +25,16 @@
 
             <!-- Slider and stats -->
             <div class="slider-container d-flex flex-column align-items-center">
-                <div id="stats-container" class="d-flex justify-content-around w-100">
+                <div id="stats-container" class="d-flex justify-content-center w-100">
                 </div>
                 <input id="slider" type="range" class="form-range my-4" style="width: 80%;" min="0" max="4" step="1" />
+
+                <!-- Slider Captions -->
+                <div class="w-100 d-flex justify-content-between" style="margin-top: 10px;">
+                    <span class="text-start" style="font-size: 14px;">2000</span>
+                    <span class="text-center" style="font-size: 14px;"><small>(slide me!)</small></span>
+                    <span class="text-end" style="font-size: 14px;">2024</span>
+                </div>
             </div>
 
             <!-- Text and Charts -->
@@ -42,13 +49,8 @@
                 </div>
                 <!-- Right column for charts -->
                 <div class="chart-area">
-                    <!-- Line Chart -->
-                    <div id="lineChart" class="chart-container line-chart-container">
-                        <!-- Line chart visualization will render here -->
-                    </div>
-
                     <!-- Bubble Chart -->
-                    <div id="bubbleChart" class="chart-container bubble-chart-container">
+                    <div id="radialTreeMap" class="chart-container bubble-chart-container">
                         <!-- Bubble chart visualization will render here -->
                     </div>
                 </div>
@@ -74,7 +76,7 @@
             <!-- Additional Text Area -->
             <div class="text-box" id="text-box" style="width: 75%; margin-top: 30px;">
                 <p>In <span id="year-trends">...</span>, these events and trends influenced fashion:</p>
-                <textarea rows="5" style="width: 75%; height: 65%" id="trends-text"></textarea>
+                <ul id="trends-text"></ul>
             </div>
         </div>
     </div>

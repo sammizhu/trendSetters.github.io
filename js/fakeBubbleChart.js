@@ -1,131 +1,121 @@
-function createBubbleChart() {
+function createRadialTreeMap() {
     const data = [
-        { name: "Company A", value: 30 },
-        { name: "Company B", value: 50 },
-        { name: "Company C", value: 20 },
-        { name: "Company D", value: 40 },
-        { name: "Company E", value: 10 },
-        { name: "Company F", value: 15 },
-        { name: "Company G", value: 35 },
-        { name: "Company H", value: 25 },
-        { name: "Company I", value: 5 },
-        { name: "Company J", value: 45 },
-        { name: "Company K", value: 100 },
+        { name: "Sneakers", value: 55 },
+        { name: "Jeans", value: 50 },
+        { name: "Dresses", value: 45 },
+        { name: "T-shirts", value: 40 },
+        { name: "Handbags", value: 35 },
+        { name: "Hats", value: 30 },
+        { name: "Jackets", value: 25 },
+        { name: "Sunglasses", value: 20 },
+        { name: "Watches", value: 15 },
+        { name: "High Heels", value: 10 },
     ];
 
-    const width = 600;
-    const height = 600;
+    const width = 550;
+    const height = 550;
+    const radius = Math.min(width, height) / 2 - 50;
 
-    // Create SVG container
-    const svg = d3.select("#bubbleChart")
+    const svg = d3.select("#radialTreeMap")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    // Add a title
-    svg.append("text")
-        .attr("x", width / 2)
-        .attr("y", 40)
-        .attr("text-anchor", "middle")
-        .style("font-size", "24px")
-        .style("font-weight", "bold")
-        .style("fill", "#ff6f61") // Pink title
-        .text("Popular Fashion Queries Over Time");
+    // Center the chart within the SVG
+    const g = svg.append("g")
+        .attr("transform", `translate(${(width / 2) + 100}, ${height / 2})`);
 
-    // Create a bubble layout
-    const bubble = d3.pack()
-        .size([width, height - 100]) // Adjust for title and legend
-        .padding(2);
+    const pie = d3.pie()
+        .sort(null)
+        .value(d => d.value);
 
-    // Prepare hierarchy data
-    const root = d3.hierarchy({ children: data })
-        .sum(d => d.value);
+    const color = d3.scaleLinear()
+        .domain([0, 27.5, 55])
+        .range(["#ffe6e6", "#ffb3b3", "#ff6f61"]);
 
-    bubble(root);
+    const arc = d3.arc()
+        .innerRadius(50)
+        .outerRadius(d => radius * (d.data.value / 100));
 
-    // Create nodes
-    const nodes = svg.selectAll("g")
-        .data(root.children)
+    const arcs = g.selectAll(".arc")
+        .data(pie(data))
         .enter()
         .append("g")
-        .attr("transform", d => `translate(${d.x},${d.y + 50})`); // Shift down for title
+        .attr("class", "arc");
 
-    // Draw circles
-    nodes.append("circle")
-        .attr("r", d => d.r)
-        .attr("fill", d => {
-            // Gradient of pink shades based on value
-            if (d.data.value <= 20) return "#ffe6e6";
-            if (d.data.value <= 50) return "#ffb3b3";
-            return "#ff6f61";
+    arcs.append("path")
+        .attr("d", arc)
+        .attr("fill", d => color(d.data.value))
+        .attr("stroke", "#fff")
+        .attr("stroke-width", "1px");
+
+    arcs.append("text")
+        .attr("transform", d => {
+            const angle = (d.startAngle + d.endAngle) / 2;
+            let rotation = (angle * 180 / Math.PI) - 90;
+            if (angle > Math.PI / 2 && angle < (3 * Math.PI / 2)) {
+                rotation += 180;
+            }
+            const [x, y] = arc.centroid(d);
+            return `translate(${x}, ${y}) rotate(${rotation})`;
         })
-        .attr("opacity", 0.9);
-
-    // Add text labels
-    nodes.append("text")
+        .attr("text-anchor", d => {
+            const angle = (d.startAngle + d.endAngle) / 2;
+            return (angle > Math.PI / 2 && angle < (3 * Math.PI / 2)) ? "end" : "start";
+        })
+        .attr("dy", ".35em")
         .text(d => d.data.name)
+        .attr("class", "label-text");
+
+    // Title above the chart
+    g.append("text")
+        .attr("x", 0)
+        .attr("y", -radius - 30)
         .attr("text-anchor", "middle")
-        .attr("dy", ".3em")
-        .style("font-size", d => `${Math.min(12, d.r / 3)}px`) // Scale text size based on radius
-        .style("fill", "#333"); // Dark grey text for readability
+        .attr("class", "chart-title")
+        .text("Radial Tree Map: Top Fashion Searches");
 
-    // Add a legend
-    const legend = svg.append("g")
-        .attr("transform", `translate(${width - 150}, ${height - 150})`);
-
-    // Legend title
-    legend.append("text")
+    // Caption closer to the chart
+    g.append("text")
         .attr("x", 0)
-        .attr("y", -10)
-        .style("font-size", "14px")
-        .style("font-weight", "bold")
-        .style("fill", "#333") // Dark grey text
-        .text("Count of Query");
+        .attr("y", -radius - 10)
+        .attr("text-anchor", "middle")
+        .attr("class", "chart-description")
+        .text("This chart highlights the top 10 most searched-for fashion items over the past decade.");
 
-    // Legend gradient
-    const gradient = svg.append("defs")
-        .append("linearGradient")
-        .attr("id", "legendGradient")
-        .attr("x1", "0%")
-        .attr("x2", "100%")
-        .attr("y1", "0%")
-        .attr("y2", "0%");
+    const legendData = [
+        { color: "#ffe6e6", label: "0-18" },
+        { color: "#ffb3b3", label: "19-36" },
+        { color: "#ff6f61", label: "37-55" }
+    ];
 
-    gradient.append("stop")
-        .attr("offset", "0%")
-        .attr("stop-color", "#ffe6e6");
+    // Position legend at the bottom-right quadrant of the chart
+    // Adjust these values as needed to achieve the desired placement
+    const legendX = radius * 0.5;
+    const legendY = radius * 0.5 - 10;
 
-    gradient.append("stop")
-        .attr("offset", "50%")
-        .attr("stop-color", "#ffb3b3");
+    const legend = g.append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(${legendX}, ${legendY})`);
 
-    gradient.append("stop")
-        .attr("offset", "100%")
-        .attr("stop-color", "#ff6f61");
+    const legendItems = legend.selectAll(".legend-item")
+        .data(legendData)
+        .enter().append("g")
+        .attr("class", "legend-item")
+        .attr("transform", (d, i) => `translate(0, ${i * 20})`);
 
-    legend.append("rect")
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("width", 100)
-        .attr("height", 10)
-        .style("fill", "url(#legendGradient)");
+    legendItems.append("rect")
+        .attr("width", 15)
+        .attr("height", 15)
+        .attr("fill", d => d.color)
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", "1px");
 
-    // Legend scale
-    legend.append("text")
-        .attr("x", 0)
-        .attr("y", 25)
-        .style("font-size", "12px")
-        .style("fill", "#333")
-        .text("1");
-
-    legend.append("text")
-        .attr("x", 100)
-        .attr("y", 25)
-        .style("font-size", "12px")
-        .style("fill", "#333")
-        .attr("text-anchor", "end")
-        .text("100");
+    legendItems.append("text")
+        .attr("x", 20)
+        .attr("y", 12)
+        .attr("class", "legend-label")
+        .text(d => d.label);
 }
 
-// Render the bubble chart
-createBubbleChart();
+createRadialTreeMap();

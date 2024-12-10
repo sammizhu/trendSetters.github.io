@@ -115,18 +115,6 @@ footer a:hover {
     transform-origin: left;
 }
 
-.line-chart-container {
-    width: 100%;
-    transform: scale(0.8) translateX(-30px);
-    transform-origin: left;
-}
-
-.bubble-chart-container {
-    transform: scale(0.8);
-    margin-left: 20px;
-    transform-origin: center;
-}
-
 .chart-container {
     width: 300px;
     height: 250px;
@@ -210,4 +198,34 @@ footer a:hover {
     border-radius: 50%; /* Circular thumb */
     cursor: pointer;
     transition: background 0.3s ease-in-out;
+}
+
+#radialTreeMap svg {
+    overflow: visible;
+}
+
+
+.chart-title {
+    font-size: 20px;
+    font-weight: bold;
+    fill: #ff6f61;
+    font-family: 'Playfair Display', serif;
+}
+
+.chart-description {
+    font-size: 14px;
+    fill: #333;
+    font-family: 'Playfair Display', serif;
+}
+
+.label-text {
+    font-size: 10px;
+    fill: #333;
+    font-family: 'Playfair Display', serif;
+}
+
+.legend-label {
+    font-size: 12px;
+    fill: #333;
+    font-family: 'Playfair Display', serif;
 }
