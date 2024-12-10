@@ -17,10 +17,10 @@ class BrandGrowth {
 
         // Set up margins and dimensions
         vis.margin = { top: 30, right: 50, bottom: 100, left: 50 };
-        vis.width = 700 - vis.margin.left - vis.margin.right;
+        vis.width = 800 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
-        vis.visualWidth = 400
+        vis.visualWidth = vis.width
 
         // Append the SVG element
         vis.svg = d3
@@ -33,7 +33,6 @@ class BrandGrowth {
 
         // initialize chart group
         vis.chartGroup = vis.svg.append("g")
-            .attr("transform", `translate(${vis.margin.left},${vis.margin.top})`);
 
         // initialize legend
         vis.legendGroup = vis.svg.append("g")
@@ -74,8 +73,8 @@ class BrandGrowth {
 
         // add title
         vis.svg.append("text")
-            .attr("x", (vis.visualWidth + vis.margin.left + vis.margin.right) / 2)
-            .attr("y", vis.margin.top / 4)
+            .attr("x", vis.width / 2)
+            .attr("y", -10)
             .attr("text-anchor", "middle")
             .attr("class", "chart-title")
             .text("What Brands Are Growing the Fastest?");
@@ -92,6 +91,7 @@ class BrandGrowth {
             .attr("y", -vis.margin.left + 10)
             .attr("text-anchor", "middle")
             .attr("transform", "rotate(-90)")
+            .style("font-size", "14px")
             .text("Annual Growth Rate");
 
         // parse date from the data

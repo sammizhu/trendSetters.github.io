@@ -16,7 +16,7 @@ class RevenueVis {
         console.log(vis.size)
 
         // set up the margins
-        vis.margin = { top: 50, right: 120, bottom: 40, left: 70 };
+        vis.margin = { top: 30, right: 50, bottom: 100, left: 50 };
         vis.width = 800 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
@@ -28,7 +28,7 @@ class RevenueVis {
             .append("g")
             .attr("transform", `translate(${vis.margin.left}, ${vis.margin.top})`);
 
-        vis.xScale = d3.scaleTime().range([0, vis.width]);
+        vis.xScale = d3.scaleTime().range([0, vis.width - vis.margin.left]);
         vis.yScale = d3.scaleLinear().range([vis.height, 0]);
 
         vis.xAxisGroup = vis.svg.append("g").attr("transform", `translate(0, ${vis.height})`);
@@ -148,6 +148,13 @@ class RevenueVis {
 
         vis.toolGroup.selectAll(".toolcompany").remove();
 
+        vis.tooltiprect = vis.toolGroup.append("rect")
+            .attr("x", 10)
+            .attr("y", 40)
+            .attr("width", 100)
+            .attr("height", 70)
+            .attr("fill", "white")
+
         // add text to the tooltip group including population and date
         vis.tooltipLVMH = vis.toolGroup.append("text").data(vis.filteredData)
             .attr("x", 10)
@@ -243,12 +250,14 @@ class RevenueVis {
                 vis.tooltipTJX.attr("transform", "translate(" + -120 + ",0)")
                 vis.tooltipGAP.attr("transform", "translate(" + -120 + ",0)")
                 vis.tooltipLULU.attr("transform", "translate(" + -120 + ",0)")
+                vis.tooltiprect.attr("transform", "translate(" + -120 + ",0)")
             }
             else {
                 vis.tooltipLVMH.attr("transform", "translate(" + 0 + ",0)")
                 vis.tooltipTJX.attr("transform", "translate(" + 0 + ",0)")
                 vis.tooltipGAP.attr("transform", "translate(" + 0 + ",0)")
                 vis.tooltipLULU.attr("transform", "translate(" + 0 + ",0)")
+                vis.tooltiprect.attr("transform", "translate(" + 0 + ",0)")
             }
         }
 
