@@ -4,12 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mock Data
     const data = [
         { year: 2010, marketSize: 500, fastestSector: "Clothing", trends: "E-commerce growth starts." },
+        { year: 2010, marketSize: 500, fastestSector: "Clothing", trends: "More people started to shop online." },
         { year: 2012, marketSize: 600, fastestSector: "Accessories", trends: "Influencer culture begins." },
         { year: 2014, marketSize: 750, fastestSector: "Shoes", trends: "Sneaker trends rise." },
         { year: 2016, marketSize: 900, fastestSector: "Luxury", trends: "High-end brands go online." },
         { year: 2018, marketSize: 1100, fastestSector: "Activewear", trends: "Athleisure dominates fashion." },
         { year: 2020, marketSize: 1300, fastestSector: "E-commerce", trends: "Pandemic accelerates digital adoption." }
     ];
+
+    // Group data by year
+    const groupedData = d3.rollups(
+        data,
+        (v) => ({
+            year: v[0].year,
+            marketSize: v[0].marketSize,
+            fastestSector: v[0].fastestSector,
+            trends: v.map((d) => d.trends),
+        }),
+        (d) => d.year
+    ).map(([, value]) => value);
+
+    console.log("Grouped Data:", groupedData);
 
     // Set dimensions
     const margin = { top: 40, right: 30, bottom: 50, left: 50 };
@@ -36,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add X-axis
     const x = d3.scaleLinear()
-        .domain(d3.extent(data, d => d.year))
+        .domain(d3.extent(groupedData, d => d.year))
         .range([0, width]);
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
@@ -52,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add Y-axis
     const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.marketSize)])
+        .domain([0, d3.max(groupedData, d => d.marketSize)])
         .range([height, 0]);
     svg.append("g").call(d3.axisLeft(y));
 
@@ -70,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add line to chart
     svg.append("path")
-        .datum(data)
+        .datum(groupedData)
         .attr("fill", "none")
         .attr("stroke", "#ff6f61") // Light pink shade for the line
         .attr("stroke-width", 1.5)
@@ -78,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add dots
     svg.selectAll("circle")
-        .data(data)
+        .data(groupedData)
         .enter()
         .append("circle")
         .attr("cx", d => x(d.year))
@@ -116,14 +131,23 @@ document.addEventListener("DOMContentLoaded", () => {
             marketSizeElement.textContent = `$${dataPoint.marketSize}B`;
             fastestSectorElement.textContent = dataPoint.fastestSector;
             yearTrendsElement.textContent = dataPoint.year;
-            trendsTextElement.value = dataPoint.trends;
+
+            // Clear existing trends
+            trendsTextElement.innerHTML = "";
+
+            // Populate the list with all trends
+            dataPoint.trends.forEach((trend) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = trend;
+                trendsTextElement.appendChild(listItem);
+            });
         } else {
             console.error("One or more elements for updating info boxes are missing or incorrectly defined.");
         }
     }
 
     // Initialize with the first data point
-    updateInfo(data[0]);
+    updateInfo(groupedData[0]);
 
     // Highlight the first dot by default
     svg.selectAll("circle").filter((d, i) => i === 0)
