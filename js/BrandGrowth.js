@@ -47,7 +47,7 @@ class BrandGrowth {
             .append("circle")
             .attr("class", "dot")
             .attr("cx", (d,i) => -vis.margin.left + 10 + i * 50)
-            .attr("cy", vis.height + vis.margin.top + 15)
+            .attr("cy", vis.height + vis.margin.top - 5)
             .attr("r", 5)
             .attr("fill", d => vis.colorScale(d));
         vis.legendGroup.selectAll("text")
@@ -55,7 +55,7 @@ class BrandGrowth {
             .enter()
             .append("text")
             .attr("x", (d,i) => -vis.margin.left + 20 + i * 50)
-            .attr("y", vis.height + vis.margin.top + 20)
+            .attr("y", vis.height + vis.margin.top)
             .attr("r", 5)
             .text(d => d)
             .style("font-size", "10px")
@@ -77,7 +77,7 @@ class BrandGrowth {
             .attr("y", -10)
             .attr("text-anchor", "middle")
             .attr("class", "chart-title")
-            .text("What Brands Are Growing the Fastest?");
+            .text("What Brands Are Growing the Fastest? (click me!)");
 
         // Add axis labels
         vis.chartGroup.append("text")
@@ -97,30 +97,8 @@ class BrandGrowth {
         // parse date from the data
         vis.parseDate = d3.timeParse("%Y Q%q");
 
-        // text box
-        vis.textBrandGroup = vis.svg.append("g")
-            .attr("transform", `translate(${vis.visualWidth + vis.margin.left},${vis.margin.top})`);
-
-        vis.textBrand = vis.textBrandGroup.append("text")
-            .attr("x", 0)
-            .attr("y", 0)
-            .attr("text-anchor", "left")
-
-        vis.tspan1 = vis.textBrand.append("tspan")
-            .attr("x", 0)
-            .attr("dy",0)
-
-        vis.tspan2 = vis.textBrand.append("tspan")
-            .attr("x", 0)
-            .attr("dy",20)
-
-        vis.tspan3 = vis.textBrand.append("tspan")
-            .attr("x", 0)
-            .attr("dy",20)
-
-
         // Load data from the specified paths
-        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q4"));
+        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2022 Q4"));
 
     }
 
@@ -172,11 +150,11 @@ class BrandGrowth {
         vis.gapRates = []
 
         // calculate and push annual growth rates
-        let date = 2010
+        let date = 2011
         for (let i = 4; i < vis.lvmhData.length; i = i+4) {
             let thisYearLV = vis.lvmhData[i].value + vis.lvmhData[i+1].value + vis.lvmhData[i+2].value + vis.lvmhData[i+3].value
-            let prevYearLV = vis.lvmhData[i].value + vis.lvmhData[i-1].value + vis.lvmhData[i-2].value + vis.lvmhData[i-3].value
-            let setDate = new Date(`${date}-12-31`)
+            let prevYearLV = vis.lvmhData[i-1].value + vis.lvmhData[i-2].value + vis.lvmhData[i-3].value + vis.lvmhData[i-4].value
+            let setDate = new Date(`${date}-9-30`)
             date += 1
             console.log("setDate", setDate)
             vis.lvmhRates.push({
@@ -187,7 +165,7 @@ class BrandGrowth {
                 nowRev: thisYearLV,
             })
             let thisYearTJX = vis.tjxData[i].value + vis.tjxData[i+1].value + vis.tjxData[i+2].value + vis.tjxData[i+3].value
-            let prevYearTJX = vis.tjxData[i].value + vis.tjxData[i-1].value + vis.tjxData[i-2].value + vis.tjxData[i-3].value
+            let prevYearTJX = vis.tjxData[i-4].value + vis.tjxData[i-1].value + vis.tjxData[i-2].value + vis.tjxData[i-3].value
             vis.tjxRates.push({
                 company: "TJX",
                 date: setDate,
@@ -196,7 +174,7 @@ class BrandGrowth {
                 nowRev: thisYearTJX,
             })
             let thisYearLU = vis.luluData[i].value + vis.luluData[i+1].value + vis.luluData[i+2].value + vis.luluData[i+3].value
-            let prevYearLU = vis.luluData[i].value + vis.luluData[i-1].value + vis.luluData[i-2].value + vis.luluData[i-3].value
+            let prevYearLU = vis.luluData[i-4].value + vis.luluData[i-1].value + vis.luluData[i-2].value + vis.luluData[i-3].value
             vis.luluRates.push({
                 company: "LULU",
                 date: setDate,
@@ -205,7 +183,7 @@ class BrandGrowth {
                 nowRev: thisYearLU,
             })
             let thisYearGAP = vis.gapData[i].value + vis.gapData[i+1].value + vis.gapData[i+2].value + vis.gapData[i+3].value
-            let prevYearGAP = vis.gapData[i].value + vis.gapData[i-1].value + vis.gapData[i-2].value + vis.gapData[i-3].value
+            let prevYearGAP = vis.gapData[i-4].value + vis.gapData[i-1].value + vis.gapData[i-2].value + vis.gapData[i-3].value
             vis.gapRates.push({
                 company: "GAP",
                 date: setDate,
@@ -226,7 +204,13 @@ class BrandGrowth {
         vis.maxY = d3.max(vis.allRates, d => d.rate)
 
         vis.minX = xMin;
-        vis.maxX = xMax;
+        if (vis.parseDate("2022 Q4") < xMax) {
+            vis.maxX = vis.parseDate("2022 Q4");
+        }
+        else {
+            vis.maxX = xMax;
+        }
+
 
         console.log("minX", vis.maxX)
 
@@ -300,7 +284,7 @@ class BrandGrowth {
                     const billions = number / 1e9;
                     return d3.format(".1f")(billions) + "B";
                 }
-                document.getElementById("explanation").innerHTML = `In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}. On January first of this year, revenue was $${formatBills(d.prevRev)}. This year, revenue was $${formatBills(d.nowRev)}`
+                document.getElementById("explanation").innerHTML = `In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}. Last year, ${d.company} reported total revenue of $${formatBills(d.prevRev)}. This year, ${d.company} reported total revenue of $${formatBills(d.nowRev)}`
             })
             .on("mouseover", function (event, d) {
                 d3.select(this)

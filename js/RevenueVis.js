@@ -40,7 +40,7 @@ class RevenueVis {
             .attr("x", vis.width / 2)
             .attr("y", -10)
             .attr("text-anchor", "middle")
-            .text("Revenue by Quarter for Brands");
+            .text("Revenue by Quarter for Brands (hover over me!)");
 
         vis.lineGenerator = d3.line()
             .x(d => vis.xScale(d.date))
@@ -63,7 +63,33 @@ class RevenueVis {
 
         // parse date from the data
         vis.parseDate = d3.timeParse("%Y Q%q");
-        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q4"));
+        vis.loadData(vis.parseDate("2011 Q1"), vis.parseDate("2023 Q1"));
+
+        // initialize legend
+        vis.legendGroup = vis.svg.append("g")
+            .attr("transform", `translate(${vis.margin.left},${vis.margin.top})`);
+
+        // form legend to appear at bottom
+        vis.brands = ["LVMH", "TJX", "LULU", "GAP"]
+        vis.legendGroup.selectAll(".dot").remove();
+        vis.legendGroup.selectAll(".dot")
+            .data(vis.brands)
+            .enter()
+            .append("circle")
+            .attr("class", "dot")
+            .attr("cx", (d,i) => -vis.margin.left + 10 + i * 50)
+            .attr("cy", vis.height + vis.margin.top - 5)
+            .attr("r", 5)
+            .attr("fill", d => vis.colorScale(d));
+        vis.legendGroup.selectAll("text")
+            .data(vis.brands)
+            .enter()
+            .append("text")
+            .attr("x", (d,i) => -vis.margin.left + 20 + i * 50)
+            .attr("y", vis.height + vis.margin.top)
+            .attr("r", 5)
+            .text(d => d)
+            .style("font-size", "10px")
     }
 
     loadData(xMin, xMax) {
@@ -86,6 +112,8 @@ class RevenueVis {
 
             vis.minX = xMin
             vis.maxX = xMax
+
+            console.log(xMax)
 
             vis.filteredData = vis.data.filter(d => d.date >= vis.minX && d.date <= vis.maxX)
             console.log(vis.filteredData)

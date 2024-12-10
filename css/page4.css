@@ -80,7 +80,7 @@ footer a:hover {
 
 .vl {
     border-left: 1px solid #ddd;
-    height: 100%;
+    height: 148%;
     width: 1px
 }
 
@@ -154,6 +154,12 @@ h4 {
     font-size: 1.2em;
 }
 
+h6 {
+    color: #e65245;
+    font-size: 1.1em;
+    font-style: italic;
+}
+
 .parent-container-slider {
     display: flex;
     justify-content: center;
@@ -190,6 +196,19 @@ button.btn-primary:hover {
     fill: #a73378;
     font-weight: 600;
     text-align: center;
+}
+
+#takeawayRow {
+    background-color: #FFB6C1;
+    padding: 10px;
+    border: #a73378 3px solid;
+    margin-right: 10px;
+    margin-left: 10px
+}
+
+#takeawayInstruction {
+    font-weight: normal;
+    font-style: italic;
 }
 
 /*.noUi-connect {*/

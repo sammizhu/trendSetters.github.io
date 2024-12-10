@@ -59,3 +59,29 @@ slider.noUiSlider.on('slide', function (values, handle) {
     brandGrowth.loadData(xMin, xMax)
     brandRevenue.loadData(xMin, xMax)
 });
+
+
+const button = document.getElementById("actionButtonBrand");
+
+// List of questions to cycle through
+const takeaways = [
+    "Athletic wear / athleisure, especially high-end athleisure, has been getting more popular, as shown by Lululemon's revenue growth",
+    "Fashion sales experience seasonality with more purchases during the end of the year and holiday season, leading to a spike in sales then",
+    "The Covid-19 pandemic affected all fashion brands, and it seemed like discount retail took the biggest hit with TJ Maxx having the largest loss",
+    "Revenue growth rates in 2021 were inflated from revenue recovering after an especially poor 2020 due to the pandemic",
+    ""
+];
+
+// Index to keep track of the current takeaway
+let clickCount = 0;
+
+// Add event listener to the button
+button.addEventListener("click", () => {
+    document.getElementById("takeawayBrand").innerText = takeaways[clickCount];
+    clickCount++;
+    // If the button has been clicked more than takeaway number, reset
+    if (clickCount === takeaways.length) {
+        // Reset the counter and index
+        clickCount = 0;
+    }
+});
