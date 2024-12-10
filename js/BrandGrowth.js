@@ -173,33 +173,43 @@ class BrandGrowth {
 
         // calculate and push annual growth rates measured on jan 1
         for (let i = 4; i < vis.lvmhData.length; i = i+4) {
+            let thisYearLV = vis.lvmhData[i].value + vis.lvmhData[i+1].value + vis.lvmhData[i+2].value + vis.lvmhData[i+3].value
+            let prevYearLV = vis.lvmhData[i].value + vis.lvmhData[i-1].value + vis.lvmhData[i-2].value + vis.lvmhData[i-3].value
+            let setDate = vis.lvmhData[i].date.setFullYear(vis.lvmhData[i].date.getFullYear() - 1)
+            console.log("setDate", setDate)
             vis.lvmhRates.push({
                 company: "LVMH",
-                date: vis.lvmhData[i].date,
-                rate: vis.lvmhData[i].value / vis.lvmhData[i-4].value - 1,
-                prevRev: vis.lvmhData[i-4].value,
-                nowRev: vis.lvmhData[i].value,
+                date: setDate,
+                rate: thisYearLV / prevYearLV - 1,
+                prevRev: prevYearLV,
+                nowRev: thisYearLV,
             })
+            let thisYearTJX = vis.tjxData[i].value + vis.tjxData[i+1].value + vis.tjxData[i+2].value + vis.tjxData[i+3].value
+            let prevYearTJX = vis.tjxData[i].value + vis.tjxData[i-1].value + vis.tjxData[i-2].value + vis.tjxData[i-3].value
             vis.tjxRates.push({
                 company: "TJX",
-                date: vis.tjxData[i].date,
-                rate: vis.tjxData[i].value / vis.tjxData[i-4].value - 1,
-                prevRev: vis.tjxData[i-4].value,
-                nowRev: vis.tjxData[i].value,
+                date: setDate,
+                rate: thisYearTJX / prevYearTJX - 1,
+                prevRev: prevYearTJX,
+                nowRev: thisYearTJX,
             })
+            let thisYearLU = vis.luluData[i].value + vis.luluData[i+1].value + vis.luluData[i+2].value + vis.luluData[i+3].value
+            let prevYearLU = vis.luluData[i].value + vis.luluData[i-1].value + vis.luluData[i-2].value + vis.luluData[i-3].value
             vis.luluRates.push({
                 company: "LULU",
-                date: vis.luluData[i].date,
-                rate: vis.luluData[i].value / vis.luluData[i-4].value - 1,
-                prevRev: vis.luluData[i-4].value,
-                nowRev: vis.luluData[i].value,
+                date: setDate,
+                rate: thisYearLU / prevYearLU - 1,
+                prevRev: prevYearLU,
+                nowRev: thisYearLU,
             })
+            let thisYearGAP = vis.gapData[i].value + vis.gapData[i+1].value + vis.gapData[i+2].value + vis.gapData[i+3].value
+            let prevYearGAP = vis.gapData[i].value + vis.gapData[i-1].value + vis.gapData[i-2].value + vis.gapData[i-3].value
             vis.gapRates.push({
                 company: "GAP",
-                date: vis.gapData[i].date,
-                rate: vis.gapData[i].value / vis.gapData[i-4].value - 1,
-                prevRev: vis.gapData[i-4].value,
-                nowRev: vis.gapData[i].value,
+                date: setDate,
+                rate: thisYearGAP / prevYearGAP - 1,
+                prevRev: prevYearGAP,
+                nowRev: thisYearGAP,
             })
 
         }
@@ -207,12 +217,16 @@ class BrandGrowth {
         // combine all companies' data to one list
         vis.allRates = vis.lvmhRates.concat(vis.tjxRates, vis.luluRates, vis.gapRates)
 
+        console.log(vis.allRates)
+
         // set domains of scales
         vis.minY = d3.min(vis.allRates, d => d.rate)
         vis.maxY = d3.max(vis.allRates, d => d.rate)
 
         vis.minX = xMin;
         vis.maxX = xMax;
+
+        console.log("minX", vis.maxX)
 
         vis.xScale.domain([vis.minX, vis.maxX])
 
@@ -238,6 +252,7 @@ class BrandGrowth {
 
         vis.lvmhRates.forEach( row => {
             if (row.date >= vis.minX && row.date <= vis.maxX) {
+                console.log(row.date)
                 vis.customTickValues.push(row.date)
             }
         })
@@ -283,9 +298,7 @@ class BrandGrowth {
                     const billions = number / 1e9;
                     return d3.format(".1f")(billions) + "B";
                 }
-                vis.tspan1.text(`In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}`);
-                vis.tspan2.text(`Before, revenue was $${formatBills(d.prevRev)}`)
-                vis.tspan3.text(`This year, revenue was $${formatBills(d.nowRev)}`)
+                document.getElementById("explanation").innerHTML = `In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}. On January first of this year, revenue was $${formatBills(d.prevRev)}. This year, revenue was $${formatBills(d.nowRev)}`
             })
             .on("mouseover", function (event, d) {
                 d3.select(this)

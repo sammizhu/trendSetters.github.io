@@ -146,14 +146,19 @@ class RevenueVis {
         companies.exit().remove();
 
 
+
         vis.toolGroup.selectAll(".toolcompany").remove();
+
 
         vis.tooltiprect = vis.toolGroup.append("rect")
             .attr("x", 10)
             .attr("y", 40)
             .attr("width", 100)
             .attr("height", 70)
+            .attr("class","toolrect")
             .attr("fill", "white")
+
+        vis.tooltiprect.exit().remove();
 
         // add text to the tooltip group including population and date
         vis.tooltipLVMH = vis.toolGroup.append("text").data(vis.filteredData)
@@ -246,6 +251,7 @@ class RevenueVis {
             vis.toolGroup.attr("transform", "translate(" + xPos + ",0)")
             // change positioning of text to avoid being cut off by chart border
             if (xPos > 275) {
+                vis.tooltiprect.exit().remove();
                 vis.tooltipLVMH.attr("transform", "translate(" + -120 + ",0)")
                 vis.tooltipTJX.attr("transform", "translate(" + -120 + ",0)")
                 vis.tooltipGAP.attr("transform", "translate(" + -120 + ",0)")
@@ -253,6 +259,7 @@ class RevenueVis {
                 vis.tooltiprect.attr("transform", "translate(" + -120 + ",0)")
             }
             else {
+                vis.tooltiprect.exit().remove();
                 vis.tooltipLVMH.attr("transform", "translate(" + 0 + ",0)")
                 vis.tooltipTJX.attr("transform", "translate(" + 0 + ",0)")
                 vis.tooltipGAP.attr("transform", "translate(" + 0 + ",0)")
@@ -278,6 +285,7 @@ class RevenueVis {
                 mousemove(event);
             });
     }
+
 
 }
 //
