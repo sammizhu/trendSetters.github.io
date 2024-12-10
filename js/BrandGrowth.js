@@ -47,7 +47,7 @@ class BrandGrowth {
             .append("circle")
             .attr("class", "dot")
             .attr("cx", (d,i) => -vis.margin.left + 10 + i * 50)
-            .attr("cy", vis.height + vis.margin.top - 5)
+            .attr("cy", vis.height + vis.margin.top - 15)
             .attr("r", 5)
             .attr("fill", d => vis.colorScale(d));
         vis.legendGroup.selectAll("text")
@@ -55,7 +55,7 @@ class BrandGrowth {
             .enter()
             .append("text")
             .attr("x", (d,i) => -vis.margin.left + 20 + i * 50)
-            .attr("y", vis.height + vis.margin.top)
+            .attr("y", vis.height + vis.margin.top - 10)
             .attr("r", 5)
             .text(d => d)
             .style("font-size", "10px")

@@ -42,6 +42,22 @@ class RevenueVis {
             .attr("text-anchor", "middle")
             .text("Revenue by Quarter for Brands (hover over me!)");
 
+        // y-axis label
+        vis.svg.append("text")
+            .attr("x", -vis.height / 2)
+            .attr("y", -vis.margin.left + 10)
+            .attr("text-anchor", "middle")
+            .attr("transform", "rotate(-90)")
+            .style("font-size", "14px")
+            .text("Revenue per Quarter");
+
+        // x-axis label
+        vis.svg.append("text")
+            .attr("x", (vis.width - vis.margin.left) / 2)
+            .attr("y", vis.height + vis.margin.top + 35)
+            .attr("text-anchor", "middle")
+            .text("Quarter of the Year");
+
         vis.lineGenerator = d3.line()
             .x(d => vis.xScale(d.date))
             .y(d => vis.yScale(d.value));
