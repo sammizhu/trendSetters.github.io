@@ -9,7 +9,7 @@ body {
 #fashion-trends-10-years .page2-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.8em;
-    color: #e94b6e;
+    color: #FFB8BF;
     margin-top: 5px;
     margin-bottom: 15px;
     font-weight: normal;
@@ -37,7 +37,7 @@ body {
 }
 
 .fashion-trend-card.selected {
-    color: #e94b6e;
+    color: #FFB8BF;
 }
 
 .fashion-trend-card h3 {
@@ -60,7 +60,7 @@ body {
 #fashion-info-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8em;
-    color: #e94b6e;
+    color: #FFB8BF;
     margin-bottom: 15px;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -117,7 +117,7 @@ h1 {
     text-transform: uppercase;
     text-align: left;
     margin: 0;
-    color: #e94b6e;
+    color: #FFB8BF;
 }
 
 @media (max-width: 768px) {
@@ -202,7 +202,7 @@ h1 {
 
 .last-page-link {
     text-decoration: none;
-    background-color: #ff69b4;
+    background-color: #FFB8BF;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -214,6 +214,6 @@ h1 {
 }
 
 .last-page-link:hover {
-    background-color: #ff4f88;
+    background-color: #FFB8BF;
     transform: scale(1.05);
 }

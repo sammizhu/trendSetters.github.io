@@ -35,6 +35,16 @@ body {
     font-size: 1.2em;
 }
 
+h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: #FB9AAC;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
 .brand-options {
     display: flex;
     flex-direction: column;
@@ -155,7 +165,7 @@ h4 {
 }
 
 h6 {
-    color: #e65245;
+    color: #FB9AAC;
     font-size: 1.1em;
     font-style: italic;
 }
@@ -193,7 +203,7 @@ button.btn-primary:hover {
     font-size: 20px;
     font-family: "Gill Sans", sans-serif;
     font-style: italic;
-    fill: #a73378;
+    fill: #FB9AAC;
     font-weight: 600;
     text-align: center;
 }

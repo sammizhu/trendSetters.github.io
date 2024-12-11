@@ -23,7 +23,7 @@ body {
 .fashion-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.5em;
-    color: #e94b6e;
+    color: #FFB8BF;
     text-anchor: middle;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -40,13 +40,14 @@ body {
     overflow: visible;
 }
 
+
 #fashion-info-box {
     margin-top: 50px;
     padding: 50px;
     width: 100%;
     max-width: 700px;
     background-color: #ffe3eb;
-    border: 2px solid #e94b6e;
+    border: 2px solid #fb928e;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -58,7 +59,7 @@ body {
 #fashion-info-box h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2em;
-    color: #e94b6e;
+    color: #fb928e;
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;

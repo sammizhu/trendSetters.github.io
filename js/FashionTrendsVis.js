@@ -26,7 +26,7 @@ class FashionTrendsVis {
             .attr("x", vis.width / 2)
             .attr("y", -40)
             .attr("text-anchor", "middle")
-            .style("fill", "#D63484")
+            .style("fill", "#FB9AAC")
             .text("Influential Trends in Fashion");
 
 

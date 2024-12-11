@@ -14,7 +14,7 @@ body {
 h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8em;
-    color: #D63484;
+    color: #FB9AAC;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -71,7 +71,7 @@ footer {
 footer a {
     font-family: 'Playfair Display', serif;
     text-decoration: none;
-    color: #ff6f61; /* Match the primary accent color */
+    color: #FB9AAC;
     font-size: 1.2em;
     transition: transform 0.2s; /* Smooth scaling effect */
 }
@@ -176,7 +176,7 @@ footer a:hover {
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #ff6f61; /* Deep pink thumb */
+    background: #FB9AAC; /* Deep pink thumb */
     border-radius: 50%; /* Circular thumb */
     cursor: pointer;
     transition: background 0.3s ease-in-out;
@@ -185,7 +185,7 @@ footer a:hover {
 #slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: #ff6f61; /* Deep pink thumb */
+    background: #FB9AAC; /* Deep pink thumb */
     border-radius: 50%; /* Circular thumb */
     cursor: pointer;
     transition: background 0.3s ease-in-out;
@@ -194,7 +194,7 @@ footer a:hover {
 #slider::-ms-thumb {
     width: 20px;
     height: 20px;
-    background: #ff6f61; /* Deep pink thumb */
+    background: #FB9AAC; /* Deep pink thumb */
     border-radius: 50%; /* Circular thumb */
     cursor: pointer;
     transition: background 0.3s ease-in-out;
@@ -208,7 +208,7 @@ footer a:hover {
 .chart-title {
     font-size: 20px;
     font-weight: bold;
-    fill: #ff6f61;
+    fill: #FB9AAC;
     font-family: 'Playfair Display', serif;
 }
 

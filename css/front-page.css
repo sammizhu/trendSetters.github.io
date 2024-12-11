@@ -41,7 +41,7 @@ body {
     text-align: left;
     font-size: 1.2rem;
     font-weight: 300;
-    color: #D63484;
+    color: #FB9AAC;
     margin-bottom: 20px;
 }
 
@@ -56,7 +56,7 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 6rem;
     font-weight: 900;
-    color: #D63484;
+    color: #FB9AAC;
     text-transform: uppercase;
     margin-bottom: 5px;
     z-index:11;
@@ -68,7 +68,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: 400;
-    color: #D63484;
+    color: #FB9AAC;
     margin-top: 10px;
     font-style: italic;
     z-index:11;
@@ -94,12 +94,12 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
-    color: #a73378;
+    color: #FB9AAC;
 }
 
 /* Hover Effect */
 .centered-title h1:hover {
-    color: #a73378;
+    color: #FB9AAC;
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
