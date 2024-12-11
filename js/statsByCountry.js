@@ -1,3 +1,5 @@
+// creates the market size slider visualzation on the top of the third page left side
+
 // Load data and initialize the slider
 d3.csv("../data/market_size.csv").then(data => {
     // Convert marketSize to numbers

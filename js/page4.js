@@ -1,4 +1,4 @@
-
+// quiz on the fourth page left side
 function checkAnswers() {
     const correctAnswers = {
         LVMH: "Luxury",
