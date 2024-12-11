@@ -94,7 +94,7 @@ body {
 
 .left-quarter-top {
     font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     line-height: 1.5;
     text-align: right;
     color: #555;
@@ -112,7 +112,7 @@ body {
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: bold;
     text-transform: uppercase;
     text-align: left;
@@ -133,7 +133,7 @@ h1 {
 }
 
 .trend-line-image {
-    width: 200px;
+    width: 120px;
     height: auto;
     margin: 0 auto;
 }
