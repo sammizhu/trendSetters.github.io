@@ -268,11 +268,13 @@ footer {
 footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    color: black; /* Match the primary accent color */
-    font-size: 1.2em;
-    transition: transform 0.2s; /* Smooth scaling effect */
+    color: black;
+    font-size: 2.5em;
+    transition: transform 0.2s, color 0.2s;
+    margin-left: 10px
 }
 
 footer a:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
+    color: #e65245;
 }

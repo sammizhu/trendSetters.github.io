@@ -58,6 +58,7 @@ class RevenueVis {
             .attr("text-anchor", "middle")
             .text("Quarter of the Year");
 
+        // create line
         vis.lineGenerator = d3.line()
             .x(d => vis.xScale(d.date))
             .y(d => vis.yScale(d.value));
@@ -114,6 +115,7 @@ class RevenueVis {
         // parse date from the data
         const parseRevenue = value => +value.replace(/,/g, "");
 
+        // read csv file and store data
         d3.csv(vis.dataPath).then(data => {
             vis.data = [];
             data.forEach(row => {
@@ -189,16 +191,14 @@ class RevenueVis {
 
         companies.exit().remove();
 
-
-
         vis.toolGroup.selectAll(".toolcompany").remove();
-
+        vis.toolGroup.selectAll(".toolrect").remove();
 
         vis.tooltiprect = vis.toolGroup.append("rect")
             .attr("x", 10)
-            .attr("y", 40)
+            .attr("y", 20)
             .attr("width", 100)
-            .attr("height", 70)
+            .attr("height", 90)
             .attr("class","toolrect")
             .attr("fill", "white")
 
@@ -317,7 +317,7 @@ class RevenueVis {
         vis.rectEvent = vis.svg.append("rect")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("width", vis.width)
+            .attr("width", vis.width-vis.margin.left)
             .attr("height", vis.height)
             .attr("fill", "transparent")
             .style("pointer-events", "all")

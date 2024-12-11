@@ -32,12 +32,15 @@ footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: black;
-    font-size: 1.2em;
-    transition: transform 0.2s;
+    font-size: 2.5em;
+    transition: transform 0.2s, color 0.2s;
+    margin-right: 15px;
+    margin-left: -10px;
 }
 
 footer a:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
+    color: #e65245;
 }
 
 /* Page 2 Styling */

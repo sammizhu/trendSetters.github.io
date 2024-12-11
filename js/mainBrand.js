@@ -1,25 +1,26 @@
+// This file sets up the brand visualizations
+
+// Store in a variable, revenue by quarter visualization on top
 const brandRevenue = new RevenueVis({
     parentElement: "#VisContainer2Top",
     dataPath: "../data/revenue_data.csv"
 });
 
+// Store in a variable, revenue growth visualization on bottom
 const brandGrowth = new BrandGrowth({
     parentElement: "#VisContainer2Bottom",
     data: "../data/revenue_data.csv"
 });
 
-
-
-// create slider
+// create slider and store in a variable
 slider = document.getElementById('slider');
-
-console.log(brandRevenue)
 
 let formatDate = d3.timeFormat("%Y");
 let parseDate = d3.timeParse("%Y");
 let xMin = parseDate("2011");
 let xMax = parseDate("2023");
 
+// initialize slider
 noUiSlider.create(slider, {
     start: [xMin, xMax],
     connect: true,
@@ -60,7 +61,7 @@ slider.noUiSlider.on('slide', function (values, handle) {
     brandRevenue.loadData(xMin, xMax)
 });
 
-
+// create button that you can click through for key takeaways from the page
 const button = document.getElementById("actionButtonBrand");
 
 // List of questions to cycle through

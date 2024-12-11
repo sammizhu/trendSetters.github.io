@@ -70,15 +70,18 @@ footer {
 }
 
 footer a {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: black;
-    font-size: 1.2em;
-    transition: transform 0.2s; /* Smooth scaling effect */
+    font-size: 2.5em;
+    transition: transform 0.2s, color 0.2s;
+    margin-right: 15px;
+    margin-left: -10px;
 }
 
 footer a:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
+    color: #e65245;
 }
 
 .stat {
