@@ -65,19 +65,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-footer a {
-    font-family: 'Roboto', sans-serif;
-    text-decoration: none;
-    color: black;
-    font-size: 1.2em;
-    transition: transform 0.2s, color 0.2s;
-}
-
-footer a:hover {
-    transform: scale(1.1);
-    color: #e65245;
+    margin-top: 10px;
 }
 
 .left-link {
@@ -91,7 +79,7 @@ footer a:hover {
 .vl {
     border-left: 1px solid #ddd;
     height: 148%;
-    width: 1px
+    width: 5px
 }
 
 .highlight {
@@ -246,4 +234,11 @@ button.btn-primary:hover {
 .info-container p,
 .did-you-know p {
     margin: 10px 0;
+}
+
+.chart-title {
+    fill: #ff6f61;
+    font-size: 1.1em;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
 }
