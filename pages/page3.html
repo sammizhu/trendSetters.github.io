@@ -21,7 +21,7 @@
 
         <!-- Left Panel -->
         <div class="col-6 text-center d-flex flex-column justify-content-start align-items-center" id="VisContainer1">
-            <h3>Overall, the fashion industry has been growing</h3>
+            <h3>TODAY THE FASHION INDUSTRY IS ONE OF THE BIGGEST IN MANY COUNTRIES</h3>
 
             <!-- Slider and stats -->
             <div class="slider-container d-flex flex-column align-items-center">
@@ -31,9 +31,9 @@
 
                 <!-- Slider Captions -->
                 <div class="w-100 d-flex justify-content-between" style="margin-top: 10px;">
-                    <span class="text-start" style="font-size: 14px;">2000</span>
+                    <span class="text-start" style="font-size: 14px;">Least</span>
                     <span class="text-center" style="font-size: 14px;"><small>(slide me!)</small></span>
-                    <span class="text-end" style="font-size: 14px;">2024</span>
+                    <span class="text-end" style="font-size: 14px;">Greatest</span>
                 </div>
             </div>
 
@@ -49,9 +49,9 @@
                 </div>
                 <!-- Right column for charts -->
                 <div class="chart-area">
-                    <!-- Bubble Chart -->
+                    <!-- Radial Tree Map -->
                     <div id="radialTreeMap" class="chart-container bubble-chart-container">
-                        <!-- Bubble chart visualization will render here -->
+                        <!-- Radial Tree Map chart visualization will render here -->
                     </div>
                 </div>
             </div>
@@ -69,13 +69,13 @@
 
             <!-- Info Box -->
             <div class="text-center my-4" id="info-box">
-                <p><strong>In <span id="year">...</span>, the fashion market size was $<span id="market-size">...</span></strong></p>
+                <p><strong>In <span id="year">...</span>, the fashion market size was <span id="market-size">...</span></strong></p>
                 <p>Within fashion, the <span id="fastest-sector">...</span> sector was growing the fastest.</p>
             </div>
 
             <!-- Additional Text Area -->
             <div class="text-box" id="text-box" style="width: 75%; margin-top: 30px;">
-                <p>In <span id="year-trends">...</span>, these events and trends influenced fashion:</p>
+                <p style="font-weight: bold;">In <span id="year-trends">...</span>, these events and trends influenced fashion:</p>
                 <ul id="trends-text"></ul>
             </div>
         </div>
@@ -90,9 +90,9 @@
 
 <!-- JavaScript Libraries -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="../js/statsByYear.js"></script> <!-- Script for slider and stats -->
+<script src="../js/statsByCountry.js"></script> <!-- Script for slider and stats -->
 <script src="../js/QueriesByYear.js"></script> <!-- Script for line chart -->
-<script src="../js/fakeBubbleChart.js"></script> <!-- Script for bubble chart -->
+<script src="../js/radialTree.js"></script> <!-- Script for radial tree chart -->
 <script src="../js/page3.js"></script>
 </body>
 </html>

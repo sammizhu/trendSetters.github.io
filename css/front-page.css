@@ -120,9 +120,9 @@ footer {
 footer a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    color: #ff6f61; /* Match the primary accent color */
+    color: black;
     font-size: 1.2em;
-    transition: transform 0.2s; /* Smooth scaling effect */
+    transition: transform 0.2s;
 }
 
 footer a:hover {

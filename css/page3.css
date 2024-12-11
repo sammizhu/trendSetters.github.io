@@ -9,12 +9,13 @@
 
 body {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8em;
-    color: #FB9AAC;
+    color: black;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -71,7 +72,7 @@ footer {
 footer a {
     font-family: 'Playfair Display', serif;
     text-decoration: none;
-    color: #FB9AAC;
+    color: black;
     font-size: 1.2em;
     transition: transform 0.2s; /* Smooth scaling effect */
 }
@@ -202,6 +203,7 @@ footer a:hover {
 
 #radialTreeMap svg {
     overflow: visible;
+    justify-content: center;
 }
 
 
@@ -213,19 +215,31 @@ footer a:hover {
 }
 
 .chart-description {
-    font-size: 14px;
+    font-size: 18px;
     fill: #333;
     font-family: 'Playfair Display', serif;
+    text-anchor: middle;
 }
 
 .label-text {
-    font-size: 10px;
+    font-size: 15px;
+    font-weight: bold;
     fill: #333;
     font-family: 'Playfair Display', serif;
 }
 
 .legend-label {
-    font-size: 12px;
+    font-size: 15px;
     fill: #333;
     font-family: 'Playfair Display', serif;
+}
+
+.stat .country, .stat .market-size {
+    display: block;
+    text-align: center;
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 auto;
 }
