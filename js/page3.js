@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
             .style("font-weight", "bold")
-            .text("Fashion Market Size Over Time (click me!)");
+            .text("Fashion Market Size Over Time (click a dot!)");
 
         // Add X-axis
         const x = d3.scaleLinear()
