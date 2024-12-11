@@ -1,3 +1,4 @@
+// fashion trends vis for page 2
 class FashionTrendsVis {
     constructor(_parentElement, _data) {
         this.parentElement = _parentElement;
@@ -67,15 +68,20 @@ class FashionTrendsVis {
                 d3.select(this)
                     .attr("xlink:href", `../images/icons/${d.image}.png`);
             })
-            .on("click", (event, d) =>{
+            .on("click", (event, d) => {
                 vis.svg.selectAll(".fashion-trend-card image")
                     .classed("selected", false);
 
                 d3.select(event.currentTarget)
                     .classed("selected", true);
 
-                d3.select("#fashion-info-box h2").text(d.name);
-                d3.select("#fashion-info-text").text(d.detailedInfo||"More information coming soon!");
+                d3.select("#fashion-info-box h2")
+                    .text(d.name)
+                    .attr("title", d.name); // Add a tooltip for truncated text
+
+                d3.select("#fashion-info-text")
+                    .text(d.detailedInfo || "More information coming soon!")
+                    .attr("title", d.detailedInfo); // Add tooltip for overflow content
             });
 
         cardEnter.append("text")
@@ -87,6 +93,7 @@ class FashionTrendsVis {
             .style("font-weight", "bold")
             .text(d => d.name)
             .style("pointer-events", "none");
+
 
         cards.exit().remove();
         d3.select("#fashion-info-box")
@@ -102,42 +109,42 @@ const fashionData = [
         image: "2",
         hoverImage: "3",
         description: "Streetwear has reshaped the fashion industry with its blend of casual and luxury.",
-        detailedInfo: "Streetwear Revolution: Streetwear has grown from niche urban fashion to a global phenomenon. It blends comfort, functionality, and style, often incorporating elements from skate culture, hip-hop, and high fashion. Collaborations between streetwear brands and luxury designers have further propelled its popularity."
+        detailedInfo: "Streetwear Revolution: Streetwear has grown extensively from a niche style to a big global trend. It combines comfort, functionality, and style, often incorporating elements from skate culture, hip-hop, and high fashion. There have been an increasing number of streetwear and luxury collaborations."
     },
     {
         name: "Sustainability",
         image: "6",
         hoverImage: "7",
         description: "The focus on eco-friendly materials and ethical production has become a central theme.",
-        detailedInfo: "Sustainability: As consumers become more environmentally conscious, the fashion industry is prioritizing sustainable practices. This includes using organic and recycled materials, reducing waste through innovative manufacturing processes, and ensuring fair labor practices. Brands are increasingly transparent about their supply chains and are committed to reducing their carbon footprint."
+        detailedInfo: "Sustainability: Consumers have become more aware of their environmental impact, and with that the fashion industry is prioritizing sustainable practices. For the companies, it involves using organic and recycled materials, reducing waste through innovative manufacturing processes, and ensuring fair labor practices. Brands have used transparency around their supply chains and carbon footprint as marketing tools."
     },
     {
         name: "Digital Runways",
         image: "14",
         hoverImage: "15",
         description: "Virtual fashion shows during the pandemic showcased innovation in digital fashion.",
-        detailedInfo: "Digital Runways: The pandemic accelerated the adoption of digital platforms for fashion shows. Virtual runways allow designers to reach a global audience without the constraints of physical venues. Augmented reality (AR) and virtual reality (VR) technologies are being used to create immersive experiences, while digital-only fashion is emerging as a new trend in the metaverse."
+        detailedInfo: "Digital Runways: The pandemic accelerated the adoption of digital platforms for fashion shows. These Virtual runways allow designers to efficiently reach global markets. Augmented reality (AR) and virtual reality (VR) technologies are being used to create immersive experiences, helping consumers shop and admire from the comfort of their own home."
     },
     {
         name: "Athleisure Boom",
         image: "8",
         hoverImage: "9",
         description: "Activewear became a dominant category blending comfort with style.",
-        detailedInfo: "Athleisure Boom: Athleisure continues to dominate the fashion scene by seamlessly blending athletic wear with everyday clothing. This trend emphasizes versatility, allowing pieces to transition from workouts to casual outings. Innovations in fabric technology provide enhanced comfort and performance, making athleisure a staple in modern wardrobes."
+        detailedInfo: "Athleisure Boom: Athleisure is a combination athletic wear with everyday clothing, and it continues to dominate the fashion world. This trend is grounded in versatility, allowing pieces to transition from workouts to casual outings. Athleisure provides enhanced comfort and performance, making it a practical but flattering style."
     },
     {
         name: "Gender-Neutral Fashion",
         image: "10",
         hoverImage: "11",
         description: "Breaking barriers with designs that defy traditional gender norms.",
-        detailedInfo: "Gender-Neutral Fashion: This trend challenges the traditional binary notions of gender in clothing. Designers are creating collections that are inclusive and accessible to all, regardless of gender identity. This approach promotes diversity and self-expression, with unisex silhouettes, neutral color palettes, and versatile pieces becoming increasingly popular."
+        detailedInfo: "Gender-Neutral Fashion: This trend challenges the traditional binary notions of gender in clothing. Designers have started creating more inclusive and accessible clothes, regardless of gender identity. This approach promotes diversity and self-expression, with unisex silhouettes, neutral color palettes, and versatile pieces becoming increasingly popular."
     },
     {
         name: "Fast Fashion Critique",
         image: "4",
         hoverImage: "5",
         description: "Growing awareness about the environmental and ethical impact of fast fashion.",
-        detailedInfo: "Fast Fashion Critique: The fast fashion industry faces increasing scrutiny for its environmental impact and unethical labor practices. Consumers are demanding more transparency and accountability from brands. As a result, there is a shift towards slow fashion, which emphasizes quality, longevity, and sustainability. Brands are investing in circular fashion models and exploring ways to minimize waste."
+        detailedInfo: "Fast Fashion Critique: The fast fashion industry is based upon cheap labor and high quantity. It has faced scrutiny for its environmental impact and unethical labor practices. Consumers are demanding more transparency and accountability from brands, shifting the emphasis on quality, longevity, and sustainability. Brands are investing in circular fashion models and exploring ways to minimize waste."
     }
 ];
 
