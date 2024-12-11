@@ -1,6 +1,6 @@
 // Array to store page content dynamically
 const pages = [
-    { type: 'text', content: 'If you were CEO of a company, would your branding be recognizable?' },
+    { type: 'text', content: 'If you were CEO of a company, would your branding be recognizable? Click to flip through iconic branding moments' },
     { type: 'image', content: '../images/athletic.jpg' },
     { type: 'image', content: '../images/casual.jpg' },
     { type: 'image', content: '../images/luxury.jpg' },

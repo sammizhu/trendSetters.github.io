@@ -70,92 +70,90 @@ body {
     font-size: 1em;
     color: #333;
 }
-
-.container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
-    width: 100%;
+#VisContainer2 {
+    width: 50%; /* Occupy 50% of the page */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
-    box-sizing: border-box;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fill the entire container */
+}
+
+/* Top Row */
 .top-row {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 25% 75%;
+    height: 25%;
     align-items: center;
 }
 
-.bottom-row {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    align-items: start;
-}
-
 .left-quarter-top {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.7rem;
-    line-height: 1.5;
-    text-align: right;
+    font-size: 1vw;
     color: #555;
-    margin-right: 10px;
-}
-
-.right-three-quarters-top {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 2.0rem;
-    line-height: 1.8;
     text-align: right;
-    color: #333;
+    padding-right: 10px;
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+.right-three-quarters-top h1 {
+    font-size: 3.5vw;
     font-weight: bold;
-    text-transform: uppercase;
-    text-align: left;
-    margin: 0;
     color: #FFB8BF;
+    line-height: 1.2;
+    text-align: left;
+    margin-left: 20px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        grid-template-rows: auto;
-    }
-    .top-row, .bottom-row {
-        grid-template-columns: 1fr;
-    }
-    .right-three-quarters {
-        text-align: center;
-    }
+/* Middle Row */
+.middle-row {
+    display: grid;
+    grid-template-columns: 25% 75%; /* 25% left, 75% right */
+    height: 40%; /* Take up 40% of the container */
+    align-items: center;
+    gap: 10px;
 }
 
-.trend-line-image {
-    width: 120px;
+.left-quarter-middle img {
+    max-width: 80%;
     height: auto;
     margin: 0 auto;
 }
 
-.right-three-quarters-bottom {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin-left: 20px;
-    text-align: left;
+.right-three-quarters-middle p {
+    font-size: 0.7 vw;
+    line-height: 1.8;
     color: #333;
+    margin: 0;
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Bottom Row */
+.bottom-row {
+    height: 35%; /* Take up 35% of the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .book-container {
     display: flex;
-    width: 600px;
-    height: 300px;
-    margin: 0 auto;
-    border-radius: 3px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #f9f9f9;
     overflow: hidden;
     position: relative;
-    perspective: 1000px;
+    transition: transform 0.4s ease-in-out;
 }
 
 .page-content {
@@ -164,18 +162,21 @@ h1 {
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
-    transform-origin: center;
     transition: transform 0.4s ease-in-out;
+    padding: 20px;
+    height: 100%;
+    width: 50%;
 }
 
 .left-page {
-    background-color: #e7f5fe;
     transform-origin: left;
+    background-color: #e7f5fe;
+    border-right: 2px solid #ccc;
 }
 
 .right-page {
-    background-color: #ffe6e6;
     transform-origin: right;
+    background-color: #ffe6e6;
 }
 
 .book-container.flipping .left-page {
@@ -189,12 +190,12 @@ h1 {
 .page-content img {
     max-width: 100%;
     height: auto;
-    padding: 10px;
+    border-radius: 5px;
 }
 
 .page-content p {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
+    font-size: 1vw;
     color: #333;
     text-align: center;
     margin: 0;
@@ -207,13 +208,13 @@ h1 {
     padding: 10px 20px;
     border-radius: 5px;
     font-family: 'Playfair Display', serif;
-    font-size: 0.8rem;
+    font-size: 1vw;
     display: inline-block;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .last-page-link:hover {
-    background-color: #FFB8BF;
+    background-color: #FF7A85;
     transform: scale(1.05);
 }
