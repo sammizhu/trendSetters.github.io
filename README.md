@@ -37,6 +37,7 @@ The project leverages modern web technologies to deliver an immersive and respon
 - Interactivity Features: Enabled through event listeners and dynamic data binding for clickable and hoverable elements.
 
 ## How to Use
+Run the code at the `index.html`. Then: 
 
 1. Navigate the "Magazine":
 
