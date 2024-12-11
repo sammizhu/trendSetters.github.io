@@ -40,8 +40,7 @@ footer a:hover {
     transform: scale(1.2);
 }
 
-
-/* Page 2  Styling */
+/* Page 2 Styling */
 #VisContainer1-Page2 {
     position: relative; /* Required for z-index to work */
     display: flex;
@@ -50,33 +49,32 @@ footer a:hover {
     align-items: flex-start;
     width: 50%;
     height: 100%;
-    padding: 20px 20px 0 20px;
+    padding: 0.5%;
     box-sizing: border-box;
     background: linear-gradient(135deg, #E8647C 0%, #FFB6C1 70%);
     overflow: hidden;
 }
 
-
 #VisContainer1-Page2::before {
     content: '';
     position: absolute;
-    top: 30px; /* Space between border and content */
-    left: 30px;
-    right: 30px;
-    bottom: 30px;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    bottom: 2%;
     border: 3px solid #FFD700;
-    pointer-events: none; /* Prevents interaction issues */
+    pointer-events: none;
     box-sizing: border-box;
-    z-index: 0; /* Ensure it's below all content */
+    z-index: 0;
 }
 
 /* Title */
 
 h1.page2-title {
     font-family: 'Satisfy', cursive;
-    font-size: 4.5em;
+    font-size: 4.5vw;
     color: #FFF2F9;
-    margin-top: 10px;
+    margin-top: 2%;
     text-align: left;
     z-index: 10;
     position: relative;
@@ -84,11 +82,11 @@ h1.page2-title {
 
 h1.page2-title-title {
     font-family: 'Roboto', sans-serif;
-    font-size: 3.5em;
+    font-size: 3.5vw;
     color: #FFF2F9;
-    margin-top: -20px;
-    transform: translateX(20px);
-    margin-bottom: 25px;
+    margin-top: -2%;
+    transform: translateX(5%);
+    margin-bottom: 5%;
     text-align: left;
     z-index: 10;
     position: relative;
@@ -100,7 +98,7 @@ h1.page2-title-title {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    gap: 20px;
+    gap: 2%;
 }
 
 /* Left Column */
@@ -110,12 +108,12 @@ h1.page2-title-title {
     text-align: left;
 }
 
-/* left description */
+/* Left description */
 .page2-description {
     background-color: #FFE8F5;
-    padding: 10px 20px;
+    padding: 2%;
     line-height: 1.6;
-    font-size: 1.2rem;
+    font-size: 1.2vw;
     color: #222831;
     width: 100%;
     text-align: left;
@@ -125,9 +123,9 @@ h1.page2-title-title {
 
 .page2-description-button {
     background-color: #FFF1E9;
-    padding: 10px 20px;
+    padding: 2%;
     line-height: 1.6;
-    font-size: 0.8rem;
+    font-size: 0.8vw;
     color: #222831;
     width: 100%;
     text-align: left;
@@ -135,7 +133,7 @@ h1.page2-title-title {
     z-index: 1;
 }
 
-/* left image w button */
+/* Left image w button */
 .page2-image-wrapper {
     position: relative;
     width: 100%;
@@ -144,11 +142,10 @@ h1.page2-title-title {
 
 .page2-left-image {
     width: 100%;
-    max-width: 100%;
     height: auto;
 }
 
-/* button icon */
+/* Button icon */
 .page2-button-icon {
     position: absolute;
     top: 10%;
@@ -159,55 +156,51 @@ h1.page2-title-title {
 
 /* Button icon styles */
 .button-image {
-    width: 60px;
-    height: 60px;
+    width: 5vw;
+    height: 5vw;
     object-fit: contain;
     cursor: pointer;
 }
 
 .button-image:hover {
     transform: scale(1.2);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1vw 2vw rgba(0, 0, 0, 0.2);
 }
 
 /* Right Column */
 
-/* Right Content Container */
 .page2-right-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 50%;
     box-sizing: border-box;
 }
 
-/* Right Content Container */
 .page2-right-split {
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
     width: 100%;
-    max-width: 700px;
+    max-width: 100%;
     box-sizing: border-box;
     position: relative;
     z-index: 1;
 }
 
-/* Right Description (Styled Text Box) */
 .styled-textbox {
     flex: 1;
     background-color: #e7f5fe;
     color: #333;
-    padding: 11px;
+    padding: 2%;
     font-family: 'Roboto', sans-serif;
-    font-size: 10px;
+    font-size: 0.8vw;
     line-height: 1.5;
     box-sizing: border-box;
     overflow: hidden;
 }
-
 
 /* Right Image */
 .page2-right-image {
@@ -217,21 +210,20 @@ h1.page2-title-title {
     display: block;
 }
 
-/* right description */
+/* Right description */
 .page2-question {
-        background-color: #FFE8F5;
-        padding: 5px 10px;
-        line-height: 1.6;
-        font-size: 1rem;
-        color: #222831;
-        width: 100%;
-        text-align: left;
+    background-color: #FFE8F5;
+    padding: 2%;
+    line-height: 1.6;
+    font-size: 1vw;
+    color: #222831;
+    width: 100%;
+    text-align: left;
     position: relative;
     z-index: 1;
+}
 
-    }
-
-/* dress */
+/* Dress */
 .page2-centered-red-dress {
     position: absolute;
     bottom: 5%;
@@ -244,7 +236,7 @@ h1.page2-title-title {
     max-width: 300%;
 }
 
-/* pop up Banner container */
+/* Pop-up Banner container */
 #banner-container {
     position: absolute;
     top: 0;
@@ -258,13 +250,12 @@ h1.page2-title-title {
 .banner {
     position: absolute;
     width: 200%;
-    height: 60px;
+    height: 5%;
     background-color: #FFE459;
     color: #333456;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 1.4vw;
     text-align: center;
-    line-height: 60px;
+    line-height: 2;
     transform-origin: center;
     transform: rotate(-10deg);
     top: 50%;
@@ -282,5 +273,3 @@ h1.page2-title-title {
         transform: rotate(-10deg) translateX(0%);
     }
 }
-
-

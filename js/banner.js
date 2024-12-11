@@ -19,6 +19,9 @@ let currentIndex = 0;
 // Counter to track button clicks
 let clickCount = 0;
 
+// Vertical position tracker
+let currentTop = 15;
+
 // Add event listener to the button
 button.addEventListener("click", () => {
     // If the button has been clicked 8 times, reset the banners and the counter
@@ -28,9 +31,10 @@ button.addEventListener("click", () => {
             bannerContainer.removeChild(bannerContainer.firstChild);
         }
 
-        // Reset the counter and index
+        // Reset the counter, index, and top position
         clickCount = 0;
         currentIndex = 0;
+        currentTop = 15;
 
         return;
     }
@@ -38,7 +42,17 @@ button.addEventListener("click", () => {
     // Create a new banner
     const banner = document.createElement("div");
     banner.className = "banner";
-    banner.style.top = `${Math.random() * 80 + 10}%`; // Random vertical position (10% to 90%)
+
+    // Set a consistent vertical position for the banner
+    banner.style.top = `${currentTop}%`;
+
+    // Increment the vertical position for the next banner
+    currentTop += 10; // Adjust increment as needed to fit your design
+
+    // If the vertical position exceeds 100%, reset it (optional)
+    if (currentTop >= 100) {
+        currentTop = 0;
+    }
 
     // Set the banner text to the current question
     banner.textContent = questions[currentIndex];
