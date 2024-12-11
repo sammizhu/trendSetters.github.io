@@ -1,3 +1,4 @@
+// creates the radial Tree map on third page
 function createRadialTreeMap() {
     const width = 600;
     const height = 600;
@@ -5,7 +6,7 @@ function createRadialTreeMap() {
 
     const svg = d3.select("#radialTreeMap")
         .append("svg")
-        .attr("width", width + 150) // Increased width to accommodate the legend
+        .attr("width", width + 150)
         .attr("height", height);
 
     // Center the chart within the SVG

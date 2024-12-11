@@ -1,3 +1,4 @@
+// page 3 right side chart for the linear market growth visualization
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM fully loaded and parsed");
 
@@ -5,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.csv("../data/fashion_market.csv").then(data => {
         // Parse the trends field into an array
         data.forEach(d => {
-            d.marketSize = +d.marketSize; // Convert marketSize to a number
-            d.trends = d.trends.split(";"); // Split trends into an array
+            d.marketSize = +d.marketSize;
+            d.trends = d.trends.split(";");
         });
 
         // Set dimensions
