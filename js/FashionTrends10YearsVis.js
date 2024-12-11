@@ -1,3 +1,5 @@
+// 10 year trend vis for page 5
+// made up of 6 cards that can be clicked for more info
 class FashionTrends10YearsVis {
     constructor(_parentElement, _data) {
         this.parentElement = _parentElement;
@@ -82,7 +84,7 @@ const fashionData10Years = [
     {
         name: "Luxury Revival",
         description: "Surge in premium purchases post-pandemic.",
-        detailedInfo: "Post-pandemic, pent-up demand led to a strong rebound in luxury sales. Affluent consumers spent on high-end goods as a form of indulgence and to celebrate the return to normalcy. The trend was driven by increased spending on handbags, jewelry, and premium clothing as in-person events resumed. This revival boosted revenue for the luxury sector significantly."
+        detailedInfo: "Post-pandemic, pent-up demand led to strong rebound in luxury sales. Affluent consumers spent on high-end goods as a form of indulgence and to celebrate the return to normalcy. The trend was driven by increased spending on handbags, jewelry, and premium clothing as in-person events resumed. This revival boosted revenue for the luxury sector significantly."
     },
     {
         name: "Eco-Conscious Buying",
