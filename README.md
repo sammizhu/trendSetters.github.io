@@ -1,4 +1,5 @@
 # CS1710 Final Project - Analyzing Fashion Trends
+## [Project Link](https://sammizhu.com/trendSetters.github.io/)
 ### Authors: Sammi Zhu, Isabel Xue, Trinh Nguyen, Megan Ong
 ## Overview
 
@@ -35,6 +36,7 @@ The project leverages modern web technologies to deliver an immersive and respon
 - Data Visualization: Powered by **libraries like D3.js or Plotly** for interactive and customizable charts.
 - Frontend Design: Built with HTML, CSS, and JavaScript, with a focus on aesthetic and usability.
 - Interactivity Features: Enabled through event listeners and dynamic data binding for clickable and hoverable elements.
+- Most of the code are all of our own, apart from generic web design libraries like the ones we mentioned. 
 
 ## How to Use
 Run the code at the `index.html`. Then: 
@@ -43,7 +45,7 @@ Run the code at the `index.html`. Then:
 
 2. Flip through the pages to explore different facets of the data and fashion trends. Each page is themed around a specific aspect of the fashion industry, from top brands to emerging trends.
 
-3. Interact with the Data:
+3. Interact with the data. Please be sure to read the interactables and buttons as well!
 
 4. Click on charts and graphs to drill down into specific data points. Use filters and toggles to customize your view of the information.
 
