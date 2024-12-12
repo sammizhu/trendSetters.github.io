@@ -1,3 +1,5 @@
+// This class displays the Brand Growth Visualization on the bottom of the fourth page on the right side
+
 class BrandGrowth {
     constructor({parentElement, data}) {
         // set up
@@ -41,6 +43,7 @@ class BrandGrowth {
         // form legend to appear at bottom
         vis.brands = ["LVMH", "TJX", "LULU", "GAP"]
         vis.legendGroup.selectAll(".dot").remove();
+        // show colored circles
         vis.legendGroup.selectAll(".dot")
             .data(vis.brands)
             .enter()
@@ -50,6 +53,7 @@ class BrandGrowth {
             .attr("cy", vis.height + vis.margin.top - 15)
             .attr("r", 5)
             .attr("fill", d => vis.colorScale(d));
+        // show text
         vis.legendGroup.selectAll("text")
             .data(vis.brands)
             .enter()
@@ -105,8 +109,10 @@ class BrandGrowth {
     loadData(xMin, xMax) {
         const vis = this;
 
+        // helper function that parses the revenue data from the csv file
         const parseRevenue = value => +value.replace(/,/g, "");
 
+        // extract data from csv for each brand
         d3.csv(vis.dataPath).then(data => {
             vis.data = [];
             data.forEach(row => {
@@ -126,6 +132,7 @@ class BrandGrowth {
         vis.luluData = []
         vis.gapData = []
 
+        // sort the data by date and put each company's data in its own array
         vis.sortedData = vis.data.sort((a,b) => a.date - b.date)
 
         vis.sortedData.forEach(row => {
@@ -149,14 +156,21 @@ class BrandGrowth {
         vis.luluRates = []
         vis.gapRates = []
 
-        // calculate and push annual growth rates
+
+        // set the date for minimum possible year
         let date = 2011
+
+        // calculate and push annual growth rates
         for (let i = 4; i < vis.lvmhData.length; i = i+4) {
+            // sum up all quarters of this year
             let thisYearLV = vis.lvmhData[i].value + vis.lvmhData[i+1].value + vis.lvmhData[i+2].value + vis.lvmhData[i+3].value
+            // sum up all quarters of last year
             let prevYearLV = vis.lvmhData[i-1].value + vis.lvmhData[i-2].value + vis.lvmhData[i-3].value + vis.lvmhData[i-4].value
+            // arbitrarily set the date so that the year is correct
             let setDate = new Date(`${date}-9-30`)
+            // increment year
             date += 1
-            console.log("setDate", setDate)
+            // push information into array
             vis.lvmhRates.push({
                 company: "LVMH",
                 date: setDate,
@@ -164,6 +178,7 @@ class BrandGrowth {
                 prevRev: prevYearLV,
                 nowRev: thisYearLV,
             })
+            // for TJX
             let thisYearTJX = vis.tjxData[i].value + vis.tjxData[i+1].value + vis.tjxData[i+2].value + vis.tjxData[i+3].value
             let prevYearTJX = vis.tjxData[i-4].value + vis.tjxData[i-1].value + vis.tjxData[i-2].value + vis.tjxData[i-3].value
             vis.tjxRates.push({
@@ -173,6 +188,7 @@ class BrandGrowth {
                 prevRev: prevYearTJX,
                 nowRev: thisYearTJX,
             })
+            // for LULU
             let thisYearLU = vis.luluData[i].value + vis.luluData[i+1].value + vis.luluData[i+2].value + vis.luluData[i+3].value
             let prevYearLU = vis.luluData[i-4].value + vis.luluData[i-1].value + vis.luluData[i-2].value + vis.luluData[i-3].value
             vis.luluRates.push({
@@ -182,6 +198,7 @@ class BrandGrowth {
                 prevRev: prevYearLU,
                 nowRev: thisYearLU,
             })
+            // for GAP
             let thisYearGAP = vis.gapData[i].value + vis.gapData[i+1].value + vis.gapData[i+2].value + vis.gapData[i+3].value
             let prevYearGAP = vis.gapData[i-4].value + vis.gapData[i-1].value + vis.gapData[i-2].value + vis.gapData[i-3].value
             vis.gapRates.push({
@@ -197,12 +214,11 @@ class BrandGrowth {
         // combine all companies' data to one list
         vis.allRates = vis.lvmhRates.concat(vis.tjxRates, vis.luluRates, vis.gapRates)
 
-        console.log(vis.allRates)
-
         // set domains of scales
         vis.minY = d3.min(vis.allRates, d => d.rate)
         vis.maxY = d3.max(vis.allRates, d => d.rate)
 
+        // round the dates so no extra is displayed
         vis.minX = xMin;
         if (vis.parseDate("2022 Q4") < xMax) {
             vis.maxX = vis.parseDate("2022 Q4");
@@ -211,9 +227,7 @@ class BrandGrowth {
             vis.maxX = xMax;
         }
 
-
-        console.log("minX", vis.maxX)
-
+        // set domains of x scale based off min and max date
         vis.xScale.domain([vis.minX, vis.maxX])
 
         // filter data
@@ -227,23 +241,23 @@ class BrandGrowth {
 
     }
 
+    // update visualization
     updateVis() {
         const vis = this;
 
+        // set y scale domain and size of circles' domain
         vis.yScale.domain([vis.minY, vis.maxY])
         vis.sizeScale.domain([vis.minY, vis.maxY])
 
         // create custom tickValues which are just the years
         vis.customTickValues = []
 
+        // use the dates from this array to display on tick marks
         vis.lvmhRates.forEach( row => {
             if (row.date >= vis.minX && row.date <= vis.maxX) {
-                console.log(row.date)
                 vis.customTickValues.push(row.date)
             }
         })
-
-        console.log(vis.minX)
 
         // Render the axes
         vis.xAxis = d3.axisBottom(vis.xScale)
@@ -277,6 +291,7 @@ class BrandGrowth {
             .attr("cx", d => vis.xScale(d.date))
             .attr("cy", d => vis.yScale(d.rate))
             .style("pointer-events", "all")
+            // on click update the bottom text to give more information
             .on("click", function (event, d) {
                 let formatDate = d3.timeFormat("%Y");
                 let formatRate = d3.format(".0%")
@@ -286,6 +301,7 @@ class BrandGrowth {
                 }
                 document.getElementById("explanation").innerHTML = `In ${formatDate(d.date)}, ${d.company} grew ${formatRate(d.rate)}. Last year, ${d.company} reported total revenue of $${formatBills(d.prevRev)}. This year, ${d.company} reported total revenue of $${formatBills(d.nowRev)}`
             })
+            // highlight hovered over rates
             .on("mouseover", function (event, d) {
                 d3.select(this)
                     .style("stroke", "#63BA6E")
@@ -306,12 +322,3 @@ class BrandGrowth {
             .remove();
     }
 }
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//
-//     const brandGrowth = new BrandGrowth({
-//         parentElement: "#VisContainer2Bottom",
-//         data: "data/revenue_data.csv"
-//     });
-// });

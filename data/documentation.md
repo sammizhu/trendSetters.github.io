@@ -17,4 +17,10 @@
    - country: text field representing the name of the country
    - marketSize: numerical field indicating the total economic value of the fashion industry in the corresponding year
 6. revenue_data.csv:
-   -
+   - source: Capital IQ, accessed through Harvard’s library resources
+   - Pricing Date: text field with quarter and year of reported revenue in format "FQ_ 20__", (later parsed to become a date)
+   - Date: text field with quarter and year of reported revenue in format "20__ Q_", (later parsed to become a date)
+   - MC-Total Revenue (FQ)($): numerical field with full digit of revenue generated from Louis Vuitton in a given quarter
+   - TJX-Total Revenue (FQ)($): numerical field with full digit of revenue generated from TJ Maxx in a given quarter
+   - LULU-Total Revenue (FQ)($): numerical field with full digit of revenue generated from Lululemon in a given quarter
+   - GAP-Total Revenue (FQ)($): numerical field full digit of revenue generated from Gap in a given quarter

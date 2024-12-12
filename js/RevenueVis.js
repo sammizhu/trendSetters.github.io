@@ -1,3 +1,5 @@
+// This class displays the Revenue Visualization on the top of the fourth page on the right side
+
 class RevenueVis {
     constructor({ parentElement, dataPath }) {
         this.parentElement = parentElement;
@@ -8,18 +10,17 @@ class RevenueVis {
     initVis() {
         const vis = this;
 
+        // set up scale to show different colors for different lines
         vis.colorScale = d3.scaleOrdinal()
             .domain(["MC", "TJX", "LULU", "GAP"])
             .range(["#ffb3b3", "#CE93D8", "#B39EB5", "#FF6961"]);
-
-        // vis.size = document.getElementById(vis.parentElement).getBoundingClientRect();
-        console.log(vis.size)
 
         // set up the margins
         vis.margin = { top: 30, right: 50, bottom: 100, left: 50 };
         vis.width = 800 - vis.margin.left - vis.margin.right;
         vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
+        // set up the canvas
         vis.svg = d3
             .select(vis.parentElement)
             .append("svg")
@@ -28,12 +29,15 @@ class RevenueVis {
             .append("g")
             .attr("transform", `translate(${vis.margin.left}, ${vis.margin.top})`);
 
+        // set up scales for axes
         vis.xScale = d3.scaleTime().range([0, vis.width - vis.margin.left]);
         vis.yScale = d3.scaleLinear().range([vis.height, 0]);
 
+        // set up groups for axes
         vis.xAxisGroup = vis.svg.append("g").attr("transform", `translate(0, ${vis.height})`);
         vis.yAxisGroup = vis.svg.append("g");
 
+        // add chart title
         vis.svg
             .append("text")
             .attr("class", "chart-title")
@@ -89,6 +93,7 @@ class RevenueVis {
         // form legend to appear at bottom
         vis.brands = ["LVMH", "TJX", "LULU", "GAP"]
         vis.legendGroup.selectAll(".dot").remove();
+        // create colored circles
         vis.legendGroup.selectAll(".dot")
             .data(vis.brands)
             .enter()
@@ -98,6 +103,7 @@ class RevenueVis {
             .attr("cy", vis.height + vis.margin.top - 5)
             .attr("r", 5)
             .attr("fill", d => vis.colorScale(d));
+        // create text next to circles
         vis.legendGroup.selectAll("text")
             .data(vis.brands)
             .enter()
@@ -109,6 +115,7 @@ class RevenueVis {
             .style("font-size", "10px")
     }
 
+    // load data given the time period from slider
     loadData(xMin, xMax) {
         const vis = this;
 
@@ -128,27 +135,29 @@ class RevenueVis {
                 );
             });
 
+            // save min and max values of date
             vis.minX = xMin
             vis.maxX = xMax
 
-            console.log(xMax)
-
+            // filter the data based on min and max values of date
             vis.filteredData = vis.data.filter(d => d.date >= vis.minX && d.date <= vis.maxX)
             console.log(vis.filteredData)
-
 
             vis.updateVis();
         });
     }
 
+    // update visualization
     updateVis() {
         const vis = this;
 
         const nestedData = d3.group(vis.filteredData, d => d.company);
 
+        // update scales based on min and max date values
         vis.xScale.domain([vis.minX, vis.maxX]);
         vis.yScale.domain([0, d3.max(vis.filteredData, d => d.value)]);
 
+        // call x axis and format text from ticks
         vis.xAxisGroup
             .transition()
             .duration(500)
@@ -158,6 +167,7 @@ class RevenueVis {
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end");
 
+        // format ticks from y axis
         vis.yaxis = d3.axisLeft(vis.yScale)
             .ticks(8)
             .tickFormat(d => {
@@ -170,11 +180,13 @@ class RevenueVis {
                 }
             });
 
+        // call y axis
         vis.yAxisGroup
             .transition()
             .duration(500)
             .call(vis.yaxis);
 
+        // show companies
         const companies = vis.svg.selectAll(".line-group")
             .data(nestedData, d => d[0]);
 
@@ -191,9 +203,11 @@ class RevenueVis {
 
         companies.exit().remove();
 
+        // remove all existing tooltip elements
         vis.toolGroup.selectAll(".toolcompany").remove();
         vis.toolGroup.selectAll(".toolrect").remove();
 
+        // show rectangle that sits behind the text
         vis.tooltiprect = vis.toolGroup.append("rect")
             .attr("x", 10)
             .attr("y", 20)
@@ -204,7 +218,7 @@ class RevenueVis {
 
         vis.tooltiprect.exit().remove();
 
-        // add text to the tooltip group including population and date
+        // add text to the tooltip group including population and date for each brand
         vis.tooltipLVMH = vis.toolGroup.append("text").data(vis.filteredData)
             .attr("x", 10)
             .attr("y", 40)
@@ -236,6 +250,7 @@ class RevenueVis {
             return d3.format(".1f")(billions) + "B";
         }
 
+        // helper function that rounds a date to the nearest quarter
         function roundDateToQuarter(dateVal) {
             const year = dateVal.getFullYear();
             const month = dateVal.getMonth() + 1;
@@ -259,6 +274,7 @@ class RevenueVis {
             }
         }
 
+        // helper function that returns the index at which the date is
         function findIndex(dateVal) {
             for (let i = 0; i < vis.filteredData.length; i++) {
                 if (vis.filteredData[i].date.getTime() === dateVal.getTime()) {
@@ -277,11 +293,10 @@ class RevenueVis {
             // get element by tracking mouse position
             let xPos = d3.pointer(event)[0]
             let dateVal = vis.xScale.invert(xPos)
+            // from before
             let index = vis.bisectDate(vis.filteredData, dateVal)
-            console.log(roundDateToQuarter(dateVal))
-            console.log(vis.filteredData);
+            // actually used to find index using helper function
             let secondIndex = findIndex(roundDateToQuarter(dateVal))
-            console.log(secondIndex)
             let lvmhElement = vis.filteredData[secondIndex]
             let tjxElement = vis.filteredData[secondIndex + 1]
             let luluElement = vis.filteredData[secondIndex + 2]
@@ -312,7 +327,6 @@ class RevenueVis {
             }
         }
 
-
         // create a rectangle to track mouse movements
         vis.rectEvent = vis.svg.append("rect")
             .attr("x", 0)
@@ -321,6 +335,7 @@ class RevenueVis {
             .attr("height", vis.height)
             .attr("fill", "transparent")
             .style("pointer-events", "all")
+            // have tooltip group disappear on mouse out
             .on("mouseout", () => {
                 console.log("Mouse out!");
                 vis.toolGroup.style("display", "none");
@@ -330,12 +345,5 @@ class RevenueVis {
             });
     }
 
-
 }
-//
-// document.addEventListener("DOMContentLoaded", () => {
-//     const brandRevenue = new RevenueVis({
-//         parentElement: "#VisContainer2Top",
-//         dataPath: "data/revenue_data.csv"
-//     });
-// });
+
